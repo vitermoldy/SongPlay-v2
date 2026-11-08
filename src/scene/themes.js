@@ -30,3 +30,13 @@ export const THEMES = {
     sky: { top: '#020a0c', mid: '#06181c', low: '#0e2a2c', horizon: '#1c3c3a', sun: '#c8dccf' },
     sunDir: [-0.36, 0.2, -1],
     stars: 1,
+    haze: '#0e2222',
+    clouds: { lit: '#2c4a48', shade: '#142828', opacity: 0.55 },
+    treeline: { farTop: '#0c2020', farLow: '#122c2a', nearTop: '#040e0c', nearLow: '#0a1a18' },
+    pines: { dark: '#020604', lit: '#0e2018' },
+    leaves: { dark: '#030704', lit: '#12241a' },
+    grass: { base: '#03070a', mid: '#0b1818', tip: '#24403c', tipGold: '#3c5a4c', back: '#9cc8b8' },
+    ground: { dark: '#04080a', lit: '#0b1614' },
+    light: { sun: '#9cc0b8', sky: '#1f4844', particles: '#8aa49c' },
+    lamps: { hemiSky: '#2f6660', hemiGround: '#05080a', hemi: 0.4, sun: '#c0dcd2', sunI: 0.5, fill: '#2e5650', fillI: 0.2 },
+    // Fireflies: yellow-green, a few warmer.
