@@ -309,3 +309,13 @@ function createWalker(name, heightAt, rand) {
       }
       if (a.state === 'stop') {
         a.timer -= dt;
+        stopPose(time);
+        if (a.timer <= 0) {
+          a.state = 'move';
+          a.lookAim = 0;
+        }
+        place(dt);
+        pose(dt, time, false);
+        return;
+      }
+      a.neckAim = 0;
