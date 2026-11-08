@@ -75,3 +75,7 @@ ol {
   list-style: none;
 }
 
+a {
+  color: inherit;
+}
+
