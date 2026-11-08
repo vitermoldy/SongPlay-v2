@@ -174,3 +174,6 @@ export function vhsify(source, outW = W, outH = H) {
   g.lineTo(98, 52);
   g.lineTo(114, 42);
   g.closePath();
+  g.fill();
+  g.fillText('SP', w - 66, 50);
+
