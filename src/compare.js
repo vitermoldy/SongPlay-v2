@@ -53,3 +53,11 @@ export function paintStandIn() {
   g.lineTo(W, H);
   g.fill();
 
+  const hill = g.createLinearGradient(0, H * 0.7, 0, H);
+  hill.addColorStop(0, '#3a4a1c');
+  hill.addColorStop(1, '#10170c');
+  g.fillStyle = hill;
+  g.beginPath();
+  g.ellipse(W * 0.5, H * 1.14, W * 0.78, H * 0.42, 0, 0, Math.PI * 2);
+  g.fill();
+
