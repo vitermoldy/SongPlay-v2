@@ -143,3 +143,13 @@ export function createClouds(live) {
   });
 }
 
+// A band of forest on the horizon, as one flat silhouette: firs of mixed heights standing
+// shoulder to shoulder over a gently rolling floor. Each fir is a spike whose slope steps out
+// three times, so the outline reads as tiers of boughs even when blurred and far away.
+function treeline(seed, { width, base, hill, tall, spacing }) {
+  const rand = mulberry32(seed);
+  const phases = [rand() * 6, rand() * 6, rand() * 6];
+  const floor = (x) =>
+    base +
+    hill *
+      (0.5 +
