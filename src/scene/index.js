@@ -320,3 +320,6 @@ export function createScene(
       }
       prev = t;
     }
+    return null;
+  }
+
