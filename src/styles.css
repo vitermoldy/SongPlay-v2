@@ -1426,3 +1426,8 @@ body.menu-open .site-header {
     white-space: nowrap;
   }
 
+  .compare-tag {
+    bottom: 16px;
+    font-size: 13px;
+  }
+
