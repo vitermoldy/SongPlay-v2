@@ -797,3 +797,13 @@ body.menu-open .site-header {
   cursor: ew-resize;
 }
 
+.compare-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  z-index: 2;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--cream);
+  pointer-events: none;
