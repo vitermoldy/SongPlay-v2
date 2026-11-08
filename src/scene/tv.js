@@ -112,3 +112,12 @@ export function createTV(shapeName = 'classic') {
         vec2 p = (vUv - 0.5) * vec2(uAspect, 1.0);
         float edge = sdRoundRect(p, vec2(uAspect * 0.5, 0.5), uCorner);
         if (edge > 0.0) discard;
+
+        float r = length((vUv - 0.5) * vec2(1.0, 1.15));
+        vec3 hot = vec3(3.0, 2.7, 1.9);
+        vec3 warm = vec3(1.9, 0.95, 0.26);
+        vec3 c = mix(hot, warm, smoothstep(0.08, 0.72, r));
+        c *= 0.95 + 0.05 * sin(vUv.y * 420.0);
+        c *= 0.975 + 0.025 * sin(uTime * 31.0) * sin(uTime * 7.0);
+        c *= uLevel;
+
