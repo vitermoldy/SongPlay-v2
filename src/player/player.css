@@ -733,3 +733,7 @@
   color: #fff;
 }
 
+.text-btn[hidden] {
+  display: none;
+}
+
