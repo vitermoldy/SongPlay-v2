@@ -1320,3 +1320,9 @@ body.menu-open .site-header {
     height: 44px;
   }
 
+  .services-grid,
+  .contacts-grid,
+  .formats-head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
