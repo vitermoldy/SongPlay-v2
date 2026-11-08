@@ -39,3 +39,13 @@ export function initCursorLight({ skip = [] } = {}) {
     { passive: true },
   );
 
+  // Scrolling moves the page under a still cursor: re-check whether it now sits over a scene.
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (x < 0) return;
+      light.classList.toggle('is-on', !overSkipped(x, y));
+      const under = document.elementFromPoint(x, y);
+      light.classList.toggle('is-paper', Boolean(under?.closest('.on-light')));
+    },
+    { passive: true },
