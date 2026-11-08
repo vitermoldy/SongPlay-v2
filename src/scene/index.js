@@ -84,3 +84,13 @@ function createLive(time, season) {
   };
 }
 
+export function createScene(
+  canvas,
+  {
+    variant = 'hero',
+    theme = 'dusk',
+    season = 'summer',
+    frameArea,
+    lowPower = false,
+    reducedMotion = false,
+    onReady,
