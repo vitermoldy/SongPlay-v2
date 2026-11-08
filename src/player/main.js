@@ -397,3 +397,13 @@ async function initScene() {
   let playing = false;
   const sync = () => {
     ui.sceneToggle.dataset.paused = String(!playing);
+    ui.sceneLabel.textContent = playing ? 'Pause scene' : 'Play scene';
+    scene.setPlaying(playing);
+  };
+  try {
+    const { createScene } = await import('../scene/index.js');
+    scene = createScene(ui.canvas, {
+      variant: 'player',
+      theme,
+      season,
+      frameArea,
