@@ -557,3 +557,7 @@ body.menu-open .site-header {
   gap: 10px;
   max-width: 40%;
   font-size: 14px;
+  line-height: 1.3;
+  color: rgba(238, 244, 234, 0.9);
+}
+
