@@ -110,3 +110,13 @@ const fragmentShader = /* glsl */ `
   varying float vPart;
   varying float vSeed;
   ${NOISE_GLSL}
+  void main() {
+    vec3 n = normalize(vNormal);
+    float k = vnoise(vWorld.xz * 1.7 + vWorld.y * 2.3);
+    float up = n.y * 0.5 + 0.5;
+    vec3 leaf = mix(uDark, uLit, clamp(up * 0.55 + vH * 0.35 + (k - 0.5) * 0.35, 0.0, 1.0));
+    leaf *= 0.78 + vSeed * 0.44;
+    vec3 base = mix(uBark, leaf, vPart);
+    float sun = max(dot(n, uSunDir), 0.0);
+    // Faces turned up to the sky take most of its light: snow on the boughs reads white.
+    vec3 c = base * (uSunColor * (0.22 + sun * 0.7) + uSkyColor * (0.2 + 0.5 * max(n.y, 0.0)));
