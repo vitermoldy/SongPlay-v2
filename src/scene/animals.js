@@ -373,3 +373,13 @@ function createFlocks(live, rand, count) {
   });
   let wait = 4;
 
+  function launch() {
+    const dir = rand() < 0.5 ? 1 : -1;
+    const z = -26 - rand() * 18;
+    const y = 4.8 + rand() * 2.4;
+    const speed = 5 + rand() * 2;
+    const size = 2 + Math.floor(rand() * 5);
+    birds.slice(0, size).forEach((b, i) => {
+      const row = Math.ceil(i / 2);
+      const side = i % 2 ? 1 : -1;
+      Object.assign(b, {
