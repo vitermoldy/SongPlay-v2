@@ -23,3 +23,9 @@ tapes, in a cinematic dusk 3D style. Dial: ENERGY 3 / RHYTHM 2 / MOTION 2.
 
 ## Palette (2 cores + 1 accent)
 
+| Token | Value | Reason |
+|---|---|---|
+| `--night` | `#0f1d17` | The wood after dark; sections read as the same evening going on under the trees. |
+| `--cream` | `#f4efe6` | Cassette label paper; the one contrasting ground (Formats) and the button fill. |
+| `--glow` | `#ffc56b` | The TV screen; one accent, used at the main action only. |
+
