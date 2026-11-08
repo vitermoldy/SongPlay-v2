@@ -20,3 +20,13 @@ export const THEMES = {
     grass: { base: '#0b1209', mid: '#24320f', tip: '#6f7a2c', tipGold: '#a98f3c', back: '#ffb455' },
     ground: { dark: '#0d1409', lit: '#202c10' },
     light: { sun: '#ffc08a', sky: '#6a9c98', particles: '#ffffff' },
+    lamps: { hemiSky: '#7ab0a8', hemiGround: '#1c2612', hemi: 0.55, sun: '#ffb57e', sunI: 0.6, fill: '#88b4ac', fillI: 0.35 },
+    particles: { color: '#eef2d8', color2: '#eef2d8', opacity: 1, fall: 1, size: 1 },
+    birds: 1,
+    exposure: 1,
+  },
+  night: {
+    label: 'Night',
+    sky: { top: '#020a0c', mid: '#06181c', low: '#0e2a2c', horizon: '#1c3c3a', sun: '#c8dccf' },
+    sunDir: [-0.36, 0.2, -1],
+    stars: 1,
