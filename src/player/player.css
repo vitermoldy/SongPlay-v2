@@ -608,3 +608,7 @@
   background: var(--cream);
   color: var(--ink);
   font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
