@@ -33,3 +33,5 @@ The scene's own colours (a teal and sage sky, mist, pine and moss greens, bark, 
 only inside the 3D scene. The page takes its night green from it, and moss for the buttons that sit
 over the scene.
 
+## Type
+
