@@ -300,3 +300,13 @@ export function createScene(
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
   const cursorAllowed = () => finePointer.matches && !software && !slow;
 
+  // March along the ray until it drops under the blade tips (the tallest blades stand ~0.45
+  // over the ground; stopping lower lets the light land behind the blades you see), then refine.
+  function hitGround(ray) {
+    const o = ray.origin;
+    const d = ray.direction;
+    const below = (t) => o.y + d.y * t < heightAt(o.x + d.x * t, o.z + d.z * t) + 0.4;
+    let prev = 0.2;
+    for (let t = 0.2; t < 90; t += t < 12 ? 0.12 : 0.5) {
+      if (below(t)) {
+        let a = prev;
