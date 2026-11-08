@@ -211,3 +211,9 @@ function swap(img, url) {
   if (old && old.startsWith('blob:')) img.addEventListener('load', () => URL.revokeObjectURL(old), { once: true });
 }
 
+export function initCompare(root) {
+  const before = root.querySelector('[data-before]');
+  const after = root.querySelector('[data-after]');
+  const range = root.querySelector('[data-compare-range]');
+  let dragging = false;
+
