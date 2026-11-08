@@ -1227,3 +1227,7 @@ body.menu-open .site-header {
   margin-top: 4px;
 }
 
+.request-status:empty {
+  display: none;
+}
+
