@@ -99,3 +99,11 @@ async function initScene(compare) {
   const lowPower =
     window.matchMedia('(max-width: 720px)').matches || (navigator.hardwareConcurrency || 8) <= 4;
 
+  let scene;
+  let playing = false;
+  const sync = () => {
+    toggle.dataset.paused = String(!playing);
+    label.textContent = playing ? 'Pause scene' : 'Play scene';
+    scene.setPlaying(playing);
+  };
+
