@@ -21,3 +21,5 @@ export function forestDepth(x, z) {
   const e = Math.hypot(x / 12.5, dz / 21) / wobble;
   const front = Math.min(1, Math.max(0, (-1 - z) / 3));
   return (e - 1) * 9 * front - (1 - front) * 4;
+}
+
