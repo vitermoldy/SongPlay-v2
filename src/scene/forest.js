@@ -19,3 +19,13 @@ import { NOISE_GLSL, col, mulberry32 } from './shared.js';
 // meadow runs into the wood instead of stopping at a wall. Every tree is one instance of one of
 // two small meshes, one unit tall; its instance matrix gives it a place, a turn and a size.
 
+// aPart marks bark (0) and foliage (1). A canopy blob gets normals pointing out from its own
+// centre, so it shades like a soft ball rather than a cut gem.
+function part(geometry, foliage, centre) {
+  const g = geometry.index ? geometry.toNonIndexed() : geometry;
+  const count = g.attributes.position.count;
+  g.setAttribute('aPart', new Float32BufferAttribute(new Float32Array(count).fill(foliage), 1));
+  if (centre) {
+    const pos = g.attributes.position;
+    const nor = g.attributes.normal;
+    const v = new Vector3();
