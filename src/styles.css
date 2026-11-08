@@ -561,3 +561,11 @@ body.menu-open .site-header {
   color: rgba(238, 244, 234, 0.9);
 }
 
+.privacy svg,
+.contacts-privacy svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  fill: rgba(238, 244, 234, 0.85);
+}
+
