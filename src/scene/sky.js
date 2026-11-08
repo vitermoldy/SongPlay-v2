@@ -114,3 +114,13 @@ export function createClouds(live) {
           gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }
       `,
+      fragmentShader: /* glsl */ `
+        uniform float uTime;
+        uniform float uSeed;
+        uniform float uOpacity;
+        uniform float uFade;
+        uniform vec3 uLit;
+        uniform vec3 uShade;
+        varying vec2 vUv;
+        ${NOISE_GLSL}
+        void main() {
