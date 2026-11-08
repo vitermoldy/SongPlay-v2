@@ -156,3 +156,13 @@ soundVolume.addEventListener('input', () => {
     syncSound();
   }
 });
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !soundPanel.hidden) {
+    setSoundPanel(false);
+    ui.sound.focus();
+  }
+});
+document.addEventListener('pointerdown', (event) => {
+  if (!soundPanel.hidden && !event.target.closest('[data-sound]')) setSoundPanel(false);
+});
