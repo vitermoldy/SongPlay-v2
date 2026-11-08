@@ -124,3 +124,13 @@ export function createClouds(live) {
         varying vec2 vUv;
         ${NOISE_GLSL}
         void main() {
+          vec2 q = (vUv - 0.5) * vec2(1.0, 1.9);
+          float shape = smoothstep(0.56, 0.08, length(q));
+          vec2 p = vUv * vec2(4.2, 2.1) + vec2(uSeed, uSeed * 0.37) + vec2(uTime * 0.01, 0.0);
+          float warp = fbm(p * 0.7);
+          float n = fbm(p + warp * 1.6);
+          float dens = smoothstep(0.4, 0.74, n) * shape;
+          dens *= smoothstep(0.02, 0.38, vUv.y + (n - 0.5) * 0.3);
+          vec3 c = mix(uShade, uLit, smoothstep(0.2, 0.85, vUv.y + (n - 0.5) * 0.6));
+          gl_FragColor = vec4(c * 0.92, dens * uOpacity * uFade);
+        }
