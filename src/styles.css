@@ -620,3 +620,8 @@ body.menu-open .site-header {
   display: block;
 }
 
+/* Hero entrance: once, on load. */
+[data-enter] .enter {
+  animation: enter 1000ms var(--ease) both;
+}
+
