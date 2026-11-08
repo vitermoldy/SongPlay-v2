@@ -226,3 +226,13 @@ function createWalker(name, heightAt, rand) {
     place(0);
   }
 
+  function place(dt) {
+    const startX = -a.dir * kind.reach;
+    a.x = startX + a.dir * a.s;
+    a.z = a.lane + 0.7 * Math.sin(a.s * 0.22 + a.wave);
+    const dz = 0.7 * 0.22 * Math.cos(a.s * 0.22 + a.wave);
+    const yaw = Math.atan2(-dz, a.dir);
+    // Turn the short way round (a heading near half a turn flips between +pi and -pi).
+    const turn = MathUtils.euclideanModulo(yaw - a.yaw + Math.PI, Math.PI * 2) - Math.PI;
+    a.yaw = dt > 0 ? a.yaw + turn * ease(dt, 4) : yaw;
+    model.root.position.set(a.x, heightAt(a.x, a.z) - 0.02, a.z);
