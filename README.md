@@ -71,3 +71,13 @@ DESIGN.md             design direction and the reason behind each choice
 
 ## How the player works
 
+- The video is a real YouTube embed laid onto the TV's glass with three.js `CSS3DRenderer`, so it
+  follows the scene's perspective. The camera keeps one wide shot at every window size (the set
+  scales with the window) and only steps back when the TV would otherwise meet the controls; the
+  queue dropdown moves beside the TV (or the TV moves up above it on a phone) so nothing covers the
+  player. The wide shot was the owner's choice over YouTube's 200 x 200 px guideline for embeds:
+  the video is about 335 x 197 px at 1440 x 900, 242 x 142 px at 1366 x 650 and 269 x 158 px on a
+  phone. YouTube's own fullscreen button gives the big picture.
+- YouTube is contacted only when someone adds a link: titles come from YouTube's oEmbed endpoint,
+  the player loads in privacy-enhanced mode (`youtube-nocookie.com`).
+- Some videos and lists cannot play on other sites: many label music videos (their owners turn
