@@ -147,3 +147,13 @@ export function vhsify(source, outW = W, outH = H) {
     }
   }
 
+  for (let k = 0; k < 18; k++) {
+    const y = Math.floor(rand() * h);
+    const x0 = Math.floor(rand() * w);
+    const len = 8 + Math.floor(rand() * 50);
+    for (let x = x0; x < Math.min(w, x0 + len); x++) {
+      const i = (y * w + x) * 4;
+      const v = 225 + rand() * 30;
+      d[i] = v;
+      d[i + 1] = v;
+      d[i + 2] = v;
