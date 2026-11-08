@@ -237,3 +237,11 @@ button:disabled {
     border-color 300ms var(--ease);
 }
 
+.site-header.is-solid,
+body.menu-open .site-header {
+  background: rgba(15, 29, 23, 0.86);
+  border-color: var(--line);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+}
+
