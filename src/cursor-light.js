@@ -22,3 +22,13 @@ export function initCursorLight({ skip = [] } = {}) {
       return px >= r.left && px <= r.right && py >= r.top && py <= r.bottom;
     });
 
+  window.addEventListener(
+    'pointermove',
+    (event) => {
+      if (event.pointerType !== 'mouse' || !fine.matches) return;
+      x = event.clientX;
+      y = event.clientY;
+      const target = event.target instanceof Element ? event.target : null;
+      light.classList.toggle('is-on', !overSkipped(x, y));
+      light.classList.toggle('is-paper', Boolean(target?.closest('.on-light')));
+      if (!queued) {
