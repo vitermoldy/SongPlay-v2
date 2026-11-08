@@ -691,3 +691,7 @@
   font-weight: 700;
 }
 
+.queue-item.has-problem .queue-sub {
+  color: var(--error);
+}
+
