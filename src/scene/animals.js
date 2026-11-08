@@ -62,3 +62,13 @@ function stick(material, length, radius, [x, y, z], tiltZ, tiltX = 0) {
   return mesh;
 }
 
+function makeDeer(buck) {
+  const hide = coat(buck ? '#9a6638' : '#b07842');
+  const dark = coat('#3a2618');
+  const pale = coat('#eadfcc');
+  const root = new Group();
+  const body = new Group();
+  root.add(body);
+  body.add(blob(hide, [0.46, 0.22, 0.19], [0, 0.93, 0]));
+  body.add(blob(hide, [0.24, 0.23, 0.18], [-0.27, 0.95, 0]));
+  body.add(blob(hide, [0.22, 0.25, 0.18], [0.28, 0.94, 0]));
