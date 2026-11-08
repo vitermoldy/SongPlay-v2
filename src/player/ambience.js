@@ -316,3 +316,13 @@ export function createAmbience() {
     master.gain.setTargetAtTime(target, ctx.currentTime, speed);
   }
 
+  return {
+    async setEnabled(on) {
+      enabled = on;
+      if (on && !hidden) await ctx.resume();
+      applyMaster();
+      scheduleThunder();
+      if (!on) {
+        // Let the fade finish, then stop the audio thread altogether.
+        setTimeout(() => {
+          if (!enabled) ctx.suspend();
