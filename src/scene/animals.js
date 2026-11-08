@@ -383,3 +383,13 @@ function createFlocks(live, rand, count) {
       const row = Math.ceil(i / 2);
       const side = i % 2 ? 1 : -1;
       Object.assign(b, {
+        on: true,
+        dir,
+        x: -dir * (48 + row * 1.6 + rand()),
+        y: y + row * 0.25 * side + rand() * 0.3,
+        z: z + row * 0.9 * side,
+        speed: speed * (0.96 + rand() * 0.08),
+        flap: rand() * 6,
+        glide: 0,
+        bob: rand() * 6,
+      });
