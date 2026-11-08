@@ -200,3 +200,13 @@ export function createTreeline(live) {
         uNearLow: { value: live.color('treeline.nearLow') },
         uFog: { value: live.color('haze') },
         uMix: { value: mix },
+        uBase: { value: band.base },
+        uTopY: { value: band.base + band.hill + band.tall },
+      },
+      vertexShader: /* glsl */ `
+        varying vec2 vXY;
+        void main() {
+          vXY = position.xy;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
