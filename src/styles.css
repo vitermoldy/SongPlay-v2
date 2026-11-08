@@ -569,3 +569,8 @@ body.menu-open .site-header {
   fill: rgba(238, 244, 234, 0.85);
 }
 
+.privacy .keyhole,
+.contacts-privacy .keyhole {
+  fill: var(--night);
+}
+
