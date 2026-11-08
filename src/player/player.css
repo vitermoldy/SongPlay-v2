@@ -708,3 +708,13 @@
   height: 18px;
 }
 
+.queue-foot {
+  display: grid;
+  gap: 4px;
+  margin-top: 6px;
+  padding: 12px 8px 2px;
+  border-top: 1px solid var(--line);
+  color: var(--mist);
+  font-size: 13px;
+  line-height: 1.4;
+}
