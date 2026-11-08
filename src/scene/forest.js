@@ -146,3 +146,13 @@ function grove(geometry, spots, uniforms, dark, lit) {
   const matrix = new Matrix4();
   const turn = new Quaternion();
   const up = new Vector3(0, 1, 0);
+  const seeds = new Float32Array(spots.length);
+  spots.forEach((s, i) => {
+    turn.setFromAxisAngle(up, s.yaw);
+    matrix.compose(new Vector3(s.x, s.y, s.z), turn, new Vector3(s.width, s.height, s.width));
+    mesh.setMatrixAt(i, matrix);
+    seeds[i] = s.seed;
+  });
+  geometry.setAttribute('aSeed', new InstancedBufferAttribute(seeds, 1));
+  mesh.frustumCulled = false;
+  return mesh;
