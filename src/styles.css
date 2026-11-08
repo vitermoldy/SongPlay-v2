@@ -934,3 +934,10 @@ body.menu-open .site-header {
   grid-column: 10 / span 3;
 }
 
+.format {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  align-content: start;
+  gap: 4px;
+}
+
