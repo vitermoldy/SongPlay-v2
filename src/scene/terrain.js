@@ -33,3 +33,7 @@ export const CLEARING_GLSL = /* glsl */ `
   }
   // How much the canopy shades the floor here: none in the meadow, most of it a few trees in.
   float canopyShade(vec2 p) {
+    return smoothstep(-0.5, 5.0, forestDepth(p));
+  }
+`;
+
