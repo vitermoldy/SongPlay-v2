@@ -441,3 +441,13 @@
   gap: 10px;
 }
 
+.deck-row input {
+  flex: 1;
+  min-width: 0;
+  min-height: 52px;
+  padding: 12px 14px;
+  border: 1px solid rgba(244, 239, 230, 0.3);
+  border-radius: 10px;
+  background: var(--night);
+  color: var(--cream);
+  font: 500 16px/1.4 var(--font-sans);
