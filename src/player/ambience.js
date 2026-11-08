@@ -190,3 +190,12 @@ export function createAmbience() {
       const len = Math.round(sr * (0.05 + rand() * 0.3));
       const amp = 0.2 + rand() * 0.5;
       for (let k = 0; k < len; k++) {
+        const t = k / len;
+        const env = Math.min(1, t * 20) * (1 - t) ** 2;
+        const crackle = rand() < 0.02 ? 3 : 1;
+        d[start + k] += amp * env * crackle * (rand() * 2 - 1);
+      }
+    }
+    return b;
+  }
+
