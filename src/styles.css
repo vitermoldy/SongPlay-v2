@@ -303,3 +303,8 @@ body.menu-open .site-header {
   background: rgba(255, 255, 255, 0.12);
 }
 
+.header-cta:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
