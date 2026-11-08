@@ -223,3 +223,5 @@ export function createScene(
   }
   applyNumbers();
 
+  const post = createPost(renderer, scene, camera);
+
