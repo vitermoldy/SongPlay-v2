@@ -82,3 +82,13 @@ export const THEMES = {
   },
 };
 
+// Seasons paint the grass, the ground and the trees, and choose what falls through the air.
+// Their colours are given as they would look in the dusk light; each time of day then relights
+// them. particles.shape: 1 = round snowflakes, 2 = spinning petals or leaves, 3 = rain. No
+// particles: the time of day keeps its own motes (pollen, or fireflies at night).
+export const SEASONS = {
+  spring: {
+    label: 'Spring',
+    grass: { base: '#0f1a0a', mid: '#2f5214', tip: '#7aa83a', tipGold: '#ec9cbc' },
+    ground: { dark: '#101c0a', lit: '#28401a' },
+    pines: { dark: '#0d1c12', lit: '#46682c' },
