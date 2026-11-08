@@ -22,3 +22,13 @@ import { mulberry32 } from './shared.js';
 
 const ball = new SphereGeometry(1, 14, 10);
 
+// A touch of the coat's own colour as emissive keeps an animal readable in the dusk light
+// without making it glow.
+function coat(hex) {
+  return new MeshStandardMaterial({
+    color: hex,
+    emissive: hex,
+    emissiveIntensity: 0.06,
+    roughness: 0.92,
+    metalness: 0,
+    envMapIntensity: 0.3,
