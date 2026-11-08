@@ -61,3 +61,5 @@ src/scene/            the 3D scene, used by both pages ("hero" and "player" vari
 DESIGN.md             design direction and the reason behind each choice
 ```
 
+## Before launch
+
