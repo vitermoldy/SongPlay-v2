@@ -172,3 +172,12 @@ const KINDS = {
   rabbit: { make: makeRabbit, speed: 1.6, stride: 0.7, swing: 0, lane: [-15, -12], reach: 13, stop: 'sit', hops: true },
 };
 
+// Where each starts, so the first view (and the still frame under reduced motion) already has a
+// doe grazing on the left and a rabbit sitting on the right; the others come later.
+const OPENING = {
+  doe: { x: -5.5, z: -16.5, dir: 1, stop: 9 },
+  rabbit: { x: 4.6, z: -15, dir: -1, stop: 6 },
+  fox: { away: 9 },
+  buck: { away: 18 },
+};
+
