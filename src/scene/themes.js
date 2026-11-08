@@ -171,3 +171,13 @@ export const COLOR_PATHS = [
   'particles.color2',
 ];
 
+export const NUMBER_PATHS = [
+  'stars',
+  'clouds.opacity',
+  'lamps.hemi',
+  'lamps.sunI',
+  'lamps.fillI',
+  'particles.opacity',
+  'particles.fall',
+  'particles.size',
+  'birds',
