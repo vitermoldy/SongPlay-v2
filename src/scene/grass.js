@@ -60,3 +60,5 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
     params[i * 4 + 2] = (0.035 + rand() * 0.03) * (far ? 2.2 : 1);
     params[i * 4 + 3] = rand();
     i++;
+  }
+
