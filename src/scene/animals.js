@@ -280,3 +280,13 @@ function createWalker(name, heightAt, rand) {
     }
   }
 
+  const opening = OPENING[name];
+  if (opening?.away != null) {
+    a.timer = opening.away;
+    model.root.visible = false;
+  } else {
+    // The opening pose: standing with the head up and turned a little toward the camera.
+    plan(opening);
+    a.state = 'stop';
+    a.timer = opening.stop;
+    a.stops.shift();
