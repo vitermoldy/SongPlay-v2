@@ -47,3 +47,13 @@ export function createTerrain(uniforms) {
   }
   geometry.computeVertexNormals();
 
+  const material = new ShaderMaterial({
+    uniforms,
+    vertexShader: /* glsl */ `
+      varying vec3 vWorld;
+      varying vec3 vNormal;
+      void main() {
+        vec4 w = modelMatrix * vec4(position, 1.0);
+        vWorld = w.xyz;
+        vNormal = normalize(mat3(modelMatrix) * normal);
+        gl_Position = projectionMatrix * viewMatrix * w;
