@@ -299,3 +299,13 @@ function createWalker(name, heightAt, rand) {
     model.body.rotation.z = a.bodyAim;
   }
 
+  return {
+    root: model.root,
+    update(dt, time) {
+      if (a.state === 'away') {
+        a.timer -= dt;
+        if (a.timer <= 0) plan();
+        else return;
+      }
+      if (a.state === 'stop') {
+        a.timer -= dt;
