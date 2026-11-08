@@ -178,3 +178,13 @@ export function createForest({ uniforms, live, lowPower = false }) {
       // Bushes fill the margin where the meadow meets the trees.
       if (depth > -1.6 && depth < 1.4) {
         if (roll < 0.4) {
+          const height = 0.9 + rand() * 0.9;
+          broad.push({ x: px, z: pz, y: heightAt(px, pz) - height * 0.32, yaw, seed, height, width: height * (1.5 + rand() * 0.5) });
+        }
+        continue;
+      }
+      if (depth < 0 || roll > 0.45 + Math.min(depth / 6, 1) * 0.45) continue;
+      const grow = 0.9 + Math.min(depth / 12, 1) * 0.4;
+      const fir = rand() < 0.6;
+      const height = (fir ? 4.2 + rand() * 2.6 : 3.4 + rand() * 2.2) * grow;
+      const width = height * (fir ? 0.72 + rand() * 0.25 : 0.95 + rand() * 0.3);
