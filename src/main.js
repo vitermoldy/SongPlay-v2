@@ -60,3 +60,5 @@ function initMenu() {
   window.matchMedia('(min-width: 961px)').addEventListener('change', (event) => {
     if (event.matches) setOpen(false, false);
   });
+}
+
