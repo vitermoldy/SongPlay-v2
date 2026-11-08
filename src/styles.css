@@ -460,3 +460,10 @@ body.menu-open .site-header {
     linear-gradient(to top, rgba(4, 12, 8, 0.5), rgba(4, 12, 8, 0.18) 24%, rgba(4, 12, 8, 0) 44%);
 }
 
+.viewfinder {
+  position: absolute;
+  inset: calc(var(--header-h) + 8px) var(--frame) var(--frame);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  pointer-events: none;
+}
+
