@@ -23,3 +23,13 @@ const FocusBlurShader = {
     uFocus: { value: new Vector2(0.5, 0.42) },
     uAspect: { value: 1.6 },
     uMaxRadius: { value: 9 },
+  },
+  vertexShader: passVertex,
+  fragmentShader: /* glsl */ `
+    uniform sampler2D tDiffuse;
+    uniform vec2 uResolution;
+    uniform vec2 uDir;
+    uniform vec2 uFocus;
+    uniform float uAspect;
+    uniform float uMaxRadius;
+    varying vec2 vUv;
