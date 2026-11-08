@@ -349,3 +349,5 @@
   transition:
     opacity 400ms var(--ease),
     visibility 0s linear 400ms;
+}
+
