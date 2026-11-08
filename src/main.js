@@ -72,3 +72,10 @@ function initAnchors() {
     const target = id && document.getElementById(id);
     if (!target) return;
     event.preventDefault();
+    target.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    history.pushState(null, '', `#${id}`);
+  });
+}
+
