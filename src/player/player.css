@@ -458,3 +458,7 @@
   color: rgba(196, 214, 198, 0.75);
 }
 
+.deck-row input:hover {
+  border-color: rgba(244, 239, 230, 0.55);
+}
+
