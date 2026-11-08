@@ -596,3 +596,10 @@ export function createScene(
       cancelAnimationFrame(raf);
       resizeObserver.disconnect();
       window.removeEventListener('pointermove', onPointer);
+      document.documentElement.removeEventListener('mouseleave', onLeave);
+      envTarget?.dispose();
+      pmrem.dispose();
+      renderer.dispose();
+    },
+  };
+}
