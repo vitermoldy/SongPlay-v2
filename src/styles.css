@@ -208,3 +208,13 @@ button:disabled {
   animation: wave 900ms var(--ease);
 }
 
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  45% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
