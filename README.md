@@ -90,3 +90,5 @@ DESIGN.md             design direction and the reason behind each choice
   goes quiet in a hidden tab. On and volume are kept in the browser; sound left on starts again
   with the visitor's first click on a later visit, since browsers allow sound only after a gesture.
 
+## Performance notes
+
