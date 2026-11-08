@@ -703,3 +703,13 @@ ui.form.addEventListener('submit', (event) => {
   }
   showError('');
 
+  const item = {
+    uid: makeUid(),
+    ...parsed,
+    title: null,
+    author: null,
+    thumb: parsed.kind === 'video' ? `https://i.ytimg.com/vi/${parsed.id}/mqdefault.jpg` : null,
+    problem: null,
+  };
+  state.items.push(item);
+  saveQueue();
