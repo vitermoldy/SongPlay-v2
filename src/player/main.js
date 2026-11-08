@@ -427,3 +427,13 @@ async function initScene() {
   ui.sceneToggle.hidden = false;
   sync();
   ui.sceneToggle.addEventListener('click', () => {
+    playing = !playing;
+    sync();
+  });
+  document.addEventListener('visibilitychange', () => scene.setVisible(!document.hidden));
+  scene.setScreenMode(ACTIVE.has(state.status) ? 'video' : 'idle');
+  // The deck grows when the title wraps; the pickers rewrap on narrow screens. Re-fit the TV.
+  new ResizeObserver(() => scene.relayout()).observe(ui.deck);
+  new ResizeObserver(() => scene.relayout()).observe(ui.pickers);
+  new ResizeObserver(() => {
+    if (!ui.queuePanel.hidden) scene.relayout();
