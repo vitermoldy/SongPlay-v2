@@ -77,3 +77,13 @@ export function createTerrain(uniforms) {
       varying vec3 vWorld;
       varying vec3 vNormal;
       ${NOISE_GLSL}
+      ${CLEARING_GLSL}
+      void main() {
+        vec3 n = normalize(vNormal);
+        float k = vnoise(vWorld.xz * 1.4) * 0.6 + vnoise(vWorld.xz * 5.0) * 0.4;
+        vec3 base = mix(uGround, uGroundLit, k * 0.7);
+        base *= 1.0 - canopyShade(vWorld.xz) * 0.55;
+        float sun = max(dot(n, uSunDir), 0.0);
+        vec3 c = base * (uSunColor * (0.25 + sun * 0.9) + uSkyColor * (0.28 + 0.2 * n.y));
+        float d = distance(vWorld, uTvPos);
+        c += uTvColor * uTvPower * exp(-d * d / 1.4) * 0.35;
