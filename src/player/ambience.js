@@ -130,3 +130,13 @@ export function createAmbience() {
       { f: 4750, period: 0.8, offset: 0.33, amp: 0.14 },
       { f: 5150, period: 1.2, offset: 0.71, amp: 0.1 },
     ];
+    const pulse = Math.round(sr * 0.026);
+    for (const v of voices) {
+      for (let t0 = v.offset; t0 < seconds - 0.2; t0 += v.period) {
+        for (let p = 0; p < 3; p++) {
+          const start = Math.round((t0 + p / 22) * sr);
+          for (let k = 0; k < pulse && start + k < d.length; k++) {
+            const env = Math.sin((Math.PI * k) / pulse) ** 2;
+            d[start + k] += v.amp * env * Math.sin((2 * Math.PI * v.f * (start + k)) / sr);
+          }
+        }
