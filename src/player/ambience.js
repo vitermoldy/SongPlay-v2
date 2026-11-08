@@ -266,3 +266,9 @@ export function createAmbience() {
   patter.gain.value = 0.9;
   loop(droplets(4), filter('highpass', 900), patter, layers.rain);
 
+  loop(crickets(), pan(0.3), layers.crickets);
+  loop(birds(), pan(-0.3), layers.birds);
+  const leavesTone = filter('bandpass', 3200, 0.8);
+  lfo(0.09, 900, leavesTone.frequency);
+  loop(rustle(), leavesTone, pan(0.15), layers.leaves);
+
