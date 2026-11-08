@@ -813,3 +813,9 @@
     display: none;
   }
 
+  .deck-add-btn {
+    width: 52px;
+    padding: 5px;
+    justify-content: center;
+  }
+
