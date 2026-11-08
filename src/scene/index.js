@@ -333,3 +333,13 @@ export function createScene(
     if (x >= 0 && y >= 0 && x <= rect.width && y <= rect.height) {
       ndc.set((x / rect.width) * 2 - 1, -(y / rect.height) * 2 + 1);
       raycaster.setFromCamera(ndc, camera);
+      hit = hitGround(raycaster.ray);
+    }
+    cursorWanted = hit ? 1 : 0;
+    if (hit) cursorTarget.copy(hit);
+    // A paused scene still answers the cursor, one frame per move.
+    if (visible && !playing) kick();
+  };
+  const onLeave = () => {
+    cursorWanted = 0;
+    if (visible && !playing) kick();
