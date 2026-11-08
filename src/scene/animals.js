@@ -148,3 +148,13 @@ function makeRabbit() {
   for (const side of [-1, 1]) body.add(blob(fur, [0.08, 0.07, 0.04], [-0.06, 0.08, side * 0.08]));
   body.add(blob(pale, [0.045, 0.045, 0.045], [-0.15, 0.15, 0]));
   const neck = new Group();
+  neck.position.set(0.1, 0.18, 0);
+  body.add(neck);
+  const head = new Group();
+  head.position.set(0.04, 0.05, 0);
+  neck.add(head);
+  head.add(blob(fur, [0.075, 0.068, 0.065], [0, 0, 0]));
+  const ears = new Group();
+  ears.position.set(-0.02, 0.05, 0);
+  head.add(ears);
+  for (const side of [-1, 1]) ears.add(blob(fur, [0.022, 0.095, 0.014], [0, 0.08, side * 0.03], 0.15));
