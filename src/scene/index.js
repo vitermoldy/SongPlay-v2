@@ -493,3 +493,13 @@ export function createScene(
     raf = requestAnimationFrame(loop);
   }
 
+  // A still for the before/after frame: a closer, home-video framing of the same set,
+  // cropped to 4:3 from the canvas right after it is drawn.
+  function capture() {
+    const resolve = pendingCapture;
+    pendingCapture = null;
+    const w = canvas.width;
+    const h = canvas.height;
+    const aspect = w / h;
+    const shot = new PerspectiveCamera(30, aspect, 0.1, 1200);
+    if (aspect < 4 / 3) {
