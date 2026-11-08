@@ -199,3 +199,13 @@ const SEASON_PATHS = [
 
 export const read = (theme, path) => path.split('.').reduce((o, k) => o?.[k], theme);
 
+const OVERCAST_PATHS = [
+  'sky.top',
+  'sky.mid',
+  'sky.low',
+  'sky.horizon',
+  'haze',
+  'clouds.lit',
+  'clouds.shade',
+  'treeline.farTop',
+  'treeline.farLow',
