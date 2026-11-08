@@ -227,3 +227,13 @@ function overcastSky(colors, numbers, { tint, amount }) {
     const c = colors.get(path);
     const target = grey.clone().multiplyScalar((luma(c) / greyLuma) * 0.82);
     c.lerp(target, amount);
+  }
+  colors.get('sky.sun').multiplyScalar(0.2);
+  colors.get('grass.back').multiplyScalar(0.35);
+  numbers.stars *= 0.1;
+  numbers['clouds.opacity'] = 1;
+  numbers['lamps.sunI'] *= 0.35;
+  numbers['lamps.hemi'] *= 0.85;
+  numbers.exposure *= 0.94;
+  numbers.birds = 0;
+}
