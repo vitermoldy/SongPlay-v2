@@ -594,3 +594,5 @@ body.menu-open .site-header {
   transition:
     background-color 200ms var(--ease),
     transform 180ms var(--ease);
+}
+
