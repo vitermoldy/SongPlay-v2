@@ -45,3 +45,8 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
     if (dCam < 1.1) continue;
     if (dCam < 3 && rand() > (dCam - 1.1) / 1.9 + (x < -2 ? 0.45 : 0)) continue;
 
+    const y = heightAt(x, z);
+    offsets[i * 3] = x;
+    offsets[i * 3 + 1] = y - 0.03;
+    offsets[i * 3 + 2] = z;
+
