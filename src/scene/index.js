@@ -383,3 +383,13 @@ export function createScene(
         const half = { w: (setW * perUnit) / 2, h: (setH * perUnit) / 2 };
         // The middle of the window, as the original framing had it (horizon behind the set,
         // sky above); moved only as far as it takes to stay clear of the controls.
+        cx = MathUtils.clamp(width / 2, area.left + half.w, area.right - half.w);
+        cy = MathUtils.clamp(height / 2, area.top + half.h, area.bottom - half.h);
+        const hits = area.avoid.filter(
+          (r) => r.left < cx + half.w && r.right > cx - half.w && r.top < cy + half.h && r.bottom > cy - half.h,
+        );
+        if (!hits.length) break;
+        area.top = Math.max(area.top, ...hits.map((r) => r.bottom + 14));
+      }
+      const dist = MathUtils.clamp(height / (perUnit * 2 * tan), 2.2, 10);
+      const shiftX = (cx - width / 2) / perUnit;
