@@ -953,3 +953,7 @@ body.menu-open .site-header {
   filter: drop-shadow(0 10px 14px rgba(20, 36, 27, 0.22));
 }
 
+.art-reel {
+  width: calc(76 * var(--mm));
+}
+
