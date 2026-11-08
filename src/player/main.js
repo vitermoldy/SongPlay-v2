@@ -34,3 +34,10 @@ const ui = {
   clear: $('[data-queue-clear]'),
   sceneToggle: $('[data-scene-toggle]'),
   sceneLabel: $('[data-scene-label]'),
+  themes: $('[data-themes]'),
+  seasons: $('[data-seasons]'),
+  pickers: $('[data-pickers]'),
+  deck: $('.deck'),
+  sound: $('[data-sound-toggle]'),
+};
+
