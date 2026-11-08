@@ -13,3 +13,10 @@ import {
 } from 'three';
 import { mulberry32 } from './shared.js';
 
+// Animals that pass through the clearing now and then: a doe and a buck, a fox and a rabbit on
+// the meadow behind the set, flocks of birds over the trees. Each is built from a few soft shapes
+// and lit by the scene's own lights. They walk lanes behind the crest of the hill, so on the
+// player page none of them ever crosses the video; they come out of the wood on one side, stop
+// once or twice (graze, sit up, look round) and go back into the wood on the other.
+// Every model faces +x with its feet at y = 0.
+
