@@ -61,3 +61,13 @@ const FinishShader = {
   fragmentShader: /* glsl */ `
     uniform sampler2D tDiffuse;
     uniform float uTime;
+    uniform float uGrain;
+    varying vec2 vUv;
+    float hash(vec2 p) {
+      return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+    }
+    void main() {
+      vec4 c = texture2D(tDiffuse, vUv);
+      float g = hash(vUv * vec2(1931.0, 1087.0) + fract(uTime * 7.0) * 113.0) - 0.5;
+      c.rgb += g * uGrain;
+      vec2 q = vUv - 0.5;
