@@ -65,3 +65,13 @@ export function loadYouTubeApi() {
       previous?.();
       resolve(window.YT);
     };
+    const script = document.createElement('script');
+    script.src = 'https://www.youtube.com/iframe_api';
+    script.async = true;
+    script.onerror = () => {
+      apiPromise = null;
+      reject(new Error('The YouTube player script did not load.'));
+    };
+    document.head.append(script);
+    setTimeout(() => {
+      if (!window.YT?.Player) {
