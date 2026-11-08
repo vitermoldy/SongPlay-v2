@@ -94,3 +94,13 @@
           <span class="visually-hidden">Ambient sound</span>
         </button>
 
+        <div class="sound-panel" id="sound-panel" hidden data-sound-panel>
+          <div class="sound-row">
+            <p class="sound-title" id="sound-title">Ambient sound</p>
+            <button class="sound-switch" type="button" aria-pressed="false" aria-labelledby="sound-title" data-sound-switch>
+              <span class="sound-switch-knob" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="sound-row">
+            <label class="sound-label" for="sound-volume">Volume</label>
+            <output class="sound-value" for="sound-volume" data-sound-value>70%</output>
