@@ -273,3 +273,10 @@ function createWalker(name, heightAt, rand) {
       a.lookAim = look ? 0.5 * Math.sin(time * 0.3) : 0;
     } else if (kind.stop === 'look') {
       a.neckAim = 0.15;
+      a.lookAim = 0.9 * Math.sin(time * 0.6 + a.wave);
+    } else {
+      a.neckAim = -0.55;
+      a.lookAim = 0.4 * Math.sin(time * 0.8 + a.wave);
+    }
+  }
+
