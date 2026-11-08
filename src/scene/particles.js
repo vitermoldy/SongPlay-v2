@@ -44,3 +44,13 @@ export function createParticles(count, live) {
       uniform float uDrift;
       uniform float uShape;
       uniform float uSize;
+      uniform float uProj;
+      varying float vSeed;
+      varying float vStar;
+      varying float vAlpha;
+      varying float vBlur;
+      varying float vSpin;
+      void main() {
+        vec3 p = position;
+        float seed = aData.y;
+        p.y = mod(p.y + 1.0 - uDrift * (0.06 + seed * 0.08), 12.0) - 1.0;
