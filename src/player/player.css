@@ -30,3 +30,10 @@
   padding: 0;
   border: 0;
   border-radius: var(--radius-s);
+  color: #fff;
+  transition:
+    background-color 180ms var(--ease),
+    color 180ms var(--ease),
+    transform 160ms var(--ease);
+}
+
