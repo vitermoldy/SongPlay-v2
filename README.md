@@ -7,3 +7,5 @@ drifting dust and a CRT power-on at load.
 
 Built with [Vite](https://vite.dev) and [three.js](https://threejs.org), no framework.
 
+Two pages:
+
