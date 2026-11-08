@@ -199,3 +199,9 @@ function outputSize(root) {
   return [w, Math.round((w * 3) / 4)];
 }
 
+function toUrl(canvas) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => (blob ? resolve(URL.createObjectURL(blob)) : reject(new Error('toBlob failed'))), 'image/jpeg', 0.86);
+  });
+}
+
