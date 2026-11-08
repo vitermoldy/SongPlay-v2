@@ -130,3 +130,9 @@ const fragmentShader = /* glsl */ `
     // Air between the rows of trees: each row further back is paler with the haze, so the
     // wood reads in depth instead of as one green wall.
     float dist = distance(cameraPosition, vWorld);
+    c = mix(c, uFogColor, smoothstep(8.0, 70.0, dist) * 0.55);
+    c = mix(c, uFogColor, smoothstep(uFogNear, uFogFar, dist));
+    gl_FragColor = vec4(c, 1.0);
+  }
+`;
+
