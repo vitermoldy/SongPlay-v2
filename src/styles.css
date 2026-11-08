@@ -1390,3 +1390,8 @@ body.menu-open .site-header {
     gap: 22px;
   }
 
+  .hero-foot .cta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
