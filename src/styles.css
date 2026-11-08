@@ -255,3 +255,8 @@ body.menu-open .site-header {
   letter-spacing: -0.01em;
   text-decoration: none;
 }
+
+.brand span {
+  color: rgba(226, 238, 228, 0.72);
+}
+
