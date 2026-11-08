@@ -10,3 +10,7 @@ export function mulberry32(seed) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
+
+// Hex colours are written in sRGB; Color converts them to the linear working space.
+export const col = (hex) => new Color(hex);
+
