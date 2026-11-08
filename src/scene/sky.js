@@ -84,3 +84,13 @@ export function createSky(live, { forReflections = false } = {}) {
   mesh.renderOrder = -10;
   return mesh;
 }
+
+const CLOUDS = [
+  // x, y, z, width, height, seed, opacity
+  [5, 7.5, -62, 40, 13, 3.1, 0.9],
+  [-32, 13, -78, 50, 12, 8.4, 0.75],
+  [38, 4, -70, 48, 11, 1.7, 0.85],
+  [26, 20, -86, 40, 9, 5.9, 0.55],
+  [-20, 3.5, -66, 34, 8, 11.2, 0.6],
+];
+
