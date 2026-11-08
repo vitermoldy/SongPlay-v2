@@ -755,3 +755,13 @@ ui.toggle.addEventListener('click', () => {
   }
 });
 
+ui.next.addEventListener('click', () => {
+  const item = state.items[state.current];
+  if (item?.kind === 'playlist' && yt) {
+    const list = yt.getPlaylist?.() || [];
+    const at = yt.getPlaylistIndex?.() ?? -1;
+    if (at >= 0 && at < list.length - 1) {
+      yt.nextVideo();
+      return;
+    }
+  }
