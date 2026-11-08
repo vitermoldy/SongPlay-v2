@@ -683,3 +683,7 @@ body.menu-open .site-header {
 
 /* Services */
 
+.services {
+  background: var(--night);
+}
+
