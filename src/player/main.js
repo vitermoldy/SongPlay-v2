@@ -728,3 +728,11 @@ ui.form.addEventListener('submit', (event) => {
       render();
     });
 
+  if (ACTIVE.has(state.status)) {
+    say(`Added to the queue. ${state.items.length} in the queue.`);
+    render();
+  } else {
+    playIndex(state.items.length - 1);
+  }
+});
+
