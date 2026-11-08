@@ -89,3 +89,13 @@ ui.seasons.addEventListener('change', (event) => {
 
 // ---------- Ambient sound for the scene (off until asked for) ----------
 
+// The speaker button in the header opens a small panel: an on/off switch and the volume.
+let ambience = null;
+let soundOn = saved(SOUND_KEY, ['on', 'off'], 'off') === 'on';
+let volume = (() => {
+  try {
+    const v = Number(localStorage.getItem(VOLUME_KEY));
+    return localStorage.getItem(VOLUME_KEY) !== null && v >= 0 && v <= 100 ? v : 70;
+  } catch {
+    return 70;
+  }
