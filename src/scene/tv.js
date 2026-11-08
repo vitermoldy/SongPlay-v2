@@ -57,3 +57,13 @@ export function createTV(shapeName = 'classic') {
   const midY = bodyH / 2;
   const group = new Group();
 
+  // Lacquered rust, the colour of bark and autumn leaves, so the set stands out warm against the
+  // green of the wood.
+  const shell = new MeshPhysicalMaterial({
+    color: '#9a4424',
+    roughness: 0.42,
+    metalness: 0.0,
+    clearcoat: 0.25,
+    clearcoatRoughness: 0.3,
+    envMapIntensity: 0.32,
+  });
