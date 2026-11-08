@@ -122,3 +122,13 @@ export const SEASONS = {
     particles: { shape: 1, color: '#ffffff', color2: '#e2eaff', opacity: 1, fall: 1.7, size: 1.1 },
   },
   // The rainy season also clouds the sky over: `overcast` greys whatever the time of day shows.
+  rain: {
+    label: 'Rain',
+    grass: { base: '#08130a', mid: '#1a3416', tip: '#3f6a34', tipGold: '#5c8048' },
+    ground: { dark: '#0a120a', lit: '#1a2a16' },
+    pines: { dark: '#08140c', lit: '#2c4a26' },
+    leaves: { dark: '#0a160a', lit: '#3e6030' },
+    overcast: { tint: '#5c6a66', amount: 0.62 },
+    particles: { shape: 3, color: '#d8e6ff', color2: '#aabedf', opacity: 1, fall: 30, size: 3 },
+  },
+};
