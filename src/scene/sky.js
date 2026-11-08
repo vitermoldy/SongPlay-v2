@@ -94,3 +94,13 @@ const CLOUDS = [
   [-20, 3.5, -66, 34, 8, 11.2, 0.6],
 ];
 
+export function createClouds(live) {
+  return CLOUDS.map(([x, y, z, w, h, seed, opacity]) => {
+    const material = new ShaderMaterial({
+      transparent: true,
+      depthWrite: false,
+      uniforms: {
+        uTime: live.u.time,
+        uSeed: { value: seed },
+        uOpacity: { value: opacity },
+        uFade: live.u.cloudOpacity,
