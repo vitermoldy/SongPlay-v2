@@ -22,3 +22,9 @@ export function initRequestForm(form) {
   formatSet.dataset.errorFor = 'f-format';
   const status = form.querySelector('[data-request-status]');
 
+  function validate() {
+    const problems = [];
+    const nameValue = name.value.trim();
+    const emailValue = email.value.trim();
+    const formats = [...form.querySelectorAll('input[name="format"]:checked')];
+
