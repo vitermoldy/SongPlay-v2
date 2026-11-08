@@ -51,3 +51,5 @@ export function paintStandIn() {
     g.lineTo(x + W / 36, H * (0.7 - rand() * 0.03));
   }
   g.lineTo(W, H);
+  g.fill();
+
