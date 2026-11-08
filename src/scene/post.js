@@ -97,3 +97,13 @@ export function createPost(renderer, scene, camera) {
   composer.addPass(output);
   composer.addPass(finish);
 
+  return {
+    composer,
+    renderPass,
+    setSize(width, height, pixelRatio) {
+      composer.setPixelRatio(pixelRatio);
+      composer.setSize(width, height);
+      for (const pass of [blurX, blurY]) {
+        pass.uniforms.uResolution.value.set(width * pixelRatio, height * pixelRatio);
+        pass.uniforms.uAspect.value = width / height;
+        pass.uniforms.uMaxRadius.value = Math.min(12, 6 + width / 260) * pixelRatio;
