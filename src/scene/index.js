@@ -178,3 +178,13 @@ export function createScene(
     uFogFar: { value: 140 },
   };
 
+  scene.add(createTerrain(shared));
+  scene.add(createForest({ uniforms: shared, live, lowPower }));
+  const animals = createAnimals({ heightAt, live, lowPower });
+  scene.add(animals.group);
+  scene.add(
+    createGrass({
+      count: lowPower ? 30000 : 80000,
+      heightAt,
+      tv: { x: 0, z: 0, yaw: setup.tvYaw, halfW: tv.shape.bodyW / 2 - 0.05, halfD: 0.5 },
+      camera: setup.camera,
