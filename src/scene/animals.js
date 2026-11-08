@@ -339,3 +339,5 @@ function createWalker(name, heightAt, rand) {
       pose(dt, time, true);
     },
   };
+}
+
