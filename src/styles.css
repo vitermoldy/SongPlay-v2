@@ -8,3 +8,7 @@
   --ink-soft: #3f4f44;
   --mist: #c4d6c6;
   --glow: #ffc56b;
+  --error: #ffb4a6;
+  --line: rgba(244, 239, 230, 0.16);
+  --focus: var(--glow);
+
