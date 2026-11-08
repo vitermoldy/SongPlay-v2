@@ -611,3 +611,8 @@ body.menu-open .site-header {
   fill: currentColor;
 }
 
+.scene-toggle .icon-play,
+.scene-toggle[data-paused='true'] .icon-pause {
+  display: none;
+}
+
