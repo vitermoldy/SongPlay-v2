@@ -193,3 +193,13 @@ function frameArea() {
     const r = el.getBoundingClientRect();
     return { left: r.left - stage.left, right: r.right - stage.left, top: r.top - stage.top, bottom: r.bottom - stage.top };
   };
+  const edge = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--frame')) || 12;
+  const header = document.querySelector('.site-header').getBoundingClientRect().bottom - stage.top;
+  // A dropdown open above the deck (phones) takes its room from the TV while it is open.
+  const panelAbove = !ui.queuePanel.hidden && ui.queuePanel.dataset.place === 'above';
+  const floor = (panelAbove ? ui.queuePanel : ui.deck).getBoundingClientRect().top;
+  return {
+    top: header + 18,
+    bottom: floor - stage.top - 18,
+    left: edge + 6,
+    right: stage.width - edge - 6,
