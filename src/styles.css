@@ -1371,3 +1371,9 @@ body.menu-open .site-header {
       linear-gradient(to top, rgba(4, 12, 8, 0.9), rgba(4, 12, 8, 0.72) 31%, rgba(4, 12, 8, 0) 45%);
   }
 
+  .formats-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+  }
+
