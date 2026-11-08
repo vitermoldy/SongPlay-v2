@@ -687,3 +687,13 @@ function showError(message) {
   ui.input.setAttribute('aria-invalid', message ? 'true' : 'false');
 }
 
+ui.form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const raw = ui.input.value;
+  if (!raw.trim()) {
+    showError('Paste a YouTube link first.');
+    ui.input.focus();
+    return;
+  }
+  const parsed = parseYouTube(raw);
+  if (!parsed) {
