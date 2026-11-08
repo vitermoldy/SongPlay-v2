@@ -510,3 +510,8 @@
   border-radius: var(--radius-s);
   background: rgba(120, 168, 116, 0.3);
   color: #fff;
+  transition:
+    background-color 180ms var(--ease),
+    transform 160ms var(--ease);
+}
+
