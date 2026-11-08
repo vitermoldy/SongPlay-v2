@@ -121,3 +121,11 @@ export function createTV(shapeName = 'classic') {
         c *= 0.975 + 0.025 * sin(uTime * 31.0) * sin(uTime * 7.0);
         c *= uLevel;
 
+        // Power-on: a bright line grows across, then the picture opens top to bottom.
+        float grow = smoothstep(0.0, 0.25, uOn);
+        float open = smoothstep(0.22, 1.0, uOn);
+        float halfH = mix(0.008, 0.52, open);
+        float halfW = mix(0.0, 0.52, grow);
+        float mask = step(abs(vUv.y - 0.5), halfH) * step(abs(vUv.x - 0.5), halfW);
+        c *= mask * mix(2.2, 1.0, open);
+
