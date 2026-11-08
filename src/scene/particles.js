@@ -24,3 +24,13 @@ export function createParticles(count, live) {
   geometry.setAttribute('position', new BufferAttribute(positions, 3));
   geometry.setAttribute('aData', new BufferAttribute(data, 4));
 
+  const material = new ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    blending: AdditiveBlending,
+    uniforms: {
+      uTime: live.u.time,
+      uDrift: live.u.drift,
+      uShape: live.u.particleShape,
+      uSize: live.u.particleSize,
+      uProj: { value: 800 },
