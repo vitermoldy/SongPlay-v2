@@ -210,3 +210,13 @@ export function createTreeline(live) {
           gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }
       `,
+      fragmentShader: /* glsl */ `
+        uniform vec3 uFarTop;
+        uniform vec3 uFarLow;
+        uniform vec3 uNearTop;
+        uniform vec3 uNearLow;
+        uniform vec3 uFog;
+        uniform float uMix;
+        uniform float uBase;
+        uniform float uTopY;
+        varying vec2 vXY;
