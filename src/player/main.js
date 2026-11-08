@@ -470,3 +470,12 @@ function ensurePlayer() {
               onError: onPlayerError,
             },
           });
+        }),
+    )
+    .catch((error) => {
+      ytReady = null;
+      throw error;
+    });
+  return ytReady;
+}
+
