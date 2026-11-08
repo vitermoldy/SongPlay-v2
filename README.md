@@ -63,3 +63,9 @@ DESIGN.md             design direction and the reason behind each choice
 
 ## Before launch
 
+- Replace `hello@songlearn.example` (in `index.html` and `REQUEST_EMAIL` in `src/form.js`) with the
+  real inbox. The form opens the visitor's email app with the request filled in; there is no server.
+- Check the service details in the Services section (what files you deliver, tapes returned) against
+  what the studio really does.
+- `public/favicon.svg` is a text placeholder ("S" on night green) until there is a real logo.
+
