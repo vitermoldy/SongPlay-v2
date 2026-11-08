@@ -126,3 +126,13 @@ button:disabled {
   margin-inline: auto;
 }
 
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  padding: 12px 18px;
+  border-radius: var(--radius-m);
+  background: var(--cream);
+  color: var(--ink);
+  font-weight: 700;
