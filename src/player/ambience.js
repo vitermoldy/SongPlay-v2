@@ -9,3 +9,13 @@ const MAX_GAIN = 0.8;
 const loudness = (volume) => MAX_GAIN * Math.max(0, Math.min(1, volume)) ** 1.6;
 const DUCKED = 0.4;
 
+function levelsFor(time, season) {
+  const L = { wind: 0.22, rain: 0, crickets: 0, birds: 0, leaves: 0, thunder: 0 };
+  if (time === 'night') {
+    L.crickets = 0.55;
+    L.wind = 0.16;
+  } else if (time === 'dusk') {
+    L.crickets = 0.22;
+    L.birds = 0.06;
+  } else if (time === 'sunset') {
+    L.birds = 0.2;
