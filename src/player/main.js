@@ -146,3 +146,13 @@ function setSoundPanel(open) {
 ui.sound.addEventListener('click', () => setSoundPanel(soundPanel.hidden));
 soundSwitch.addEventListener('click', () => setSound(!soundOn));
 
+soundVolume.addEventListener('input', () => {
+  volume = Number(soundVolume.value);
+  remember(VOLUME_KEY, String(volume));
+  // Turning the volume up from silence is a way of asking for sound.
+  if (volume > 0 && (!soundOn || !ambience?.running)) setSound(true);
+  else {
+    ambience?.setVolume(volume / 100);
+    syncSound();
+  }
+});
