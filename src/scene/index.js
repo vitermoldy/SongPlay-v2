@@ -47,3 +47,13 @@ const VARIANTS = {
   },
 };
 
+// The player's camera stands PLAYER_DISTANCE from the TV's glass on every screen: a wide shot
+// with plenty of hill and sky, the same composition at any window size (the set scales with the
+// window instead of the camera moving in). It only stands further back when the set would
+// otherwise run into the page's controls (`frameArea`). The video covers VIDEO_FILL of the
+// glass; the thin rim left round it is the tube's dark edge, so it reads as sitting inside.
+const PLAYER_DISTANCE = 5.2;
+// How far the player's eye stands above the middle of the glass: the earlier, higher point of
+// view the owner wants back, which keeps the meadow and the wood behind it in sight over the crest.
+const CAMERA_RISE = 0.4;
+const VIDEO_FILL = 0.97;
