@@ -107,3 +107,13 @@ export function createPost(renderer, scene, camera) {
         pass.uniforms.uResolution.value.set(width * pixelRatio, height * pixelRatio);
         pass.uniforms.uAspect.value = width / height;
         pass.uniforms.uMaxRadius.value = Math.min(12, 6 + width / 260) * pixelRatio;
+      }
+    },
+    setFocus(x, y) {
+      blurX.uniforms.uFocus.value.set(x, y);
+      blurY.uniforms.uFocus.value.set(x, y);
+    },
+    setTime(t) {
+      finish.uniforms.uTime.value = t;
+    },
+  };
