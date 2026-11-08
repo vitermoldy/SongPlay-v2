@@ -15,3 +15,13 @@ import { NOISE_GLSL, mulberry32 } from './shared.js';
 // a few shared uniforms (live.u) and the sun direction. Materials hold those same objects, so a
 // theme change only has to update them.
 
+// `forReflections` drops the warm horizon, the sun and the stars, so glossy surfaces mirror
+// plain sky (the TV's side panel keeps its own colour) instead of a warm band.
+export function createSky(live, { forReflections = false } = {}) {
+  const material = new ShaderMaterial({
+    side: BackSide,
+    depthWrite: false,
+    uniforms: {
+      uTop: { value: live.color('sky.top') },
+      uMid: { value: live.color('sky.mid') },
+      uLow: { value: live.color('sky.low') },
