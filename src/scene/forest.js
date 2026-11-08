@@ -120,3 +120,13 @@ const fragmentShader = /* glsl */ `
     float sun = max(dot(n, uSunDir), 0.0);
     // Faces turned up to the sky take most of its light: snow on the boughs reads white.
     vec3 c = base * (uSunColor * (0.22 + sun * 0.7) + uSkyColor * (0.2 + 0.5 * max(n.y, 0.0)));
+    // The low sun stands behind the wood: the edges of the crowns catch a little of it.
+    vec3 v = normalize(vWorld - cameraPosition);
+    float back = pow(max(dot(v, uSunDir), 0.0), 6.0);
+    float edge = pow(1.0 - abs(dot(n, v)), 3.0);
+    c += uBack * back * edge * vPart * 0.16;
+    float cd = distance(vWorld, uCursorPos);
+    c += uCursorColor * uCursorPower * exp(-cd * cd / 2.0) * 0.35;
+    // Air between the rows of trees: each row further back is paler with the haze, so the
+    // wood reads in depth instead of as one green wall.
+    float dist = distance(cameraPosition, vWorld);
