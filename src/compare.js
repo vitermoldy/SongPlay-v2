@@ -229,3 +229,13 @@ export function initCompare(root) {
     set(((event.clientX - rect.left) / rect.width) * 100);
   };
 
+  root.addEventListener('pointerdown', (event) => {
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    // A click on the "Drag to compare" label focuses the slider; it should not move the line.
+    if (event.target.closest('label')) return;
+    dragging = true;
+    root.setPointerCapture(event.pointerId);
+    fromPointer(event);
+  });
+  root.addEventListener('pointermove', (event) => {
+    if (dragging) fromPointer(event);
