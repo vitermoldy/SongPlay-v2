@@ -427,3 +427,13 @@ function createFlocks(live, rand, count) {
   };
 }
 
+export function createAnimals({ heightAt, live, lowPower = false }) {
+  const rand = mulberry32(7);
+  const group = new Group();
+  const walkers = Object.keys(KINDS).map((name) => createWalker(name, heightAt, rand));
+  walkers.forEach((w) => group.add(w.root));
+  const flocks = createFlocks(live, rand, lowPower ? 4 : 6);
+  group.add(flocks.group);
+  return {
+    group,
+    update(dt, time) {
