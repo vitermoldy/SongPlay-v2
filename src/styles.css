@@ -437,3 +437,12 @@ body.menu-open .site-header {
     linear-gradient(#16384a 0%, #2c6070 30%, #78a8a0 48%, #f2c08e 58%, #26473c 63%);
 }
 
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1200ms var(--ease);
+}
+
