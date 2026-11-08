@@ -941,3 +941,10 @@ body.menu-open .site-header {
   gap: 4px;
 }
 
+.format-art {
+  display: flex;
+  align-items: flex-end;
+  height: calc(103 * var(--mm));
+  margin-bottom: 20px;
+}
+
