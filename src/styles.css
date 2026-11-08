@@ -918,3 +918,7 @@ body.menu-open .site-header {
   margin-top: clamp(56px, 10vh, 104px);
 }
 
+.format:nth-child(1) {
+  grid-column: 1 / span 2;
+}
+
