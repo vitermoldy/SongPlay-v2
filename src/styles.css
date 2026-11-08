@@ -308,3 +308,10 @@ body.menu-open .site-header {
   transform: translateY(-1px);
 }
 
+.header-play {
+  gap: 8px;
+  margin-left: auto;
+  padding-left: 14px;
+  background: rgba(120, 168, 116, 0.3);
+}
+
