@@ -566,3 +566,13 @@ export function createScene(
         kick();
       });
     },
+    // Lays an HTML element (the video player) over the TV's whole glass, in the scene's
+    // perspective. `width`/`height` are the element's own CSS pixels, in the glass's proportions.
+    mountScreen(element, container, { width = 640 } = {}) {
+      const height = Math.round((width * tv.shape.screenH) / tv.shape.screenW);
+      const cssRenderer = new CSS3DRenderer();
+      cssRenderer.domElement.classList.add('screen-layer');
+      container.append(cssRenderer.domElement);
+      element.style.width = `${width}px`;
+      element.style.height = `${height}px`;
+      // Round the element's corners like the glass (the shader's radius is in screen heights).
