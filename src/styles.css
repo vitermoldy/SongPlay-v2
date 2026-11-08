@@ -855,3 +855,11 @@ body.menu-open .site-header {
   pointer-events: none;
 }
 
+.compare-range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+}
+
