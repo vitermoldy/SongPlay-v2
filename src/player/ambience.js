@@ -282,3 +282,13 @@ export function createAmbience() {
     const low = filter('lowpass', 130 + rand() * 60);
     const g = ctx.createGain();
     const now = ctx.currentTime;
+    const peak = thunderLevel * (0.5 + rand() * 0.5);
+    g.gain.setValueAtTime(0.0001, now);
+    g.gain.exponentialRampToValueAtTime(peak, now + 0.25 + rand() * 0.4);
+    g.gain.exponentialRampToValueAtTime(peak * 0.35, now + 1.6);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + 4.5 + rand() * 1.5);
+    src.connect(low).connect(g).connect(master);
+    src.start(now, rand() * 1.5);
+    src.stop(now + 6.5);
+  }
+
