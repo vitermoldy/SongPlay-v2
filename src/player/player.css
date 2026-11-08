@@ -14,3 +14,9 @@
   background: rgba(7, 17, 12, 0.5);
 }
 
+.player-page .header-back:hover,
+.stage .scene-toggle:hover,
+.sound-toggle:hover {
+  background: rgba(7, 17, 12, 0.74);
+}
+
