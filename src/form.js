@@ -43,3 +43,13 @@ export function initRequestForm(form) {
     return problems;
   }
 
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    status.textContent = '';
+    const problems = validate();
+    if (problems.length) {
+      const [first] = problems[0];
+      (first.matches('fieldset') ? first.querySelector('input') : first).focus();
+      return;
+    }
+
