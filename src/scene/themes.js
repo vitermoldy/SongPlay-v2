@@ -197,3 +197,5 @@ const SEASON_PATHS = [
   'leaves.lit',
 ];
 
+export const read = (theme, path) => path.split('.').reduce((o, k) => o?.[k], theme);
+
