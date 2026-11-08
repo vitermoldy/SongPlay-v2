@@ -90,3 +90,13 @@ const vertexShader = /* glsl */ `
   }
 `;
 
+const fragmentShader = /* glsl */ `
+  uniform vec3 uDark;
+  uniform vec3 uLit;
+  uniform vec3 uBark;
+  uniform vec3 uSunDir;
+  uniform vec3 uSunColor;
+  uniform vec3 uSkyColor;
+  uniform vec3 uBack;
+  uniform vec3 uCursorPos;
+  uniform vec3 uCursorColor;
