@@ -32,3 +32,13 @@ function initMenu() {
   const outside = [document.querySelector('main'), document.querySelector('.site-footer')];
   let open = false;
 
+  function setOpen(next, restoreFocus = true) {
+    if (next === open) return;
+    open = next;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.textContent = open ? 'Close' : 'Menu';
+    document.body.classList.toggle('menu-open', open);
+    for (const el of outside) el.inert = open;
+    if (open) {
+      menu.hidden = false;
+      requestAnimationFrame(() => menu.classList.add('is-open'));
