@@ -99,3 +99,7 @@ button:disabled {
   outline-offset: 3px;
 }
 
+.on-light {
+  --focus: var(--ink);
+}
+
