@@ -163,3 +163,12 @@ function makeRabbit() {
   return { root, body, neck, head, legs: [], tail: null, ears };
 }
 
+// Kinds of walker. `lane` is the range of distances behind the set (negative z) a route keeps
+// to; `reach` is how far to each side the route starts and ends, out of sight in the trees.
+const KINDS = {
+  doe: { make: () => makeDeer(false), speed: 1.05, stride: 1.6, swing: 0.36, lane: [-18, -15], reach: 15, stop: 'graze' },
+  buck: { make: () => makeDeer(true), speed: 0.95, stride: 1.7, swing: 0.34, lane: [-21, -18], reach: 16, stop: 'graze' },
+  fox: { make: makeFox, speed: 1.7, stride: 0.75, swing: 0.55, lane: [-16, -13], reach: 14, stop: 'look' },
+  rabbit: { make: makeRabbit, speed: 1.6, stride: 0.7, swing: 0, lane: [-15, -12], reach: 13, stop: 'sit', hops: true },
+};
+
