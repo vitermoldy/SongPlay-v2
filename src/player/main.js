@@ -359,3 +359,13 @@ function render() {
     const row = ui.queueList.children[Math.min(focusedRow, count - 1)];
     (row?.querySelectorAll('button')[focusedSlot] ?? ui.queueToggle).focus();
   }
+
+  const playingNow = state.status === 'playing' || state.status === 'loading';
+  ui.toggle.dataset.state = playingNow ? 'playing' : 'paused';
+  ui.toggle.setAttribute('aria-label', playingNow ? 'Pause' : 'Play');
+  ui.toggle.disabled = count === 0;
+  ui.prev.disabled = count === 0 || !ACTIVE.has(state.status);
+  ui.next.disabled = count === 0 || !ACTIVE.has(state.status);
+  ambience?.setDucked(state.status === 'playing');
+}
+
