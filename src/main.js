@@ -42,3 +42,11 @@ function initMenu() {
     if (open) {
       menu.hidden = false;
       requestAnimationFrame(() => menu.classList.add('is-open'));
+      menu.querySelector('a').focus();
+    } else {
+      menu.classList.remove('is-open');
+      menu.hidden = true;
+      if (restoreFocus) toggle.focus();
+    }
+  }
+
