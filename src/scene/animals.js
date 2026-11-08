@@ -249,3 +249,13 @@ function createWalker(name, heightAt, rand) {
       l.rotation.z = moving ? target : l.rotation.z * (1 - k);
     });
     if (kind.hops) {
+      const air = moving ? Math.max(0, Math.sin(a.hop)) : 0;
+      model.body.position.y = air * 0.16;
+      a.bodyAim = moving ? -0.25 * Math.cos(a.hop) : 0.55;
+    } else {
+      model.body.position.y = moving ? Math.abs(Math.sin(a.step)) * 0.018 : 0;
+    }
+    model.body.rotation.z += (a.bodyAim - model.body.rotation.z) * k;
+    model.neck.rotation.z += (a.neckAim + (moving ? 0.05 * Math.sin(a.step * 2) : 0) - model.neck.rotation.z) * k;
+    model.head.rotation.z += (a.headAim - model.head.rotation.z) * k;
+    model.head.rotation.y += (a.lookAim - model.head.rotation.y) * k;
