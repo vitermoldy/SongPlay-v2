@@ -839,3 +839,13 @@ body.menu-open .site-header {
   stroke-linejoin: round;
 }
 
+/* The native range is the keyboard and screen-reader control: it covers the frame, draws
+   nothing itself, and its focus ring outlines the whole frame. Pointer drags go to the frame. */
+.compare-range {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: inherit;
