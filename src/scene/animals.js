@@ -236,3 +236,6 @@ function createWalker(name, heightAt, rand) {
     const turn = MathUtils.euclideanModulo(yaw - a.yaw + Math.PI, Math.PI * 2) - Math.PI;
     a.yaw = dt > 0 ? a.yaw + turn * ease(dt, 4) : yaw;
     model.root.position.set(a.x, heightAt(a.x, a.z) - 0.02, a.z);
+    model.root.rotation.y = a.yaw;
+  }
+
