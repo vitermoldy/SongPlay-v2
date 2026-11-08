@@ -556,3 +556,13 @@ export function createScene(
       visible = next;
       if (next) kick();
     },
+    setTheme,
+    setSeason,
+    // Re-fit the set when the page's own layout changes (the deck grows a line, say).
+    relayout: resize,
+    captureStill() {
+      return new Promise((resolve) => {
+        pendingCapture = resolve;
+        kick();
+      });
+    },
