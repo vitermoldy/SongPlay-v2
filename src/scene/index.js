@@ -473,3 +473,11 @@ export function createScene(
     }
   }
 
+  function shouldRun() {
+    const settling =
+      Boolean(themeShift) ||
+      Math.abs(screenTarget - screenLevel) > 0.01 ||
+      Math.abs(cursorWanted - shared.uCursorPower.value) > 0.01;
+    return Boolean(pendingCapture) || (visible && (playing || settling || power(performance.now()) < 1));
+  }
+
