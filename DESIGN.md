@@ -90,3 +90,13 @@ over the scene.
   zoomed in on short laptop screens, which the owner rejected twice. The video is smaller than
   YouTube's 200px guideline on most laptops as a result; YouTube's fullscreen button is there.
   The eye stands a little above the set, looking down onto the hill, with the TV in the middle of
+  the window, so the meadow and the far side of the wood show behind it (the owner's earlier point
+  of view).
+  The set only moves off centre, by tilting the view, when it would meet the controls.
+- **Seasons** (owner's request) are a second choice beside the time of day: a season paints the
+  grass, the ground and the trees and picks what falls (petals, leaves, snow, rain); the time of day lights it.
+  Rain also clouds the sky over: sky, haze, clouds and the distant treeline turn to a cool grey of
+  their own brightness, the sun goes in, the stars go out and the birds stay in the trees. Autumn
+  turns the broadleaf trees red and orange while the firs stay green; winter lays snow on the boughs.
+- **Ambient sound** (owner's request): off by default, made in the browser (no files to license
+  or download). The speaker in the header opens a small panel with the switch and the volume, so
