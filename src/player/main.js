@@ -115,3 +115,13 @@ function syncSound() {
   soundValue.textContent = `${volume}%`;
 }
 
+async function setSound(on) {
+  soundOn = on;
+  syncSound();
+  remember(SOUND_KEY, on ? 'on' : 'off');
+  if (!on) {
+    ambience?.setEnabled(false);
+    return;
+  }
+  try {
+    ambience ??= createAmbience();
