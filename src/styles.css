@@ -641,3 +641,13 @@ body.menu-open .site-header {
   animation-delay: 850ms;
 }
 
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
