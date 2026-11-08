@@ -72,3 +72,13 @@ function createLive(time, season) {
     color: (path) => look.colors.get(path),
     numbers: look.numbers,
     sunDir: new Vector3(...look.sunDir).normalize(),
+    u: {
+      time: { value: 0 },
+      drift: { value: 0 },
+      stars: { value: look.numbers.stars },
+      cloudOpacity: { value: look.numbers['clouds.opacity'] },
+      particleOpacity: { value: look.numbers['particles.opacity'] },
+      particleSize: { value: look.numbers['particles.size'] },
+      particleShape: { value: look.shape },
+    },
+  };
