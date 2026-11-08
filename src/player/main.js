@@ -575,3 +575,13 @@ async function playIndex(index) {
   if (item.kind === 'video') player.loadVideoById(item.id);
   else player.loadPlaylist({ list: item.list, listType: 'playlist', index: item.index || 0 });
 
+  // Nothing heard back after a while means one of two things. A playlist that never loaded
+  // is one YouTube keeps to itself (its own mixes and charts never play elsewhere, and send no
+  // error to say so). Anything else is a browser holding back sound until a direct press.
+  clearTimeout(autoplayCheck);
+  autoplayCheck = setTimeout(() => {
+    if (state.status !== 'loading' || state.current !== index) return;
+    const listLoaded = yt.getPlaylistId?.() === item.list && (yt.getPlaylist?.() || []).length > 0;
+    if (item.kind === 'playlist' && !listLoaded) {
+      item.problem = 'YouTube only plays this list on its own site (or it is private)';
+      saveQueue();
