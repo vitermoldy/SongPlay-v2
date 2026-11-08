@@ -84,3 +84,13 @@ export function createParticles(count, live) {
         float alpha;
         if (uShape < 0.5) {
           float a = atan(c.y, c.x);
+          float star = 0.3 + 0.14 * cos(a * 5.0 + vSeed * 6.2831);
+          float edge = mix(0.46, star, vStar);
+          alpha = 1.0 - smoothstep(edge - soft, edge, length(c));
+          alpha *= 0.75;
+        } else if (uShape < 1.5) {
+          alpha = 1.0 - smoothstep(0.46 - soft, 0.46, length(c));
+          alpha *= 0.9;
+        } else if (uShape > 2.5) {
+          // Rain: a thin streak, slanted a little by the wind.
+          float x = c.x + c.y * 0.18;
