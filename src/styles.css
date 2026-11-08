@@ -664,3 +664,7 @@ body.menu-open .site-header {
   padding-block: clamp(72px, 9vh, 120px);
 }
 
+.section > .wrap {
+  width: min(100% - 2 * var(--gutter), var(--wrap));
+}
+
