@@ -601,3 +601,13 @@ function advance(note = '') {
   else stopAll('ended', `${note ? `${note} ` : ''}That was the last one in the queue. Add another link to keep going.`);
 }
 
+function stopAll(status, message) {
+  clearTimeout(autoplayCheck);
+  clearTimeout(skipTimer);
+  try {
+    yt?.stopVideo();
+  } catch {
+    // The player may already be gone; nothing to stop.
+  }
+  ui.video.classList.remove('is-on');
+  state.status = status;
