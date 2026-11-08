@@ -309,3 +309,5 @@ export function createAmbience() {
       },
       (12 + rand() * 22) * 1000,
     );
+  }
+
