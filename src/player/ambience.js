@@ -299,3 +299,13 @@ export function createAmbience() {
   let hidden = false;
   let volume = 0.7;
 
+  function scheduleThunder() {
+    clearTimeout(thunderTimer);
+    if (!enabled || hidden || thunderLevel <= 0) return;
+    thunderTimer = setTimeout(
+      () => {
+        rumble();
+        scheduleThunder();
+      },
+      (12 + rand() * 22) * 1000,
+    );
