@@ -409,3 +409,13 @@ function createFlocks(live, rand, count) {
       }
       for (const b of birds) {
         if (!b.on) continue;
+        b.x += b.dir * b.speed * dt;
+        // Flap for a while, glide for a while.
+        b.glide -= dt;
+        if (b.glide < -2.4 - rand() * 2) b.glide = 0.8 + rand() * 1.4;
+        const flapping = b.glide <= 0;
+        if (flapping) b.flap += dt * 13;
+        const angle = flapping ? Math.sin(b.flap) * 0.75 : -0.1;
+        for (const { wing, side } of b.wings) wing.rotation.x += (side * angle - wing.rotation.x) * ease(dt, 18);
+        b.root.position.set(b.x, b.y + Math.sin(time * 1.3 + b.bob) * 0.08, b.z);
+        if (Math.abs(b.x) > 52) {
