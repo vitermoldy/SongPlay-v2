@@ -80,3 +80,13 @@ over the scene.
 - **Player TV is 16:9** with a thin bezel (owner asked for the video to fill the TV): YouTube
   videos are 16:9, so a wide tube shows them edge to edge with no black bars. The landing page
   keeps the classic 4:3 set of the reference.
+- **The set always fits** (owner: "yang penting pas, ga berantakan"): the player TV is sized to
+  the free stage between header and deck, the video sits inside a thin dark rim of the glass, and
+  on wide screens the pickers move into the header bar to give the set that room. On a phone this
+  puts the video under YouTube's 200px guideline; keeping the whole set on screen came first.
+- **The player is a wide shot**: the camera stands at one fixed distance from the TV on every
+  screen, so the composition (TV about a fifth of the width, like the reference, with the meadow,
+  the wood and the sky round it) never changes; the set scales with the window. Sizing the TV to a fixed pixel size
+  zoomed in on short laptop screens, which the owner rejected twice. The video is smaller than
+  YouTube's 200px guideline on most laptops as a result; YouTube's fullscreen button is there.
+  The eye stands a little above the set, looking down onto the hill, with the TV in the middle of
