@@ -69,3 +69,11 @@ export function initRequestForm(form) {
     status.textContent = `Your email app should open with this request filled in. If nothing opened, write to ${REQUEST_EMAIL}.`;
   });
 
+  // Clear a field's error as soon as it is fixed, not on every keystroke before submit.
+  form.addEventListener('input', (event) => {
+    const target = event.target;
+    if (target === name && name.value.trim()) showError(name, '');
+    if (target === email && EMAIL_PATTERN.test(email.value.trim())) showError(email, '');
+    if (target.name === 'format' && form.querySelector('input[name="format"]:checked')) showError(formatSet, '');
+  });
+}
