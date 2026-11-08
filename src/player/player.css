@@ -616,3 +616,10 @@
   animation: bump 420ms var(--ease);
 }
 
+@keyframes bump {
+  40% {
+    transform: scale(1.35);
+    background: var(--glow);
+  }
+}
+
