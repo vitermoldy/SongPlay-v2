@@ -26,3 +26,10 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
   const cosY = Math.cos(-tv.yaw);
   const sinY = Math.sin(-tv.yaw);
 
+  let i = 0;
+  let guard = 0;
+  while (i < count && guard++ < count * 20) {
+    const far = rand() < 0.22;
+    const x = far ? -34 + rand() * 68 : -14 + rand() * 28;
+    const z = far ? -26 + rand() * 22 : -4 + rand() * 12.4;
+
