@@ -59,3 +59,13 @@ canvas {
   max-width: 100%;
 }
 
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
