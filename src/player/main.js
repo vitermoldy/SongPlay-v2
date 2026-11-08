@@ -649,3 +649,12 @@ function placeQueue() {
   panel.style.removeProperty('max-height');
   const deck = panel.offsetParent?.getBoundingClientRect();
   if (!deck) return;
+  const video = ui.video.getBoundingClientRect();
+  const margin = 12;
+  const edge = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--frame')) || 12;
+  const sideSpace = window.innerWidth - edge - 16 - (video.right + 24);
+  const ceiling = Math.max(
+    document.querySelector('.site-header')?.getBoundingClientRect().bottom || 56,
+    ui.sceneToggle.hidden ? 0 : ui.sceneToggle.getBoundingClientRect().bottom,
+  );
+
