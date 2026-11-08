@@ -281,3 +281,13 @@ function nowLine() {
     case 'playing':
       return `Now playing: ${title}${fromList}`;
     case 'paused':
+      return `Paused: ${title}${fromList}`;
+    case 'ended':
+    case 'error':
+      return state.message;
+    default:
+      return state.items.length
+        ? `${state.items.length} in the queue. Press play to start.`
+        : 'Nothing on yet. Paste a YouTube link to put a song on.';
+  }
+}
