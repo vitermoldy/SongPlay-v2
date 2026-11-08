@@ -534,3 +534,6 @@ export function createScene(
     resolve(out);
   }
 
+  const resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(canvas);
+
