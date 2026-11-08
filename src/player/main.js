@@ -43,3 +43,12 @@ const ui = {
 
 // ---------- Time of day and season (per-browser preferences) ----------
 
+function saved(key, names, fallback) {
+  try {
+    const name = localStorage.getItem(key);
+    return names.includes(name) ? name : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
