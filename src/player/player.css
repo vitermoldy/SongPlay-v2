@@ -397,3 +397,13 @@
 
 /* ---------- The deck ---------- */
 
+.deck {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--frame) + 18px);
+  z-index: 3;
+  display: grid;
+  gap: 12px;
+  width: min(100% - 2 * var(--gutter), 760px);
+  margin-inline: auto;
