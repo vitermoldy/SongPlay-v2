@@ -136,3 +136,7 @@ button:disabled {
   background: var(--cream);
   color: var(--ink);
   font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-160%);
+}
+
