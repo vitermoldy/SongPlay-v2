@@ -192,3 +192,8 @@ export function createForest({ uniforms, live, lowPower = false }) {
     }
   }
 
+  const group = new Group();
+  group.add(grove(firGeometry(), firs, uniforms, live.color('pines.dark'), live.color('pines.lit')));
+  group.add(grove(broadleafGeometry(), broad, uniforms, live.color('leaves.dark'), live.color('leaves.lit')));
+  return group;
+}
