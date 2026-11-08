@@ -57,3 +57,8 @@ function broadleafGeometry() {
     [0.04, 0.62, 0.17, 0.18],
   ];
   for (const [x, y, z, r] of blobs) {
+    parts.push(part(new IcosahedronGeometry(r, 1).translate(x, y, z), 1, [x, y, z]));
+  }
+  return mergeGeometries(parts);
+}
+
