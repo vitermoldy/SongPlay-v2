@@ -18,3 +18,6 @@ function rng(seed) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
+
+const clamp = (v, lo, hi) => (v < lo ? lo : v > hi ? hi : v);
+
