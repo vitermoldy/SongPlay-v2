@@ -19,3 +19,5 @@ Two pages:
   overcast sky and falling rain); both are kept in the browser. The speaker button in the header
   opens the ambient sound: an on/off switch and a volume slider for wind, rain and thunder,
   crickets, birds and rustling leaves to match the sky and season. Reached from the header button
+  and the footer.
+
