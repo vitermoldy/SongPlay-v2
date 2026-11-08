@@ -258,3 +258,11 @@ export function createAmbience() {
   lfo(0.13, 0.3, gust.gain);
   loop(brownNoise(9), windTone, gust, layers.wind);
 
+  // Rain: a hiss bed and the patter of drops.
+  const bed = ctx.createGain();
+  bed.gain.value = 0.7;
+  loop(pinkNoise(5), filter('highpass', 350), filter('lowpass', 6500), bed, layers.rain);
+  const patter = ctx.createGain();
+  patter.gain.value = 0.9;
+  loop(droplets(4), filter('highpass', 900), patter, layers.rain);
+
