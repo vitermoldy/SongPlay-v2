@@ -237,3 +237,7 @@ function overcastSky(colors, numbers, { tint, amount }) {
   numbers.exposure *= 0.94;
   numbers.birds = 0;
 }
+
+// How much a time of day brightens or tints one summer colour, per channel, against dusk.
+const relight = (lit, dusk) => Math.min(3, (lit + 0.02) / (dusk + 0.02));
+
