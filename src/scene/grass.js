@@ -159,3 +159,7 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
     `,
   });
 
+  const mesh = new Mesh(geometry, material);
+  mesh.frustumCulled = false;
+  return mesh;
+}
