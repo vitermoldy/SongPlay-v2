@@ -350,3 +350,7 @@ body.menu-open .site-header {
   will-change: transform;
 }
 
+.cursor-light.is-on {
+  opacity: 1;
+}
+
