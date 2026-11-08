@@ -519,3 +519,7 @@ function onPlayerState(event) {
     }
     advance();
     return;
+  }
+  render();
+}
+
