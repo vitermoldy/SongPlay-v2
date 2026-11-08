@@ -778,3 +778,6 @@ ui.prev.addEventListener('click', () => {
     yt?.seekTo(0, true);
   }
 });
+
+ui.queueToggle.addEventListener('click', () => setQueueOpen(ui.queuePanel.hidden));
+
