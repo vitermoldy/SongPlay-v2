@@ -546,3 +546,13 @@ export function createScene(
 
   resize();
 
+  return {
+    startsStill: still,
+    setPlaying(next) {
+      playing = next;
+      kick();
+    },
+    setVisible(next) {
+      visible = next;
+      if (next) kick();
+    },
