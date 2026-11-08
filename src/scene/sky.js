@@ -64,3 +64,13 @@ export function createSky(live, { forReflections = false } = {}) {
         // The disc itself: the sun low on the horizon, or the moon at night.
         c += uSunColor * smoothstep(0.99955, 0.9998, s) * 1.6;
 
+        // Stars sit in cells on the sky sphere; large and bright enough to survive the soft
+        // focus the background gets, a few of them twinkling.
+        if (uStars > 0.001) {
+          vec3 g = d * 170.0;
+          float h = hash13(floor(g));
+          if (h > 0.982) {
+            float r = length(fract(g) - 0.5);
+            float twinkle = 0.6 + 0.4 * sin(uTime * (1.0 + h * 3.0) + h * 80.0);
+            float star = smoothstep(0.34, 0.0, r) * twinkle * (0.35 + 0.65 * (h - 0.982) / 0.018);
+            c += vec3(0.85, 0.9, 1.0) * star * 4.0 * uStars * smoothstep(0.02, 0.22, y);
