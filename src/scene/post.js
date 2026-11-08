@@ -90,3 +90,10 @@ export function createPost(renderer, scene, camera) {
   const output = new OutputPass();
   const finish = new ShaderPass(FinishShader);
 
+  composer.addPass(renderPass);
+  composer.addPass(bloom);
+  composer.addPass(blurX);
+  composer.addPass(blurY);
+  composer.addPass(output);
+  composer.addPass(finish);
+
