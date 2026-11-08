@@ -677,3 +677,7 @@ function setQueueOpen(open) {
   else scene?.relayout();
 }
 
+window.addEventListener('resize', () => {
+  if (!ui.queuePanel.hidden) placeQueue();
+});
+
