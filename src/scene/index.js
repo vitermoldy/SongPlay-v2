@@ -188,3 +188,8 @@ export function createScene(
       heightAt,
       tv: { x: 0, z: 0, yaw: setup.tvYaw, halfW: tv.shape.bodyW / 2 - 0.05, halfD: 0.5 },
       camera: setup.camera,
+      clearFront: setup.clearFront,
+      uniforms: shared,
+    }),
+  );
+
