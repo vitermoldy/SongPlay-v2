@@ -481,3 +481,9 @@ export function createScene(
     return Boolean(pendingCapture) || (visible && (playing || settling || power(performance.now()) < 1));
   }
 
+  function loop(now) {
+    raf = 0;
+    render(now);
+    if (shouldRun()) raf = requestAnimationFrame(loop);
+  }
+
