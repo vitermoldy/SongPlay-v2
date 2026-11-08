@@ -1088,3 +1088,7 @@ body.menu-open .site-header {
   font-weight: 700;
 }
 
+.field legend {
+  margin-bottom: 8px;
+}
+
