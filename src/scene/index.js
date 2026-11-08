@@ -323,3 +323,13 @@ export function createScene(
     return null;
   }
 
+  const onPointer = (event) => {
+    pointer.set((event.clientX / window.innerWidth) * 2 - 1, (event.clientY / window.innerHeight) * 2 - 1);
+    if (event.pointerType === 'touch' || !cursorAllowed()) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    let hit = null;
+    if (x >= 0 && y >= 0 && x <= rect.width && y <= rect.height) {
+      ndc.set((x / rect.width) * 2 - 1, -(y / rect.height) * 2 + 1);
+      raycaster.setFromCamera(ndc, camera);
