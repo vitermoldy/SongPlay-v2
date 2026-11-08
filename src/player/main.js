@@ -658,3 +658,13 @@ function placeQueue() {
     ui.sceneToggle.hidden ? 0 : ui.sceneToggle.getBoundingClientRect().bottom,
   );
 
+  if (sideSpace >= 300) {
+    panel.dataset.place = 'side';
+    panel.style.width = `${Math.min(440, Math.floor(sideSpace))}px`;
+    panel.style.right = `${Math.round(deck.right - (window.innerWidth - edge - 16))}px`;
+    panel.style.maxHeight = `${Math.floor(deck.top - margin - ceiling - 16)}px`;
+  } else {
+    panel.dataset.place = 'above';
+    panel.style.maxHeight = `${Math.round(Math.min(window.innerHeight * 0.36, 320))}px`;
+  }
+  scene?.relayout();
