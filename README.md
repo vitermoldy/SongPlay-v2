@@ -92,3 +92,9 @@ DESIGN.md             design direction and the reason behind each choice
 
 ## Performance notes
 
+- three.js loads after the page paints, in its own chunk.
+- On phones and machines with 4 cores or fewer the scene uses fewer grass blades and a lower pixel
+  ratio. When WebGL runs in software, or the first frames come in under about 15 fps, the scene
+  stays on its still frame and the "Play scene" button starts it.
+- The scene pauses when the hero is off screen or the tab is hidden, and starts paused when the
+  visitor prefers reduced motion.
