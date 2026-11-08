@@ -76,3 +76,12 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
       uniform vec2 uWindDir;
       uniform float uWind;
       varying float vH;
+      varying float vSeed;
+      varying vec3 vWorld;
+      void main() {
+        float h = uv.y;
+        float yaw = aParams.x;
+        float height = aParams.y;
+        float width = aParams.z;
+        float seed = aParams.w;
+
