@@ -369,3 +369,9 @@ function render() {
   ambience?.setDucked(state.status === 'playing');
 }
 
+function bumpCount() {
+  ui.queueCount.classList.remove('is-bumped');
+  void ui.queueCount.offsetWidth;
+  ui.queueCount.classList.add('is-bumped');
+}
+
