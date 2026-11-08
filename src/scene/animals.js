@@ -100,3 +100,13 @@ function makeDeer(buck) {
   return { root, body, neck, head, legs, tail: null, ears: null };
 }
 
+function makeFox() {
+  const fur = coat('#d0682c');
+  const dark = coat('#2a1a12');
+  const pale = coat('#f0e6d8');
+  const root = new Group();
+  const body = new Group();
+  root.add(body);
+  body.add(blob(fur, [0.3, 0.12, 0.1], [0, 0.37, 0]));
+  body.add(blob(pale, [0.1, 0.1, 0.08], [0.2, 0.34, 0]));
+  const neck = new Group();
