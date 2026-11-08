@@ -86,3 +86,7 @@
   color: var(--cream);
 }
 
+.sound-panel[hidden] {
+  display: none;
+}
+
