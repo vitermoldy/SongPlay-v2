@@ -60,3 +60,13 @@ over the scene.
 - **Forest palette** (owner's request). Every time of day is repainted in forest colours: teal and
   sage skies, green mist, pine and moss, bark, yellow-green fireflies at night. The page's navy
   became pine-night green and the periwinkle buttons became moss. Violet is gone from the page and
+  from the scene.
+- **The TV body is lacquered rust.** The reference set is blue; in the green wood a blue set broke
+  the palette and sank into the shade. Rust (bark, autumn leaves) stands out warm against the green.
+- **Animals** (owner's request: animals passing through). A doe, a buck, a fox and a hare cross the
+  meadow behind the set now and then; flocks of birds cross the sky, none at night or in the rain.
+  They walk lanes behind the crest of the hill, so none ever passes in front of the video, and they
+  stop to graze, sit up or look round at the sides, where the meadow shows. They belong to the
+  scene's motion: Pause scene stops them, and under reduced motion the scene starts still with a
+  doe and a hare standing in view.
+- **Uppercase nav labels.** From the reference; they echo the PLAY / REW / FF keys on a VCR. Tracking
