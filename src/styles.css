@@ -1294,3 +1294,7 @@ body.menu-open .site-header {
     --mm: 1.7px;
   }
 
+  .formats-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
