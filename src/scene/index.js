@@ -487,3 +487,9 @@ export function createScene(
     if (shouldRun()) raf = requestAnimationFrame(loop);
   }
 
+  function kick() {
+    if (raf) return;
+    last = 0;
+    raf = requestAnimationFrame(loop);
+  }
+
