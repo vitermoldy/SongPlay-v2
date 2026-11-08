@@ -217,3 +217,13 @@ const OVERCAST_PATHS = [
 
 const luma = (c) => 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b;
 
+// Cloud cover over any time of day: each sky colour moves toward a cool grey of its own
+// brightness (a little darker), the sun goes behind the cloud, the stars mostly go out and the
+// birds stay in the trees.
+function overcastSky(colors, numbers, { tint, amount }) {
+  const grey = new Color(tint);
+  const greyLuma = luma(grey);
+  for (const path of OVERCAST_PATHS) {
+    const c = colors.get(path);
+    const target = grey.clone().multiplyScalar((luma(c) / greyLuma) * 0.82);
+    c.lerp(target, amount);
