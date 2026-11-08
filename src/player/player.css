@@ -115,3 +115,10 @@
     border-color 180ms var(--ease);
 }
 
+/* A 32px switch inside a 44px tap area. */
+.sound-switch::before {
+  content: '';
+  position: absolute;
+  inset: -7px -4px;
+}
+
