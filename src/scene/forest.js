@@ -188,3 +188,7 @@ export function createForest({ uniforms, live, lowPower = false }) {
       const fir = rand() < 0.6;
       const height = (fir ? 4.2 + rand() * 2.6 : 3.4 + rand() * 2.2) * grow;
       const width = height * (fir ? 0.72 + rand() * 0.25 : 0.95 + rand() * 0.3);
+      (fir ? firs : broad).push({ x: px, z: pz, y: heightAt(px, pz) - 0.12, yaw, seed, height, width });
+    }
+  }
+
