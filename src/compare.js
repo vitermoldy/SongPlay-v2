@@ -105,3 +105,13 @@ export function paintStandIn() {
   return c;
 }
 
+// What a worn tape does to the same frame: soft luma, chroma smeared sideways, faded colour
+// with a magenta cast and lifted blacks, noise, dropouts and a torn band at the bottom.
+export function vhsify(source, outW = W, outH = H) {
+  const w = 640;
+  const h = 480;
+  const small = makeCanvas(300, h);
+  small.getContext('2d').drawImage(source, 0, 0, 300, h);
+  const c = makeCanvas(w, h);
+  const g = c.getContext('2d', { willReadFrequently: true });
+  g.drawImage(small, 0, 0, w, h);
