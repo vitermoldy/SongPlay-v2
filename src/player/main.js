@@ -595,3 +595,9 @@ async function playIndex(index) {
   }, 7000);
 }
 
+// `note` explains a skip, so the end-of-queue line does not hide why the last one stopped.
+function advance(note = '') {
+  if (state.current + 1 < state.items.length) playIndex(state.current + 1);
+  else stopAll('ended', `${note ? `${note} ` : ''}That was the last one in the queue. Add another link to keep going.`);
+}
+
