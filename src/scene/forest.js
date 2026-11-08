@@ -158,3 +158,13 @@ function grove(geometry, spots, uniforms, dark, lit) {
   return mesh;
 }
 
+// Trees stand on a jittered grid outside the clearing, thicker and taller the deeper into the
+// wood. The clearing runs well back behind the set, so from the camera the far side of the wood
+// stays a band under the sky, while the trees at the sides, nearer the camera, rise past the top
+// of the frame.
+export function createForest({ uniforms, live, lowPower = false }) {
+  const rand = mulberry32(2024);
+  const cell = lowPower ? 3 : 2.2;
+  const firs = [];
+  const broad = [];
+  for (let z = -66; z < -1; z += cell) {
