@@ -387,3 +387,13 @@ function webglAvailable() {
   }
 }
 
+async function initScene() {
+  if (!webglAvailable()) {
+    ui.video.classList.add('is-flat');
+    return;
+  }
+  const lowPower =
+    window.matchMedia('(max-width: 720px)').matches || (navigator.hardwareConcurrency || 8) <= 4;
+  let playing = false;
+  const sync = () => {
+    ui.sceneToggle.dataset.paused = String(!playing);
