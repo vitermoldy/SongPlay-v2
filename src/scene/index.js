@@ -106,3 +106,13 @@ export function createScene(
     powerPreference: 'high-performance',
   });
 
+  // Without a GPU the browser draws WebGL on the CPU; an animated scene would then hold the
+  // main thread for hundreds of milliseconds a frame. Such a machine gets the still frame.
+  const gl = renderer.getContext();
+  const info = gl.getExtension('WEBGL_debug_renderer_info');
+  const rendererName = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : '';
+  const software = /swiftshader|llvmpipe|software|basic render/i.test(rendererName);
+  const pixelRatio = Math.min(window.devicePixelRatio || 1, lowPower ? 1.25 : 1.6);
+  renderer.setPixelRatio(pixelRatio);
+  renderer.toneMapping = NeutralToneMapping;
+
