@@ -347,3 +347,9 @@ export function createScene(
   window.addEventListener('pointermove', onPointer, { passive: true });
   document.documentElement.addEventListener('mouseleave', onLeave);
 
+  const projected = new Vector3();
+  function updateFocus(cam) {
+    projected.copy(screenWorld).project(cam);
+    post.setFocus(projected.x * 0.5 + 0.5, projected.y * 0.5 + 0.5);
+  }
+
