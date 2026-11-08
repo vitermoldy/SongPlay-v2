@@ -488,3 +488,10 @@
   stroke-width: 2.2;
 }
 
+.deck-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
