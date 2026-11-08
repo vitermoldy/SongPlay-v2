@@ -15,3 +15,10 @@ function showError(field, message) {
   if (field.matches('input, select, textarea')) field.setAttribute('aria-invalid', message ? 'true' : 'false');
 }
 
+export function initRequestForm(form) {
+  const name = form.querySelector('#f-name');
+  const email = form.querySelector('#f-email');
+  const formatSet = form.querySelector('fieldset');
+  formatSet.dataset.errorFor = 'f-format';
+  const status = form.querySelector('[data-request-status]');
+
