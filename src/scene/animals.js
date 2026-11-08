@@ -217,3 +217,12 @@ function createWalker(name, heightAt, rand) {
     // Stops at the sides of the meadow, where the crest of the hill does not hide the ground:
     // usually one soon after coming out of the trees, sometimes one more before going back in.
     a.stops = [];
+    if (rand() < 0.8) a.stops.push(kind.reach - 3 - rand() * 4.5);
+    if (rand() < 0.6) a.stops.push(kind.reach + 3 + rand() * 4.5);
+    if (opening) a.stops = [a.s, kind.reach + 5];
+    a.state = 'move';
+    a.timer = 0;
+    model.root.visible = true;
+    place(0);
+  }
+
