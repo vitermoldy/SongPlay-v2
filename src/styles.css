@@ -707,3 +707,8 @@ body.menu-open .site-header {
   grid-column: 7 / -1;
 }
 
+.services-copy {
+  display: grid;
+  gap: 24px;
+}
+
