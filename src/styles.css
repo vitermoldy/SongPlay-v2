@@ -47,3 +47,8 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
+body.menu-open {
+  overflow: hidden;
+}
+
