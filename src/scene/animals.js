@@ -183,3 +183,13 @@ const OPENING = {
 
 const ease = (dt, rate) => 1 - Math.exp(-dt * rate);
 
+function createWalker(name, heightAt, rand) {
+  const kind = KINDS[name];
+  const model = kind.make();
+  const a = {
+    model,
+    state: 'away',
+    timer: 0,
+    x: 0,
+    z: 0,
+    dir: 1,
