@@ -948,3 +948,8 @@ body.menu-open .site-header {
   margin-bottom: 20px;
 }
 
+.format-art svg {
+  height: auto;
+  filter: drop-shadow(0 10px 14px rgba(20, 36, 27, 0.22));
+}
+
