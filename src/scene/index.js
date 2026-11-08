@@ -462,3 +462,7 @@ export function createScene(
       updateFocus(camera);
     }
 
+    post.setTime(time);
+    post.composer.render(dt);
+    css?.renderer.render(css.scene, camera);
+
