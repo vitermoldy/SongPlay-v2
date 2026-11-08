@@ -781,3 +781,12 @@ ui.prev.addEventListener('click', () => {
 
 ui.queueToggle.addEventListener('click', () => setQueueOpen(ui.queuePanel.hidden));
 
+ui.clear.addEventListener('click', () => {
+  state.items = [];
+  state.current = -1;
+  saveQueue();
+  stopAll('ended', 'Queue cleared. Paste a link to start again.');
+  say('Queue cleared.');
+  ui.queueToggle.focus();
+});
+
