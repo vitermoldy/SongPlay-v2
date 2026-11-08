@@ -888,3 +888,9 @@ body.menu-open .site-header {
 
 /* Formats */
 
+.formats {
+  --mm: 2px;
+  background: var(--cream);
+  color: var(--ink);
+}
+
