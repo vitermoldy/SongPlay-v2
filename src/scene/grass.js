@@ -94,3 +94,10 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
         float s = sin(yaw);
         vec3 r = vec3(p.x * c + p.z * s, p.y, -p.x * s + p.z * c);
 
+        float phase = dot(aOffset.xz, vec2(0.42, 0.17));
+        float gust = sin(phase * 0.6 - uTime * 0.85) * 0.5 + 0.5;
+        float sway = sin(phase + uTime * 2.0 + seed * 6.2831) * 0.3 + sin(phase * 2.3 + uTime * 3.4) * 0.12;
+        float bend = (sway + gust * 0.8) * uWind * h * h * height;
+        r.xz += uWindDir * bend;
+        r.y -= abs(bend) * 0.3 * h;
+
