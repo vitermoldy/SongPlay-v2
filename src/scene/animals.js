@@ -371,3 +371,5 @@ function createFlocks(live, rand, count) {
     b.root.visible = false;
     group.add(b.root);
   });
+  let wait = 4;
+
