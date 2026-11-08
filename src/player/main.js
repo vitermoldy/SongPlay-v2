@@ -547,3 +547,12 @@ function onPlayerError(event) {
   }, 1200);
 }
 
+async function playIndex(index) {
+  const item = state.items[index];
+  if (!item) return;
+  clearTimeout(skipTimer);
+  state.current = index;
+  state.status = 'loading';
+  state.videoTitle = '';
+  render();
+
