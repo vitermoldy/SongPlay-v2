@@ -99,3 +99,5 @@ let volume = (() => {
   } catch {
     return 70;
   }
+})();
+
