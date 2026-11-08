@@ -121,3 +121,13 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
       uniform float uTvPower;
       uniform vec3 uCursorPos;
       uniform vec3 uCursorColor;
+      uniform float uCursorPower;
+      uniform vec3 uFogColor;
+      uniform float uFogNear;
+      uniform float uFogFar;
+      varying float vH;
+      varying float vSeed;
+      varying vec3 vWorld;
+      ${CLEARING_GLSL}
+      void main() {
+        vec3 tip = mix(uTip, uTipGold, step(0.62, fract(vSeed * 7.31)));
