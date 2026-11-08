@@ -121,3 +121,13 @@ export function vhsify(source, outW = W, outH = H) {
   const src = new Uint8ClampedArray(d);
   const rand = rng(1994);
 
+  for (let y = 0; y < h; y++) {
+    const tail = y / h;
+    let shift = 0;
+    if (tail > 0.9) shift = Math.round((rand() - 0.5) * 10 + (tail - 0.9) * 170);
+    else if (rand() < 0.006) shift = Math.round((rand() - 0.5) * 8);
+    const wobble = Math.sin(y * 0.05) * 1.2;
+    const row = y * w;
+    for (let x = 0; x < w; x++) {
+      const sx = clamp(Math.round(x - shift - wobble), 0, w - 1);
+      const sr = clamp(sx - 5, 0, w - 1);
