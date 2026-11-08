@@ -53,3 +53,12 @@ function leg(material, length, top, bottom, [x, y, z]) {
   return pivot;
 }
 
+function stick(material, length, radius, [x, y, z], tiltZ, tiltX = 0) {
+  const geometry = new CylinderGeometry(radius * 0.6, radius, length, 5);
+  geometry.translate(0, length / 2, 0);
+  const mesh = new Mesh(geometry, material);
+  mesh.position.set(x, y, z);
+  mesh.rotation.set(tiltX, 0, tiltZ);
+  return mesh;
+}
+
