@@ -703,3 +703,7 @@ body.menu-open .site-header {
   grid-column: 1 / span 5;
 }
 
+.services-grid .compare {
+  grid-column: 7 / -1;
+}
+
