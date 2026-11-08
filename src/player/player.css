@@ -471,3 +471,11 @@
   border-color: var(--error);
 }
 
+.deck-add-btn {
+  flex: none;
+  min-height: 52px;
+  padding-left: 20px;
+  font-size: 17px;
+  box-shadow: none;
+}
+
