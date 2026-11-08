@@ -533,3 +533,13 @@ function onPlayerError(event) {
     if (at >= 0 && at < list.length - 1) {
       yt.nextVideo();
       return;
+    }
+  } else if (item) {
+    item.problem = reason;
+    saveQueue();
+    say(`Skipped ${titleOf(item)}: ${reason}.`);
+  }
+  // Skip after a beat, unless the visitor has already picked something else by then.
+  const failed = state.current;
+  clearTimeout(skipTimer);
+  skipTimer = setTimeout(() => {
