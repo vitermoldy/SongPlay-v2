@@ -80,3 +80,5 @@ export const THEMES = {
     birds: 1,
     exposure: 1,
   },
+};
+
