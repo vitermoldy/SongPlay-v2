@@ -450,3 +450,8 @@ export function createScene(
     tv.screenMaterial.uniforms.uOn.value = on;
     tv.screenMaterial.uniforms.uLevel.value = screenLevel;
 
+    const cursorPos = shared.uCursorPos.value;
+    if (shared.uCursorPower.value < 0.02) cursorPos.copy(cursorTarget);
+    else cursorPos.lerp(cursorTarget, ease(12));
+    shared.uCursorPower.value += (cursorWanted - shared.uCursorPower.value) * ease(6);
+
