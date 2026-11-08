@@ -396,3 +396,8 @@ body.menu-open .site-header {
   opacity: 1;
 }
 
+.menu ul {
+  display: grid;
+  gap: 4px;
+}
+
