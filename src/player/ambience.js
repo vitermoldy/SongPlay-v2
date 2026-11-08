@@ -54,3 +54,10 @@ function rng(seed) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
+
+export function createAmbience() {
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  const ctx = new Ctx();
+  const sr = ctx.sampleRate;
+  const rand = rng(2026);
+
