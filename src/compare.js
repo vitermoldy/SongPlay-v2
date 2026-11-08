@@ -61,3 +61,13 @@ export function paintStandIn() {
   g.ellipse(W * 0.5, H * 1.14, W * 0.78, H * 0.42, 0, 0, Math.PI * 2);
   g.fill();
 
+  const tw = W * 0.26;
+  const th = tw * 0.75;
+  const tx = W * 0.5 - tw / 2;
+  const ty = H * 0.72 - th;
+  g.strokeStyle = '#14161f';
+  g.lineWidth = 4;
+  g.beginPath();
+  g.moveTo(W * 0.5, ty);
+  g.lineTo(W * 0.42, ty - H * 0.24);
+  g.moveTo(W * 0.5, ty);
