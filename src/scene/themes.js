@@ -102,3 +102,13 @@ export const SEASONS = {
     pines: THEMES.dusk.pines,
     leaves: THEMES.dusk.leaves,
     particles: null,
+  },
+  autumn: {
+    label: 'Autumn',
+    grass: { base: '#1a0e06', mid: '#4a2a0e', tip: '#b8642a', tipGold: '#d89a3a' },
+    ground: { dark: '#160c06', lit: '#3a2410' },
+    // The pines stay green; the broadleaf trees turn.
+    pines: { dark: '#0d1a10', lit: '#3a5428' },
+    leaves: { dark: '#2a1206', lit: '#d0702a' },
+    particles: { shape: 2, color: '#e0702a', color2: '#a63a18', opacity: 1, fall: 1.1, size: 1.8 },
+  },
