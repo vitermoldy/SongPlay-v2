@@ -576,3 +576,13 @@ export function createScene(
       element.style.width = `${width}px`;
       element.style.height = `${height}px`;
       // Round the element's corners like the glass (the shader's radius is in screen heights).
+      element.style.setProperty('--glass-radius', `${Math.round(tv.shape.corner * height)}px`);
+      const object = new CSS3DObject(element);
+      object.position.copy(tv.glassFront.clone().applyMatrix4(tv.group.matrixWorld));
+      object.rotation.set(0, setup.tvYaw, 0);
+      object.scale.setScalar((tv.shape.screenW * VIDEO_FILL) / width);
+      const cssScene = new Scene();
+      cssScene.add(object);
+      css = { renderer: cssRenderer, scene: cssScene };
+      resize();
+    },
