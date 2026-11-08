@@ -499,3 +499,13 @@ function onPlayerState(event) {
       if (event.data === S.PLAYING) yt.stopVideo();
       return;
     }
+    clearTimeout(autoplayCheck);
+    if (event.data === S.PLAYING) {
+      state.status = 'playing';
+      state.videoTitle = yt.getVideoData?.()?.title || '';
+      scene?.setScreenMode('video');
+    } else {
+      state.status = 'paused';
+      scene?.setScreenMode('paused');
+    }
+  } else if (event.data === S.BUFFERING) {
