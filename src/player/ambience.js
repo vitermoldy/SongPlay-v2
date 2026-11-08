@@ -227,3 +227,13 @@ export function createAmbience() {
       node = next;
     }
     src.start(0, rand() * buf.duration);
+    return src;
+  };
+  const filter = (type, frequency, Q = 0.7) => {
+    const f = ctx.createBiquadFilter();
+    f.type = type;
+    f.frequency.value = frequency;
+    f.Q.value = Q;
+    return f;
+  };
+  const lfo = (rate, depth, target) => {
