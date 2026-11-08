@@ -151,3 +151,9 @@
   font-weight: 700;
 }
 
+.sound-value {
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
