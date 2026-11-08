@@ -63,3 +63,5 @@ export function initRequestForm(form) {
       '',
       String(data.get('notes') || '').trim(),
     ].join('\n');
+    const href = `mailto:${REQUEST_EMAIL}?subject=${encodeURIComponent(`Tapes from ${nameValue}`)}&body=${encodeURIComponent(body)}`;
+
