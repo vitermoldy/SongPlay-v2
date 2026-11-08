@@ -415,3 +415,13 @@ export function createScene(
   const power = (now) =>
     still ? 1 : MathUtils.clamp(((now - started) / 1000 - POWER_DELAY) / POWER_TIME, 0, 1);
 
+  function render(now) {
+    const raw = last ? (now - last) / 1000 : 0;
+    const dt = Math.min(raw, 0.05);
+    last = now;
+    if (playing) {
+      time += dt;
+      live.u.drift.value += dt * live.numbers['particles.fall'];
+      animals.update(dt, time);
+    }
+    // With no time step (a single frame for a paused scene) everything lands where it is going.
