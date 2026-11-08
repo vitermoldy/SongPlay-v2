@@ -804,3 +804,8 @@
     flex-wrap: nowrap;
   }
 
+  .theme {
+    padding: 0 8px;
+    font-size: 13px;
+  }
+
