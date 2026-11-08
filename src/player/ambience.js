@@ -346,3 +346,13 @@ export function createAmbience() {
       if (on === ducked) return;
       ducked = on;
       applyMaster();
+    },
+    // A hidden tab goes quiet and saves the battery; it picks up again when shown.
+    setHidden(on) {
+      hidden = on;
+      if (on) ctx.suspend();
+      else if (enabled) ctx.resume();
+      scheduleThunder();
+    },
+    get running() {
+      return ctx.state === 'running';
