@@ -239,3 +239,13 @@ function createWalker(name, heightAt, rand) {
     model.root.rotation.y = a.yaw;
   }
 
+  function pose(dt, time, moving) {
+    const k = dt > 0 ? ease(dt, 3) : 1;
+    // Legs: diagonal pairs swing together; at rest they hang straight.
+    const swing = moving ? kind.swing : 0;
+    model.legs.forEach((l, i) => {
+      const phase = a.step + (i === 0 || i === 3 ? 0 : Math.PI);
+      const target = Math.sin(phase) * swing;
+      l.rotation.z = moving ? target : l.rotation.z * (1 - k);
+    });
+    if (kind.hops) {
