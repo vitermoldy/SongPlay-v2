@@ -82,3 +82,13 @@ function makeDeer(buck) {
   neck.add(head);
   head.add(blob(hide, [0.15, 0.085, 0.075], [0.07, 0, 0], -0.35));
   head.add(blob(dark, [0.03, 0.03, 0.03], [0.21, -0.05, 0]));
+  for (const side of [-1, 1]) {
+    head.add(blob(hide, [0.03, 0.08, 0.02], [-0.03, 0.08, side * 0.06], 0.6));
+    if (buck) {
+      head.add(stick(dark, 0.34, 0.016, [0, 0.07, side * 0.035], 0.55, -side * 0.35));
+      head.add(stick(dark, 0.16, 0.012, [-0.06, 0.2, side * 0.07], -0.2, -side * 0.3));
+      head.add(stick(dark, 0.14, 0.011, [-0.15, 0.3, side * 0.1], 0.3, -side * 0.2));
+    }
+  }
+  const legs = [
+    [0.3, 0.08],
