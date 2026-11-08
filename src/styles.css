@@ -1439,3 +1439,9 @@ body.menu-open .site-header {
     right: 16px;
   }
 
+  .compare-tag-hint {
+    top: 14px;
+    right: 16px;
+    bottom: auto;
+  }
+
