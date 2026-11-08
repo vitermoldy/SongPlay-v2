@@ -90,3 +90,13 @@ export function paintStandIn() {
   g.fill();
   g.restore();
 
+  for (let i = 0; i < 2200; i++) {
+    const x = rand() * W;
+    const base = H * 0.7 + Math.abs(x - W / 2) * 0.12 + rand() * H * 0.3;
+    const len = 12 + rand() * 34;
+    const tone = 40 + rand() * 90;
+    g.strokeStyle = `rgba(${tone + 60}, ${tone + 50}, ${tone * 0.4}, ${0.35 + rand() * 0.5})`;
+    g.lineWidth = 1 + rand() * 1.5;
+    g.beginPath();
+    g.moveTo(x, base);
+    g.lineTo(x + (rand() - 0.3) * 10, base - len);
