@@ -49,3 +49,5 @@ export function initCursorLight({ skip = [] } = {}) {
       light.classList.toggle('is-paper', Boolean(under?.closest('.on-light')));
     },
     { passive: true },
+  );
+
