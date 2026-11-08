@@ -668,3 +668,5 @@ function placeQueue() {
     panel.style.maxHeight = `${Math.round(Math.min(window.innerHeight * 0.36, 320))}px`;
   }
   scene?.relayout();
+}
+
