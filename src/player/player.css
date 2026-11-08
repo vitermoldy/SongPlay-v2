@@ -643,3 +643,8 @@
   color: var(--mist);
 }
 
+.queue-list {
+  display: grid;
+  gap: 4px;
+}
+
