@@ -181,3 +181,5 @@ const OPENING = {
   buck: { away: 18 },
 };
 
+const ease = (dt, rate) => 1 - Math.exp(-dt * rate);
+
