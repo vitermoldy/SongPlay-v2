@@ -156,3 +156,10 @@ export function createTV(shapeName = 'classic') {
   ]) {
     const rod = new Mesh(rodGeometry, dark);
     rod.position.set(0.02, bodyH + 0.04, -0.08);
+    rod.rotation.set(tiltX, 0, tiltZ);
+    group.add(rod);
+    const tip = new Mesh(tipGeometry, dark);
+    tip.position.copy(new Vector3(0, ROD, 0).applyEuler(rod.rotation).add(rod.position));
+    group.add(tip);
+  }
+
