@@ -101,3 +101,13 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
         r.xz += uWindDir * bend;
         r.y -= abs(bend) * 0.3 * h;
 
+        vec3 world = aOffset + r;
+        vH = h;
+        vSeed = seed;
+        vWorld = world;
+        gl_Position = projectionMatrix * viewMatrix * vec4(world, 1.0);
+      }
+    `,
+    fragmentShader: /* glsl */ `
+      uniform vec3 uBase;
+      uniform vec3 uMid;
