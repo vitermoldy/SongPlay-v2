@@ -224,3 +224,8 @@ export function initCompare(root) {
     range.setAttribute('aria-valuetext', `Divider at ${Math.round(pos)} percent, corrected frame on the right`);
   };
 
+  const fromPointer = (event) => {
+    const rect = root.getBoundingClientRect();
+    set(((event.clientX - rect.left) / rect.width) * 100);
+  };
+
