@@ -107,3 +107,13 @@ async function initScene(compare) {
     scene.setPlaying(playing);
   };
 
+  try {
+    const { createScene } = await import('./scene/index.js');
+    scene = createScene(canvas, {
+      lowPower,
+      reducedMotion: reduceMotion.matches,
+      onReady: () => hero.classList.add('is-live'),
+      onLost: () => hero.classList.remove('is-live'),
+      // Too slow to animate smoothly here: settle on the still frame, Play stays one click away.
+      onSlow: () => {
+        playing = false;
