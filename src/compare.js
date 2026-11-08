@@ -164,3 +164,13 @@ export function vhsify(source, outW = W, outH = H) {
   g.fillStyle = 'rgba(255, 255, 255, 0.08)';
   g.fillRect(0, h - 10, w, 10);
 
+  g.fillStyle = 'rgba(255, 255, 255, 0.92)';
+  g.shadowColor = 'rgba(0, 0, 0, 0.5)';
+  g.shadowBlur = 4;
+  g.font = '700 22px "Nunito Sans Variable", sans-serif';
+  g.fillText('PLAY', 34, 50);
+  g.beginPath();
+  g.moveTo(98, 32);
+  g.lineTo(98, 52);
+  g.lineTo(114, 42);
+  g.closePath();
