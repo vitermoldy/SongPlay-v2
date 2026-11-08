@@ -875,3 +875,9 @@ body.menu-open .site-header {
   outline-offset: -3px;
 }
 
+.viewfinder-small {
+  inset: 10px;
+  z-index: 1;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
