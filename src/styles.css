@@ -446,3 +446,7 @@ body.menu-open .site-header {
   transition: opacity 1200ms var(--ease);
 }
 
+.hero.is-live .hero-canvas {
+  opacity: 1;
+}
+
