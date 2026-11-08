@@ -197,3 +197,13 @@ export function createScene(
   particles.setShape(live.shape);
   scene.add(particles.points);
 
+  const hemi = new HemisphereLight();
+  hemi.color = live.color('lamps.hemiSky');
+  hemi.groundColor = live.color('lamps.hemiGround');
+  scene.add(hemi);
+  const sun = new DirectionalLight();
+  sun.color = live.color('lamps.sun');
+  scene.add(sun);
+  const fill = new DirectionalLight();
+  fill.color = live.color('lamps.fill');
+  fill.position.set(-5, 4, 6);
