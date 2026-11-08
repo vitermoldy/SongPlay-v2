@@ -450,3 +450,13 @@ let ytReady = null;
 let autoplayCheck = 0;
 let skipTimer = 0;
 
+function ensurePlayer() {
+  if (ytReady) return ytReady;
+  ytReady = loadYouTubeApi()
+    .then(
+      (YT) =>
+        new Promise((resolve) => {
+          const player = new YT.Player('yt-player', {
+            host: 'https://www.youtube-nocookie.com',
+            width: 640,
+            height: 360,
