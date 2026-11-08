@@ -244,3 +244,13 @@ export function createScene(
   let themeShift = null;
   const started = performance.now();
 
+  // ---------- Time of day and season: every colour, light and number eases to the new look ----------
+  function retarget() {
+    const next = compose(live.time, live.season);
+    // What falls changes form at once (snow, petals, leaves); its colour and speed ease over.
+    live.shape = next.shape;
+    particles.setShape(next.shape);
+    themeShift = {
+      t: still ? 1 : 0,
+      from: new Map(COLOR_PATHS.map((path) => [path, live.color(path).clone()])),
+      to: next.colors,
