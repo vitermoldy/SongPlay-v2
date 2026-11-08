@@ -203,3 +203,7 @@ function createWalker(name, heightAt, rand) {
     neckAim: 0,
     headAim: 0,
     bodyAim: 0,
+    lookAim: 0,
+    hop: 0,
+  };
+
