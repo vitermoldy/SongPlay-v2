@@ -272,3 +272,13 @@ export function createAmbience() {
   lfo(0.09, 900, leavesTone.frequency);
   loop(rustle(), leavesTone, pan(0.15), layers.leaves);
 
+  // Thunder, now and then while it rains: a low rumble that swells and rolls away.
+  const thunderNoise = brownNoise(6);
+  let thunderLevel = 0;
+  let thunderTimer = 0;
+  function rumble() {
+    const src = ctx.createBufferSource();
+    src.buffer = thunderNoise;
+    const low = filter('lowpass', 130 + rand() * 60);
+    const g = ctx.createGain();
+    const now = ctx.currentTime;
