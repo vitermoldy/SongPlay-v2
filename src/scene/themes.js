@@ -112,3 +112,13 @@ export const SEASONS = {
     leaves: { dark: '#2a1206', lit: '#d0702a' },
     particles: { shape: 2, color: '#e0702a', color2: '#a63a18', opacity: 1, fall: 1.1, size: 1.8 },
   },
+  winter: {
+    label: 'Winter',
+    grass: { base: '#8a96a8', mid: '#c4cedb', tip: '#eef3f8', tipGold: '#ffffff' },
+    ground: { dark: '#a6b2c2', lit: '#dde4ec' },
+    // Snow lies on the tops of the boughs; the shaded undersides stay dark.
+    pines: { dark: '#1c2a2a', lit: '#d4dee6' },
+    leaves: { dark: '#4e5862', lit: '#dfe6ee' },
+    particles: { shape: 1, color: '#ffffff', color2: '#e2eaff', opacity: 1, fall: 1.7, size: 1.1 },
+  },
+  // The rainy season also clouds the sky over: `overcast` greys whatever the time of day shows.
