@@ -537,3 +537,10 @@ export function createScene(
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(canvas);
 
+  canvas.addEventListener('webglcontextlost', (event) => {
+    event.preventDefault();
+    cancelAnimationFrame(raf);
+    raf = 0;
+    onLost?.();
+  });
+
