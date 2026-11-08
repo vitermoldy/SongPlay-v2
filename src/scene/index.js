@@ -209,3 +209,13 @@ export function createScene(
   fill.position.set(-5, 4, 6);
   scene.add(fill);
 
+  function applyNumbers() {
+    const n = live.numbers;
+    live.u.stars.value = n.stars;
+    live.u.cloudOpacity.value = n['clouds.opacity'];
+    live.u.particleOpacity.value = n['particles.opacity'];
+    live.u.particleSize.value = n['particles.size'];
+    hemi.intensity = n['lamps.hemi'];
+    sun.intensity = n['lamps.sunI'];
+    fill.intensity = n['lamps.fillI'];
+    sun.position.copy(live.sunDir).multiplyScalar(30);
