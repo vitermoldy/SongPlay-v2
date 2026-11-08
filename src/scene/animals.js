@@ -393,3 +393,9 @@ function createFlocks(live, rand, count) {
         glide: 0,
         bob: rand() * 6,
       });
+      b.root.visible = true;
+      b.root.rotation.set(0, dir > 0 ? 0 : Math.PI, 0);
+      b.root.scale.setScalar(1.1 + rand() * 0.3);
+    });
+  }
+
