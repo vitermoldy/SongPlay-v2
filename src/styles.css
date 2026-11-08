@@ -605,3 +605,9 @@ body.menu-open .site-header {
   transform: scale(0.97);
 }
 
+.scene-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
