@@ -479,3 +479,13 @@ function ensurePlayer() {
   return ytReady;
 }
 
+function playingMatches(item) {
+  if (!item) return false;
+  if (item.kind === 'video') {
+    const id = yt.getVideoData?.()?.video_id;
+    return !id || id === item.id;
+  }
+  const list = yt.getPlaylistId?.();
+  return !list || list === item.list;
+}
+
