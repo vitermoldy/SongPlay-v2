@@ -7,3 +7,13 @@ import { initCursorLight } from './cursor-light.js';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+function initHeader() {
+  const header = document.querySelector('[data-header]');
+  let queued = false;
+  const update = () => {
+    queued = false;
+    header.classList.toggle('is-solid', window.scrollY > window.innerHeight * 0.5);
+  };
+  window.addEventListener(
+    'scroll',
+    () => {
