@@ -57,3 +57,8 @@ const PLAYER_DISTANCE = 5.2;
 // view the owner wants back, which keeps the meadow and the wood behind it in sight over the crest.
 const CAMERA_RISE = 0.4;
 const VIDEO_FILL = 0.97;
+const POWER_DELAY = 0.5;
+const POWER_TIME = 1.5;
+const THEME_TIME = 1.4;
+const SCREEN_LEVEL = { idle: 1, video: 0.22, paused: 0.18 };
+
