@@ -585,3 +585,13 @@ async function playIndex(index) {
     if (item.kind === 'playlist' && !listLoaded) {
       item.problem = 'YouTube only plays this list on its own site (or it is private)';
       saveQueue();
+      say(`Skipped ${titleOf(item)}: ${item.problem}.`);
+      advance(`Couldn’t play ${titleOf(item)}: ${item.problem}.`);
+      return;
+    }
+    state.status = 'paused';
+    render();
+    setText(ui.now, `Ready: ${titleOf(item)}. Press play to start.`);
+  }, 7000);
+}
+
