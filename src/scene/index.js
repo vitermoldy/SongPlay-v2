@@ -290,3 +290,13 @@ export function createScene(
     }
   }
 
+  // ---------- Pointer: camera drift and the cursor's light on the grass ----------
+  const pointer = new Vector2();
+  const eased = new Vector2();
+  const raycaster = new Raycaster();
+  const ndc = new Vector2();
+  const cursorTarget = new Vector3(0, -50, 0);
+  let cursorWanted = 0;
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const cursorAllowed = () => finePointer.matches && !software && !slow;
+
