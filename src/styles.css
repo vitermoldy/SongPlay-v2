@@ -926,3 +926,7 @@ body.menu-open .site-header {
   grid-column: 3 / span 4;
 }
 
+.format:nth-child(3) {
+  grid-column: 7 / span 3;
+}
+
