@@ -11,3 +11,13 @@ export function heightAt(x, z) {
   return crest + leftRise + rightFar + leftFar + roll;
 }
 
+// The clearing the set stands in: an oval round the TV, open toward the camera, with a wavy
+// edge. Returns how far a spot lies inside the forest (in scene units; 0 or less: the open
+// meadow). Trees are planted by it, and the ground and grass darken under the canopy with it;
+// CLEARING_GLSL is the same function for the shaders.
+export function forestDepth(x, z) {
+  const dz = z + 3;
+  const wobble = 1 + 0.09 * Math.sin(Math.atan2(dz, x) * 5 + 1.7) + 0.05 * Math.sin(x * 0.35);
+  const e = Math.hypot(x / 12.5, dz / 21) / wobble;
+  const front = Math.min(1, Math.max(0, (-1 - z) / 3));
+  return (e - 1) * 9 * front - (1 - front) * 4;
