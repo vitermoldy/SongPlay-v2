@@ -849,3 +849,9 @@ body.menu-open .site-header {
   height: 100%;
   margin: 0;
   border-radius: inherit;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  pointer-events: none;
+}
+
