@@ -141,3 +141,10 @@ async function initScene(compare) {
   }).observe(hero);
   document.addEventListener('visibilitychange', updateVisible);
 
+  try {
+    compare.setSource(await scene.captureStill());
+  } catch (error) {
+    console.warn('Could not take the still for the before/after frame.', error);
+  }
+}
+
