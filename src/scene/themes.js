@@ -132,3 +132,7 @@ export const SEASONS = {
     particles: { shape: 3, color: '#d8e6ff', color2: '#aabedf', opacity: 1, fall: 30, size: 3 },
   },
 };
+
+export const THEME_NAMES = Object.keys(THEMES);
+export const SEASON_NAMES = Object.keys(SEASONS);
+
