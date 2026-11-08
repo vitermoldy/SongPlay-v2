@@ -341,3 +341,11 @@ function createWalker(name, heightAt, rand) {
   };
 }
 
+// One bird: a small body and two swept wings that flap round the line of flight.
+function wingGeometry(side) {
+  const g = new BufferGeometry();
+  g.setAttribute('position', new Float32BufferAttribute([0.07, 0, 0, -0.07, 0, 0, -0.13, 0, side * 0.46], 3));
+  g.computeVertexNormals();
+  return g;
+}
+
