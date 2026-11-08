@@ -201,3 +201,11 @@ export function createAmbience() {
 
   // ---------- The graph ----------
 
+  const compressor = ctx.createDynamicsCompressor();
+  compressor.threshold.value = -18;
+  compressor.ratio.value = 3;
+  compressor.connect(ctx.destination);
+  const master = ctx.createGain();
+  master.gain.value = 0;
+  master.connect(compressor);
+
