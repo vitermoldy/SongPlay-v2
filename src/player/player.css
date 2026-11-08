@@ -256,3 +256,8 @@
   }
 }
 
+@media (max-width: 1199px) {
+  .sound {
+    margin-left: auto;
+  }
+
