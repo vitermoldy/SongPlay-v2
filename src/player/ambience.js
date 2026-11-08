@@ -217,3 +217,13 @@ export function createAmbience() {
     layers[name] = g;
   }
 
+  const loop = (buf, ...chain) => {
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    src.loop = true;
+    let node = src;
+    for (const next of chain) {
+      node.connect(next);
+      node = next;
+    }
+    src.start(0, rand() * buf.duration);
