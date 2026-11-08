@@ -768,3 +768,13 @@ ui.next.addEventListener('click', () => {
   advance();
 });
 
+ui.prev.addEventListener('click', () => {
+  const item = state.items[state.current];
+  if (item?.kind === 'playlist' && yt && (yt.getPlaylistIndex?.() ?? 0) > 0) {
+    yt.previousVideo();
+  } else if (state.current > 0) {
+    playIndex(state.current - 1);
+  } else {
+    yt?.seekTo(0, true);
+  }
+});
