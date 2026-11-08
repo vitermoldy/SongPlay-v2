@@ -627,3 +627,13 @@ function removeAt(index) {
   say(`Removed ${titleOf(item)}.`);
   if (index < state.current) {
     state.current -= 1;
+    render();
+  } else if (wasCurrent && wasActive) {
+    if (index < state.items.length) playIndex(index);
+    else stopAll('ended', 'Removed the song that was on. The queue has ended.');
+  } else {
+    if (wasCurrent) state.current = -1;
+    render();
+  }
+}
+
