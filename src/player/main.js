@@ -299,3 +299,13 @@ function queueRow(item, index) {
   li.classList.toggle('is-current', current);
   li.classList.toggle('has-problem', Boolean(item.problem));
 
+  const thumb = document.createElement('img');
+  thumb.className = 'queue-thumb';
+  thumb.width = 96;
+  thumb.height = 54;
+  thumb.alt = '';
+  thumb.loading = 'lazy';
+  thumb.decoding = 'async';
+  const src = safeThumb(item.thumb);
+  if (src) thumb.src = src;
+
