@@ -263,3 +263,9 @@ export function createScene(
     kick();
   }
 
+  function setTheme(name) {
+    if (!THEMES[name] || name === live.time) return;
+    live.time = name;
+    retarget();
+  }
+
