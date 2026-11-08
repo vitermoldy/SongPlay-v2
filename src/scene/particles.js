@@ -54,3 +54,13 @@ export function createParticles(count, live) {
         vec3 p = position;
         float seed = aData.y;
         p.y = mod(p.y + 1.0 - uDrift * (0.06 + seed * 0.08), 12.0) - 1.0;
+        float sway = uShape > 2.5 ? 0.04 : (uShape > 1.5 ? 0.9 : 0.5);
+        p.x += sin(uTime * (0.25 + seed * 0.3) + seed * 6.2831) * sway;
+        p.z += cos(uTime * 0.2 + seed * 4.0) * 0.3;
+        vec4 mv = modelViewMatrix * vec4(p, 1.0);
+        float depth = -mv.z;
+        gl_PointSize = clamp(aData.x * uSize * uProj / depth, 1.5, 72.0);
+        vSeed = seed;
+        vStar = aData.z;
+        vAlpha = aData.w * smoothstep(1.5, 4.0, depth);
+        vBlur = 1.0 - smoothstep(3.0, 12.0, depth);
