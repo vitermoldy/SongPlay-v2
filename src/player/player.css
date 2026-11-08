@@ -223,3 +223,7 @@
     linear-gradient(#4a82a4 0%, #98c2c4 30%, #d2e6da 46%, #ffe4c2 56%, #557c6a 63%);
 }
 
+.stage .viewfinder {
+  z-index: 1;
+}
+
