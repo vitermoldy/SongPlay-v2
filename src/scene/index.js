@@ -427,3 +427,13 @@ export function createScene(
     // With no time step (a single frame for a paused scene) everything lands where it is going.
     const ease = (rate) => (dt > 0 ? 1 - Math.exp(-dt * rate) : 1);
 
+    // Watch the first frames once; a machine that cannot hold ~15 fps gets the still frame.
+    if (playing && raw > 0 && sampled < 45) {
+      sampled++;
+      if (raw > 0.066) slowFrames++;
+      if (sampled === 45 && slowFrames > 30) {
+        slow = true;
+        cursorWanted = 0;
+        onSlow?.();
+      }
+    }
