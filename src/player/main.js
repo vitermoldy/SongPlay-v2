@@ -417,3 +417,13 @@ async function initScene() {
       },
     });
     scene.mountScreen(ui.video, ui.stage, { width: 640 });
+  } catch (error) {
+    console.warn('The 3D scene could not start; the player sits on the still sky.', error);
+    ui.video.classList.add('is-flat');
+    scene = null;
+    return;
+  }
+  playing = !scene.startsStill;
+  ui.sceneToggle.hidden = false;
+  sync();
+  ui.sceneToggle.addEventListener('click', () => {
