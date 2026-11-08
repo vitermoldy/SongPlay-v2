@@ -353,3 +353,13 @@ export function createScene(
     post.setFocus(projected.x * 0.5 + 0.5, projected.y * 0.5 + 0.5);
   }
 
+  function resize() {
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    if (!width || !height) return;
+    renderer.setSize(width, height, false);
+    post.setSize(width, height, pixelRatio);
+    const aspect = width / height;
+    camera.aspect = aspect;
+    camera.fov = aspect >= 1 ? 35 : 35 + (1 - aspect) * 10;
+    camera.updateProjectionMatrix();
