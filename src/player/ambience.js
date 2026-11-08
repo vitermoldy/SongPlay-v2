@@ -103,3 +103,13 @@ export function createAmbience() {
     return b;
   }
 
+  // Raindrops: many tiny, quickly fading pings at random pitches.
+  function droplets(seconds) {
+    const b = buffer(seconds);
+    const d = b.getChannelData(0);
+    const count = Math.round(seconds * 260);
+    const len = Math.round(sr * 0.012);
+    for (let n = 0; n < count; n++) {
+      const start = Math.floor(rand() * (d.length - len));
+      const f = 1400 + rand() * 4200;
+      const amp = 0.03 + rand() * 0.16;
