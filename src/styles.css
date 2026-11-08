@@ -185,3 +185,13 @@ button:disabled {
   transform: translateY(0) scale(0.98);
 }
 
+.cta-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 46px;
+  border-radius: 12px;
+  background: #0b150f;
+  overflow: hidden;
+}
+
