@@ -195,3 +195,12 @@ button:disabled {
   overflow: hidden;
 }
 
+.cta-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: var(--glow);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+
