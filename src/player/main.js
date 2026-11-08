@@ -460,3 +460,13 @@ function ensurePlayer() {
             host: 'https://www.youtube-nocookie.com',
             width: 640,
             height: 360,
+            playerVars: { autoplay: 1, playsinline: 1, rel: 0, iv_load_policy: 3, origin: window.location.origin },
+            events: {
+              onReady: () => {
+                yt = player;
+                resolve(player);
+              },
+              onStateChange: onPlayerState,
+              onError: onPlayerError,
+            },
+          });
