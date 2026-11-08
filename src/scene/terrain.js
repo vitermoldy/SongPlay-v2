@@ -23,3 +23,13 @@ export function forestDepth(x, z) {
   return (e - 1) * 9 * front - (1 - front) * 4;
 }
 
+export const CLEARING_GLSL = /* glsl */ `
+  float forestDepth(vec2 p) {
+    float dz = p.y + 3.0;
+    float wobble = 1.0 + 0.09 * sin(atan(dz, p.x) * 5.0 + 1.7) + 0.05 * sin(p.x * 0.35);
+    float e = length(vec2(p.x / 12.5, dz / 21.0)) / wobble;
+    float front = clamp((-1.0 - p.y) / 3.0, 0.0, 1.0);
+    return (e - 1.0) * 9.0 * front - (1.0 - front) * 4.0;
+  }
+  // How much the canopy shades the floor here: none in the meadow, most of it a few trees in.
+  float canopyShade(vec2 p) {
