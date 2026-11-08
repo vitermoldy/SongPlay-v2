@@ -237,3 +237,13 @@ export function createAmbience() {
     return f;
   };
   const lfo = (rate, depth, target) => {
+    const osc = ctx.createOscillator();
+    osc.frequency.value = rate;
+    const g = ctx.createGain();
+    g.gain.value = depth;
+    osc.connect(g).connect(target);
+    osc.start();
+  };
+  const pan = (value) => {
+    const p = ctx.createStereoPanner();
+    p.pan.value = value;
