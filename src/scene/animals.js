@@ -359,3 +359,5 @@ function makeBird(material) {
     return { wing, side };
   });
   return { root, wings };
+}
+
