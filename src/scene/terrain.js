@@ -67,3 +67,13 @@ export function createTerrain(uniforms) {
       uniform vec3 uGroundLit;
       uniform vec3 uFogColor;
       uniform vec3 uTvPos;
+      uniform vec3 uTvColor;
+      uniform float uTvPower;
+      uniform vec3 uCursorPos;
+      uniform vec3 uCursorColor;
+      uniform float uCursorPower;
+      uniform float uFogNear;
+      uniform float uFogFar;
+      varying vec3 vWorld;
+      varying vec3 vNormal;
+      ${NOISE_GLSL}
