@@ -47,3 +47,13 @@ function firGeometry() {
   return mergeGeometries(parts);
 }
 
+function broadleafGeometry() {
+  const parts = [part(new CylinderGeometry(0.03, 0.05, 0.56, 6).translate(0, 0.28, 0), 0)];
+  const blobs = [
+    [0, 0.6, 0, 0.27],
+    [0.15, 0.7, 0.06, 0.21],
+    [-0.15, 0.68, -0.05, 0.22],
+    [0.02, 0.84, -0.02, 0.18],
+    [0.04, 0.62, 0.17, 0.18],
+  ];
+  for (const [x, y, z, r] of blobs) {
