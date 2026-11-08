@@ -32,3 +32,5 @@ npm run preview   # serve dist/ locally
 
 `dist/` uses relative paths, so it can be uploaded to any static host as is.
 
+## Structure
+
