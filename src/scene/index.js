@@ -440,3 +440,13 @@ export function createScene(
 
     stepTheme(dt);
 
+    const on = power(now);
+    screenLevel += (screenTarget - screenLevel) * ease(4);
+    const flicker = screenMode === 'video' ? 0.9 + 0.1 * Math.sin(time * 13.1) * Math.sin(time * 7.3) : 1;
+    const glow = MathUtils.smoothstep(on, 0.2, 1);
+    live.u.time.value = time;
+    shared.uTvPower.value = glow * (0.55 + 0.45 * screenLevel) * flicker;
+    tv.screenMaterial.uniforms.uTime.value = time;
+    tv.screenMaterial.uniforms.uOn.value = on;
+    tv.screenMaterial.uniforms.uLevel.value = screenLevel;
+
