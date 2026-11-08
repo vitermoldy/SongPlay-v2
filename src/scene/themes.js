@@ -60,3 +60,13 @@ export const THEMES = {
     lamps: { hemiSky: '#d8946e', hemiGround: '#2a1a0e', hemi: 0.6, sun: '#ffa050', sunI: 1, fill: '#7a8a62', fillI: 0.25 },
     particles: { color: '#ffe2b8', color2: '#ffe2b8', opacity: 0.9, fall: 1, size: 1 },
     birds: 1,
+    exposure: 1,
+  },
+  dawn: {
+    label: 'Dawn',
+    sky: { top: '#4a82a4', mid: '#98c2c4', low: '#d2e6da', horizon: '#ffe4c2', sun: '#fff0c4' },
+    sunDir: [-0.8, 0.08, -1],
+    stars: 0,
+    haze: '#b2ccc0',
+    clouds: { lit: '#ffffff', shade: '#efd2bc', opacity: 0.9 },
+    treeline: { farTop: '#8aae9e', farLow: '#b4d0c2', nearTop: '#557c6a', nearLow: '#86aa98' },
