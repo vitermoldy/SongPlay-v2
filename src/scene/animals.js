@@ -329,3 +329,13 @@ function createWalker(name, heightAt, rand) {
         a.state = 'stop';
         a.timer = kind.stop === 'graze' ? 5 + rand() * 6 : 2 + rand() * 3;
       }
+      if (a.s >= a.length) {
+        a.state = 'away';
+        a.timer = 6 + rand() * 14;
+        model.root.visible = false;
+        return;
+      }
+      place(dt);
+      pose(dt, time, true);
+    },
+  };
