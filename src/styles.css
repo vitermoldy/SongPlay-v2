@@ -863,3 +863,10 @@ body.menu-open .site-header {
   background: transparent;
 }
 
+.compare-range::-moz-range-thumb {
+  width: 1px;
+  height: 1px;
+  border: 0;
+  background: transparent;
+}
+
