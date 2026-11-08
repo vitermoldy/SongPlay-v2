@@ -425,3 +425,8 @@
   -webkit-box-orient: vertical;
 }
 
+.deck-add {
+  display: grid;
+  gap: 8px;
+}
+
