@@ -70,3 +70,13 @@ over the scene.
   scene's motion: Pause scene stops them, and under reduced motion the scene starts still with a
   doe and a hare standing in view.
 - **Uppercase nav labels.** From the reference; they echo the PLAY / REW / FF keys on a VCR. Tracking
+  stays small (0.04em).
+- **"GET STARTED" replaced** with "Start with one tape": the button says what happens (owner
+  approved).
+- **No Pricing section**: no real prices yet, and made-up numbers would mislead (owner chose to
+  drop it).
+- **Name: SongLearn** (owner's request), set as a two-tone wordmark like the old one: "Song" in
+  white, "Learn" muted. The landing copy still describes the tape digitizing service.
+- **Player TV is 16:9** with a thin bezel (owner asked for the video to fill the TV): YouTube
+  videos are 16:9, so a wide tube shows them edge to edge with no black bars. The landing page
+  keeps the classic 4:3 set of the reference.
