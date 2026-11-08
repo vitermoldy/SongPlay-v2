@@ -381,3 +381,13 @@
   }
 }
 
+/* No WebGL: the player sits flat in the middle of the painted sky. */
+.tv-video.is-flat {
+  position: absolute;
+  top: calc(var(--header-h) + 24px);
+  left: 0;
+  right: 0;
+  z-index: 2;
+  width: min(100% - 2 * var(--gutter), 640px);
+  aspect-ratio: 16 / 9;
+  margin-inline: auto;
