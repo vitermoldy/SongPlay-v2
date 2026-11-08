@@ -40,3 +40,13 @@ export const THEMES = {
     light: { sun: '#9cc0b8', sky: '#1f4844', particles: '#8aa49c' },
     lamps: { hemiSky: '#2f6660', hemiGround: '#05080a', hemi: 0.4, sun: '#c0dcd2', sunI: 0.5, fill: '#2e5650', fillI: 0.2 },
     // Fireflies: yellow-green, a few warmer.
+    particles: { color: '#d6f57a', color2: '#ffe08a', opacity: 1, fall: 1, size: 1 },
+    birds: 0,
+    exposure: 1,
+  },
+  sunset: {
+    label: 'Sunset',
+    sky: { top: '#1d3a46', mid: '#b46a50', low: '#f0944e', horizon: '#ffd07a', sun: '#ff8a3a' },
+    sunDir: [0.55, 0.05, -1],
+    stars: 0,
+    haze: '#a07e62',
