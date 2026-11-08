@@ -526,3 +526,11 @@ export function createScene(
     out.width = 1200;
     out.height = 900;
     out.getContext('2d').drawImage(canvas, (w - cw) / 2, (h - ch) / 2, cw, ch, 0, 0, 1200, 900);
+
+    shared.uCursorPower.value = cursorPower;
+    post.renderPass.camera = camera;
+    updateFocus(camera);
+    post.composer.render(0);
+    resolve(out);
+  }
+
