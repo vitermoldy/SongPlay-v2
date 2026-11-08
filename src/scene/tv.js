@@ -82,3 +82,13 @@ export function createTV(shapeName = 'classic') {
   bezel.position.set(screenX, midY, 0.445);
   group.add(bezel);
 
+  const screenMaterial = new ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 },
+      uOn: { value: 0 },
+      uLevel: { value: 1 },
+      uAspect: { value: screenW / screenH },
+      uCorner: { value: shape.corner },
+    },
+    vertexShader: /* glsl */ `
+      varying vec2 vUv;
