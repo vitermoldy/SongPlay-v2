@@ -437,3 +437,9 @@ async function initScene() {
   new ResizeObserver(() => scene.relayout()).observe(ui.pickers);
   new ResizeObserver(() => {
     if (!ui.queuePanel.hidden) scene.relayout();
+  }).observe(ui.queuePanel);
+  // The deck slides in on load; measure again once it has landed.
+  ui.deck.addEventListener('animationend', () => scene.relayout(), { once: true });
+  scene.relayout();
+}
+
