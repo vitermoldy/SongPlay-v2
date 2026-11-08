@@ -31,3 +31,8 @@ export function initRequestForm(form) {
     if (!nameValue) problems.push([name, 'Add your name so we know who to reply to.']);
     else showError(name, '');
 
+    if (!emailValue) problems.push([email, 'Add your email so we can reply.']);
+    else if (!EMAIL_PATTERN.test(emailValue))
+      problems.push([email, 'That email looks incomplete. Check the @ and the part after it.']);
+    else showError(email, '');
+
