@@ -1407,3 +1407,13 @@ body.menu-open .site-header {
     letter-spacing: 0.02em;
   }
 
+  .scene-toggle {
+    right: calc(var(--frame) + 6px);
+    bottom: calc(var(--frame) + 4px);
+    width: 44px;
+    padding: 0;
+    justify-content: center;
+    background: transparent;
+    border-color: transparent;
+  }
+
