@@ -163,3 +163,13 @@ function treeline(seed, { width, base, hill, tall, spacing }) {
   shape.moveTo(-width / 2, -30);
   const step = spacing / 7;
   let first = 0;
+  for (let x = -width / 2; x <= width / 2; x += step) {
+    let top = 0;
+    while (first < trees.length && trees[first].x + trees[first].w * 1.2 < x) first++;
+    for (let i = first; i < trees.length && trees[i].x - trees[i].w * 1.2 < x; i++) {
+      const t = trees[i];
+      const out = Math.abs(x - t.x) / t.w;
+      if (out >= 1) continue;
+      const tiers = (out * 3) % 1;
+      top = Math.max(top, t.h * (1 - out) - t.h * 0.09 * tiers);
+    }
