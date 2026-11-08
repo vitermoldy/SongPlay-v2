@@ -173,3 +173,10 @@ function treeline(seed, { width, base, hill, tall, spacing }) {
       const tiers = (out * 3) % 1;
       top = Math.max(top, t.h * (1 - out) - t.h * 0.09 * tiers);
     }
+    shape.lineTo(x, floor(x) + top);
+  }
+  shape.lineTo(width / 2, -30);
+  shape.closePath();
+  return new ShapeGeometry(shape);
+}
+
