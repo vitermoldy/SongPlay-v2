@@ -137,3 +137,11 @@ export function createScene(
   }
   refreshEnvironment();
 
+  scene.add(createSky(live));
+  createClouds(live).forEach((cloud) => scene.add(cloud));
+  createTreeline(live).forEach((band) => scene.add(band));
+  // Fog for the scene's standard materials (the animals, the birds); the shader materials do
+  // the same with uFogNear and uFogFar.
+  scene.fog = new Fog(live.color('haze'), 22, 140);
+  scene.fog.color = live.color('haze');
+
