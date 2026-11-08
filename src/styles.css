@@ -601,3 +601,7 @@ body.menu-open .site-header {
   transform: translateY(-1px);
 }
 
+.scene-toggle:active {
+  transform: scale(0.97);
+}
+
