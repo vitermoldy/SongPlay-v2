@@ -35,3 +35,13 @@ export function createSky(live, { forReflections = false } = {}) {
       varying vec3 vDir;
       void main() {
         vDir = normalize(position);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: /* glsl */ `
+      uniform vec3 uTop;
+      uniform vec3 uMid;
+      uniform vec3 uLow;
+      uniform vec3 uHorizon;
+      uniform vec3 uSunColor;
+      uniform vec3 uSunDir;
