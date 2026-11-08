@@ -566,3 +566,11 @@
   border-radius: var(--radius-s);
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
+  font: 600 14px/1 var(--font-sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms var(--ease),
+    transform 160ms var(--ease);
+}
+
