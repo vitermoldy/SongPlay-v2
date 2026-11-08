@@ -145,3 +145,13 @@ export function createAmbience() {
     return b;
   }
 
+  // A few birds: trills, falling whistles and two-note calls, scattered over eight seconds.
+  function birds() {
+    const seconds = 8;
+    const b = buffer(seconds);
+    const d = b.getChannelData(0);
+    const note = (start, dur, f1, f2, amp) => {
+      const s = Math.round(start * sr);
+      const n = Math.round(dur * sr);
+      let phase = 0;
+      for (let k = 0; k < n && s + k < d.length; k++) {
