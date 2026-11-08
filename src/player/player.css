@@ -171,3 +171,13 @@
   line-height: 1.4;
 }
 
+.stage {
+  position: relative;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--night);
+  color: #fff;
+}
+
