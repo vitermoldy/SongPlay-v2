@@ -43,3 +43,13 @@ function blob(material, [sx, sy, sz], [x, y, z], tilt = 0) {
   return mesh;
 }
 
+// A leg hanging from its pivot at the hip or shoulder; swinging the pivot walks it.
+function leg(material, length, top, bottom, [x, y, z]) {
+  const geometry = new CylinderGeometry(top, bottom, length, 6);
+  geometry.translate(0, -length / 2, 0);
+  const pivot = new Group();
+  pivot.position.set(x, y, z);
+  pivot.add(new Mesh(geometry, material));
+  return pivot;
+}
+
