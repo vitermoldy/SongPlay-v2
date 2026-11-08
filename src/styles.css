@@ -1361,3 +1361,7 @@ body.menu-open .site-header {
     padding-block: 72px;
   }
 
+  .formats {
+    --mm: 1.85px;
+  }
+
