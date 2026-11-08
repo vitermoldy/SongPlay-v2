@@ -180,3 +180,13 @@ export function createAmbience() {
     return b;
   }
 
+  // Dry leaves: short bursts of noise, crackly inside, at random.
+  function rustle() {
+    const seconds = 6;
+    const b = buffer(seconds);
+    const d = b.getChannelData(0);
+    for (let n = 0; n < 34; n++) {
+      const start = Math.floor(rand() * (d.length - sr * 0.4));
+      const len = Math.round(sr * (0.05 + rand() * 0.3));
+      const amp = 0.2 + rand() * 0.5;
+      for (let k = 0; k < len; k++) {
