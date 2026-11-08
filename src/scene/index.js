@@ -254,3 +254,12 @@ export function createScene(
       t: still ? 1 : 0,
       from: new Map(COLOR_PATHS.map((path) => [path, live.color(path).clone()])),
       to: next.colors,
+      fromNum: { ...live.numbers },
+      toNum: next.numbers,
+      fromSun: live.sunDir.clone(),
+      toSun: new Vector3(...next.sunDir).normalize(),
+    };
+    if (still) stepTheme(0);
+    kick();
+  }
+
