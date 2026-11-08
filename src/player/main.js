@@ -271,3 +271,13 @@ function say(text) {
   });
 }
 
+function nowLine() {
+  const item = state.items[state.current];
+  const title = state.videoTitle || titleOf(item);
+  const fromList = item?.kind === 'playlist' && item.title && state.videoTitle ? ` · from ${item.title}` : '';
+  switch (state.status) {
+    case 'loading':
+      return `Tuning in: ${titleOf(item)}`;
+    case 'playing':
+      return `Now playing: ${title}${fromList}`;
+    case 'paused':
