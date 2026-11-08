@@ -574,3 +574,8 @@
     transform 160ms var(--ease);
 }
 
+.queue-toggle:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
