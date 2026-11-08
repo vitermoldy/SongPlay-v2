@@ -740,3 +740,13 @@ ui.input.addEventListener('input', () => {
   if (!ui.error.hidden) showError('');
 });
 
+ui.toggle.addEventListener('click', () => {
+  if (state.status === 'playing' || state.status === 'loading') {
+    yt?.pauseVideo();
+    if (state.status === 'loading') {
+      state.status = 'paused';
+      render();
+    }
+  } else if (state.status === 'paused' && yt) {
+    yt.playVideo();
+  } else if (state.items.length) {
