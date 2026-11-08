@@ -34,3 +34,13 @@ export function createParticles(count, live) {
       uShape: live.u.particleShape,
       uSize: live.u.particleSize,
       uProj: { value: 800 },
+      uColor: { value: live.color('particles.color') },
+      uColor2: { value: live.color('particles.color2') },
+      uOpacity: live.u.particleOpacity,
+    },
+    vertexShader: /* glsl */ `
+      attribute vec4 aData;
+      uniform float uTime;
+      uniform float uDrift;
+      uniform float uShape;
+      uniform float uSize;
