@@ -639,3 +639,13 @@ function removeAt(index) {
 
 // ---------- Controls ----------
 
+// YouTube asks that nothing covers an embedded player. On a wide screen the dropdown opens
+// beside the TV, under the scene button. Where there is no room beside it (phones), it opens
+// above the deck and the TV re-fits itself above the dropdown until it closes (frameArea).
+function placeQueue() {
+  const panel = ui.queuePanel;
+  panel.style.removeProperty('right');
+  panel.style.removeProperty('width');
+  panel.style.removeProperty('max-height');
+  const deck = panel.offsetParent?.getBoundingClientRect();
+  if (!deck) return;
