@@ -65,3 +65,7 @@ export function initRequestForm(form) {
     ].join('\n');
     const href = `mailto:${REQUEST_EMAIL}?subject=${encodeURIComponent(`Tapes from ${nameValue}`)}&body=${encodeURIComponent(body)}`;
 
+    window.location.href = href;
+    status.textContent = `Your email app should open with this request filled in. If nothing opened, write to ${REQUEST_EMAIL}.`;
+  });
+
