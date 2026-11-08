@@ -120,3 +120,13 @@ export function createAmbience() {
     return b;
   }
 
+  // Three crickets with their own pitch and rhythm; 2.4 s holds a whole number of each cycle.
+  function crickets() {
+    const seconds = 2.4;
+    const b = buffer(seconds);
+    const d = b.getChannelData(0);
+    const voices = [
+      { f: 4300, period: 0.6, offset: 0.05, amp: 0.2 },
+      { f: 4750, period: 0.8, offset: 0.33, amp: 0.14 },
+      { f: 5150, period: 1.2, offset: 0.71, amp: 0.1 },
+    ];
