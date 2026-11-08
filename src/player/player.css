@@ -430,3 +430,9 @@
   gap: 8px;
 }
 
+.deck-label {
+  color: var(--mist);
+  font-size: 14px;
+  font-weight: 600;
+}
+
