@@ -29,3 +29,11 @@ function part(geometry, foliage, centre) {
     const pos = g.attributes.position;
     const nor = g.attributes.normal;
     const v = new Vector3();
+    for (let i = 0; i < count; i++) {
+      v.set(pos.getX(i) - centre[0], pos.getY(i) - centre[1], pos.getZ(i) - centre[2]).normalize();
+      nor.setXYZ(i, v.x, v.y, v.z);
+    }
+  }
+  return g;
+}
+
