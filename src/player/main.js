@@ -125,3 +125,13 @@ async function setSound(on) {
   }
   try {
     ambience ??= createAmbience();
+    ambience.setScene(theme, season);
+    ambience.setVolume(volume / 100);
+    ambience.setDucked(state.status === 'playing');
+    ambience.setHidden(document.hidden);
+    await ambience.setEnabled(true);
+  } catch (error) {
+    console.warn('Ambient sound could not start.', error);
+    soundOn = false;
+    syncSound();
+    say('Ambient sound could not start in this browser.');
