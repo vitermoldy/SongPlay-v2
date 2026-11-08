@@ -23,3 +23,10 @@ Two pages:
 
 ## Run it
 
+```bash
+npm install
+npm run dev       # local dev server
+npm run build     # static site in dist/
+npm run preview   # serve dist/ locally
+```
+
