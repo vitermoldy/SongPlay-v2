@@ -156,3 +156,5 @@ function grove(geometry, spots, uniforms, dark, lit) {
   geometry.setAttribute('aSeed', new InstancedBufferAttribute(seeds, 1));
   mesh.frustumCulled = false;
   return mesh;
+}
+
