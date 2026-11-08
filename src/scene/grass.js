@@ -147,3 +147,8 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
         float lit = exp(-d * d / 1.1) * uTvPower;
         c += uTvColor * lit * (0.15 + vH) * 1.2;
 
+        // The visitor's cursor is a lamp held over the grass: the tips catch most of it.
+        float cd = distance(vWorld, uCursorPos);
+        float cursor = exp(-cd * cd / 1.3) * uCursorPower;
+        c += uCursorColor * cursor * (0.35 + vH * vH * 4.2);
+
