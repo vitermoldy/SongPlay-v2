@@ -145,3 +145,9 @@
   transform: translateX(24px);
 }
 
+.sound-label {
+  color: var(--mist);
+  font-size: 14px;
+  font-weight: 700;
+}
+
