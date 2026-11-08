@@ -436,3 +436,8 @@
   font-weight: 600;
 }
 
+.deck-row {
+  display: flex;
+  gap: 10px;
+}
+
