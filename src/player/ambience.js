@@ -294,3 +294,8 @@ export function createAmbience() {
 
   // ---------- State ----------
 
+  let enabled = false;
+  let ducked = false;
+  let hidden = false;
+  let volume = 0.7;
+
