@@ -657,3 +657,7 @@
   border-radius: var(--radius-m);
 }
 
+.queue-item.is-current {
+  background: rgba(255, 197, 107, 0.12);
+}
+
