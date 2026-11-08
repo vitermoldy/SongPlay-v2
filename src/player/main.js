@@ -407,3 +407,13 @@ async function initScene() {
       theme,
       season,
       frameArea,
+      lowPower,
+      reducedMotion: reduceMotion.matches,
+      onReady: () => ui.stage.classList.add('is-live'),
+      onLost: () => ui.stage.classList.remove('is-live'),
+      onSlow: () => {
+        playing = false;
+        sync();
+      },
+    });
+    scene.mountScreen(ui.video, ui.stage, { width: 640 });
