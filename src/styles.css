@@ -1201,3 +1201,8 @@ body.menu-open .site-header {
     transform 160ms var(--ease);
 }
 
+.chip:hover span {
+  border-color: rgba(244, 239, 230, 0.6);
+  transform: translateY(-1px);
+}
+
