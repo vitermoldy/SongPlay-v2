@@ -51,3 +51,13 @@ const FocusBlurShader = {
   `,
 };
 
+const FinishShader = {
+  uniforms: {
+    tDiffuse: { value: null },
+    uTime: { value: 0 },
+    uGrain: { value: 0.035 },
+  },
+  vertexShader: passVertex,
+  fragmentShader: /* glsl */ `
+    uniform sampler2D tDiffuse;
+    uniform float uTime;
