@@ -318,3 +318,11 @@
   outline-offset: 2px;
 }
 
+.theme-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(160deg, var(--a), var(--b));
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
