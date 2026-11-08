@@ -523,3 +523,13 @@ function onPlayerState(event) {
   render();
 }
 
+function onPlayerError(event) {
+  const item = state.items[state.current];
+  const reason = describeError(event.data);
+  if (item?.kind === 'playlist') {
+    const list = yt.getPlaylist?.() || [];
+    const at = yt.getPlaylistIndex?.() ?? -1;
+    say(`Skipped one video in ${titleOf(item)}: ${reason}.`);
+    if (at >= 0 && at < list.length - 1) {
+      yt.nextVideo();
+      return;
