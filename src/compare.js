@@ -248,3 +248,13 @@ export function initCompare(root) {
   range.addEventListener('input', () => set(Number(range.value)));
   set(50);
 
+  let version = 0;
+  return {
+    async setSource(source) {
+      const mine = ++version;
+      const [w, h] = outputSize(root);
+      const [b, a] = await Promise.all([toUrl(vhsify(source, w, h)), toUrl(cleanCopy(source, w, h))]);
+      if (mine !== version) {
+        URL.revokeObjectURL(b);
+        URL.revokeObjectURL(a);
+        return;
