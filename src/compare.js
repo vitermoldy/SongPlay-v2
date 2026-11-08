@@ -27,3 +27,11 @@ export function paintStandIn() {
   const g = c.getContext('2d');
   const rand = rng(7);
 
+  const sky = g.createLinearGradient(0, 0, 0, H);
+  sky.addColorStop(0, '#16384a');
+  sky.addColorStop(0.4, '#2c6070');
+  sky.addColorStop(0.6, '#78a8a0');
+  sky.addColorStop(0.74, '#f2c08e');
+  g.fillStyle = sky;
+  g.fillRect(0, 0, W, H);
+
