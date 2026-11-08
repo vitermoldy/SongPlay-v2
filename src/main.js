@@ -50,3 +50,13 @@ function initMenu() {
     }
   }
 
+  toggle.addEventListener('click', () => setOpen(!open));
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setOpen(false, false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && open) setOpen(false);
+  });
+  window.matchMedia('(min-width: 961px)').addEventListener('change', (event) => {
+    if (event.matches) setOpen(false, false);
+  });
