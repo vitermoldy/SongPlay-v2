@@ -100,3 +100,13 @@ const fragmentShader = /* glsl */ `
   uniform vec3 uBack;
   uniform vec3 uCursorPos;
   uniform vec3 uCursorColor;
+  uniform float uCursorPower;
+  uniform vec3 uFogColor;
+  uniform float uFogNear;
+  uniform float uFogFar;
+  varying vec3 vWorld;
+  varying vec3 vNormal;
+  varying float vH;
+  varying float vPart;
+  varying float vSeed;
+  ${NOISE_GLSL}
