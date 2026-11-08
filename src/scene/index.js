@@ -153,3 +153,13 @@ export function createScene(
   const screenWorld = tv.screenCenter.clone().applyMatrix4(tv.group.matrixWorld);
   const glowWorld = new Vector3(tv.shape.screenX, 0.3, 0.95).applyMatrix4(tv.group.matrixWorld);
 
+  const shared = {
+    uTime: live.u.time,
+    uWindDir: { value: new Vector2(0.92, 0.38).normalize() },
+    uWind: { value: 0.55 },
+    uSunDir: { value: live.sunDir },
+    uSunColor: { value: live.color('light.sun') },
+    uSkyColor: { value: live.color('light.sky') },
+    uGround: { value: live.color('ground.dark') },
+    uGroundLit: { value: live.color('ground.lit') },
+    uBase: { value: live.color('grass.base') },
