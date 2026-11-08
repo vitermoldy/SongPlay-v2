@@ -74,3 +74,13 @@ export function createParticles(count, live) {
       uniform float uOpacity;
       uniform float uShape;
       varying float vSeed;
+      varying float vStar;
+      varying float vAlpha;
+      varying float vBlur;
+      varying float vSpin;
+      void main() {
+        vec2 c = gl_PointCoord - 0.5;
+        float soft = mix(0.16, 0.34, vBlur);
+        float alpha;
+        if (uShape < 0.5) {
+          float a = atan(c.y, c.x);
