@@ -437,3 +437,6 @@ export function createScene(
         onSlow?.();
       }
     }
+
+    stepTheme(dt);
+
