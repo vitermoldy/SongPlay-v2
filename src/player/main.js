@@ -489,3 +489,13 @@ function playingMatches(item) {
   return !list || list === item.list;
 }
 
+function onPlayerState(event) {
+  const S = window.YT.PlayerState;
+  const item = state.items[state.current];
+  if (event.data === S.PLAYING || event.data === S.PAUSED) {
+    // Only count what the queue asked for: a list YouTube refused leaves the last one loaded,
+    // and events from stopping it arrive late. Those must not settle the new item's wait.
+    if (!playingMatches(item)) {
+      if (event.data === S.PLAYING) yt.stopVideo();
+      return;
+    }
