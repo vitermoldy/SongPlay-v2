@@ -648,3 +648,12 @@
   gap: 4px;
 }
 
+.queue-item {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: var(--radius-m);
+}
+
