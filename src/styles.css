@@ -699,3 +699,7 @@ body.menu-open .site-header {
   align-items: start;
 }
 
+.services-copy {
+  grid-column: 1 / span 5;
+}
+
