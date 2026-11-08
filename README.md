@@ -44,3 +44,13 @@ src/compare.js        before/after frame (the VHS look is made in a 2D canvas)
 src/form.js           request form: validation, then a pre-filled email
 src/player/           the player page
   main.js             queue (kept in localStorage), YouTube player, dropdown, controls
+  youtube.js          link parsing, titles from oEmbed, the IFrame API loader
+  ambience.js         the ambient sound, made with the Web Audio API (no audio files)
+  player.css          stage, deck and dropdown
+src/scene/            the 3D scene, used by both pages ("hero" and "player" variants)
+  index.js            renderer, camera, loop, pause, cursor light, video on the screen (CSS3D)
+  terrain.js          hill shape and the clearing's edge, shared by ground, grass and trees
+  forest.js           firs, broadleaf trees and bushes round the clearing (instanced)
+  animals.js          the doe, buck, fox, hare and birds, their routes and stops
+  grass.js            instanced grass blades with wind
+  tv.js               television (classic 4:3 and wide 16:9 sets), screen shader with power-on
