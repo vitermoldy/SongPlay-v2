@@ -3,3 +3,9 @@
 // rustling leaves. Each time of day and season sets how loud each layer is; changes fade over.
 // The AudioContext is only made from a click (browsers allow sound after a user gesture).
 
+const LAYERS = ['wind', 'rain', 'crickets', 'birds', 'leaves'];
+// The volume slider runs 0 to 1; a curve makes its middle sound like the middle.
+const MAX_GAIN = 0.8;
+const loudness = (volume) => MAX_GAIN * Math.max(0, Math.min(1, volume)) ** 1.6;
+const DUCKED = 0.4;
+
