@@ -495,3 +495,8 @@
   gap: 12px;
 }
 
+.transport {
+  display: flex;
+  gap: 8px;
+}
+
