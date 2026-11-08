@@ -503,3 +503,10 @@ export function createScene(
     const aspect = w / h;
     const shot = new PerspectiveCamera(30, aspect, 0.1, 1200);
     if (aspect < 4 / 3) {
+      const half = Math.tan(MathUtils.degToRad(15)) * (4 / 3);
+      shot.fov = MathUtils.radToDeg(2 * Math.atan(half / aspect));
+    }
+    shot.updateProjectionMatrix();
+    shot.position.set(-1.7, 0.25, 4.5);
+    shot.lookAt(-0.15, 0.62, 0);
+
