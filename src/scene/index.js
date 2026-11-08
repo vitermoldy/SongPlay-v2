@@ -363,3 +363,13 @@ export function createScene(
     camera.aspect = aspect;
     camera.fov = aspect >= 1 ? 35 : 35 + (1 - aspect) * 10;
     camera.updateProjectionMatrix();
+    if (setup.framesScreen) {
+      // Fit the whole set (its front, the side panel the angle shows, a little air) into the
+      // free part of the stage between the pickers and the deck, then centre it there.
+      // `avoid` lists page controls floating over the stage; only those the set would actually
+      // run into push the free area's top down.
+      const area = { top: 0, bottom: height, left: 0, right: width, avoid: [], ...frameArea?.() };
+      const setW = tv.shape.bodyW * Math.cos(setup.tvYaw) + 0.92 * Math.abs(Math.sin(setup.tvYaw)) + 0.06;
+      const setH = tv.shape.bodyH + 0.08;
+      const tan = Math.tan(MathUtils.degToRad(camera.fov / 2));
+      const shotPerUnit = height / (2 * PLAYER_DISTANCE * tan);
