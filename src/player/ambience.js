@@ -209,3 +209,11 @@ export function createAmbience() {
   master.gain.value = 0;
   master.connect(compressor);
 
+  const layers = {};
+  for (const name of LAYERS) {
+    const g = ctx.createGain();
+    g.gain.value = 0;
+    g.connect(master);
+    layers[name] = g;
+  }
+
