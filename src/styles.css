@@ -181,3 +181,7 @@ button:disabled {
   background: #fffaf2;
 }
 
+.cta:active {
+  transform: translateY(0) scale(0.98);
+}
+
