@@ -41,3 +41,13 @@ export function paintStandIn() {
   g.fillStyle = sun;
   g.fillRect(0, 0, W, H);
 
+  // The edge of the wood: a row of fir tips behind the hill.
+  g.fillStyle = '#26473c';
+  g.beginPath();
+  g.moveTo(0, H);
+  g.lineTo(0, H * 0.72);
+  for (let x = 0; x < W; x += W / 36) {
+    g.lineTo(x + W / 72, H * (0.56 + rand() * 0.1));
+    g.lineTo(x + W / 36, H * (0.7 - rand() * 0.03));
+  }
+  g.lineTo(W, H);
