@@ -50,3 +50,13 @@ over the scene.
 
 ## Decisions taken against a rule, and why
 
+- **WebGL on a service page.** 3D scenes usually belong to tech pages; the owner's reference is
+  a 3D scene, and the owner asked for this look.
+- **Forest, not mountains** (owner's request: "vibesnya itu hutan"). The set stands on its knoll in
+  a clearing of firs and broadleaf trees, with low bushes where the meadow meets the wood and three
+  hazy bands of forest on the horizon where the mountains were. The clearing runs well back behind
+  the set, so the far side of the wood stays a band under the sky and the time of day still shows;
+  the trees at the sides, nearer the camera, frame the shot.
+- **Forest palette** (owner's request). Every time of day is repainted in forest colours: teal and
+  sage skies, green mist, pine and moss, bark, yellow-green fireflies at night. The page's navy
+  became pine-night green and the periwinkle buttons became moss. Violet is gone from the page and
