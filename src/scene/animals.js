@@ -437,3 +437,9 @@ export function createAnimals({ heightAt, live, lowPower = false }) {
   return {
     group,
     update(dt, time) {
+      if (dt <= 0) return;
+      walkers.forEach((w) => w.update(dt, time));
+      flocks.update(dt, time);
+    },
+  };
+}
