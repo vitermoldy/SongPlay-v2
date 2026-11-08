@@ -248,3 +248,13 @@ export function compose(timeName, seasonName) {
   const colors = new Map(COLOR_PATHS.map((path) => [path, new Color(read(time, path))]));
   const numbers = Object.fromEntries(NUMBER_PATHS.map((path) => [path, read(time, path)]));
 
+  for (const path of SEASON_PATHS) {
+    const paint = new Color(read(season, path));
+    const lit = new Color(read(time, path));
+    const dusk = new Color(read(THEMES.dusk, path));
+    colors.set(
+      path,
+      new Color(paint.r * relight(lit.r, dusk.r), paint.g * relight(lit.g, dusk.g), paint.b * relight(lit.b, dusk.b)),
+    );
+  }
+
