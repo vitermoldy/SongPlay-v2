@@ -13,3 +13,13 @@ const passVertex = /* glsl */ `
   }
 `;
 
+// A separable blur whose radius grows away from the television, standing in for a shallow
+// depth of field: the set is sharp, the near grass and the far sky go soft.
+const FocusBlurShader = {
+  uniforms: {
+    tDiffuse: { value: null },
+    uResolution: { value: new Vector2(1, 1) },
+    uDir: { value: new Vector2(1, 0) },
+    uFocus: { value: new Vector2(0.5, 0.42) },
+    uAspect: { value: 1.6 },
+    uMaxRadius: { value: 9 },
