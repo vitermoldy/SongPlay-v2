@@ -155,3 +155,13 @@ export function createAmbience() {
       const n = Math.round(dur * sr);
       let phase = 0;
       for (let k = 0; k < n && s + k < d.length; k++) {
+        const t = k / n;
+        const f = f1 + (f2 - f1) * t + Math.sin(k / sr * 2 * Math.PI * 28) * 60;
+        phase += (2 * Math.PI * f) / sr;
+        const env = Math.min(1, t * 12) * Math.min(1, (1 - t) * 6);
+        d[s + k] += amp * env * Math.sin(phase);
+      }
+    };
+    const starts = [0.3, 1.5, 2.4, 3.6, 4.7, 5.5, 6.6];
+    for (const t0 of starts) {
+      const kind = rand();
