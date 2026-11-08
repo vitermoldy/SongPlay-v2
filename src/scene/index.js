@@ -510,3 +510,9 @@ export function createScene(
     shot.position.set(-1.7, 0.25, 4.5);
     shot.lookAt(-0.15, 0.62, 0);
 
+    const cursorPower = shared.uCursorPower.value;
+    shared.uCursorPower.value = 0;
+    post.renderPass.camera = shot;
+    updateFocus(shot);
+    post.composer.render(0);
+
