@@ -190,3 +190,13 @@ export function createTreeline(live) {
     { z: -160, seed: 23, base: 0.5, hill: 8, tall: 9.5, spacing: 4, mix: 1 },
   ];
   return layers.map(({ z, seed, mix, ...band }) => {
+    const material = new ShaderMaterial({
+      side: DoubleSide,
+      depthWrite: true,
+      uniforms: {
+        uFarTop: { value: live.color('treeline.farTop') },
+        uFarLow: { value: live.color('treeline.farLow') },
+        uNearTop: { value: live.color('treeline.nearTop') },
+        uNearLow: { value: live.color('treeline.nearLow') },
+        uFog: { value: live.color('haze') },
+        uMix: { value: mix },
