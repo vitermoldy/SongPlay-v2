@@ -82,3 +82,11 @@ const vertexShader = /* glsl */ `
     float sway = sin(uTime * 0.6 + aSeed * 6.2831 + w.x * 0.04) * 0.7 + sin(uTime * 1.3 + aSeed * 11.0) * 0.3;
     w.xz += uWindDir * sway * uWind * h * h * tall * 0.025;
     vWorld = w.xyz;
+    vNormal = normalize(mat3(m) * normal);
+    vH = h;
+    vPart = aPart;
+    vSeed = aSeed;
+    gl_Position = projectionMatrix * viewMatrix * w;
+  }
+`;
+
