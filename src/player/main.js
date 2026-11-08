@@ -617,3 +617,13 @@ function stopAll(status, message) {
   render();
 }
 
+function removeAt(index) {
+  const item = state.items[index];
+  if (!item) return;
+  const wasCurrent = index === state.current;
+  const wasActive = ACTIVE.has(state.status);
+  state.items.splice(index, 1);
+  saveQueue();
+  say(`Removed ${titleOf(item)}.`);
+  if (index < state.current) {
+    state.current -= 1;
