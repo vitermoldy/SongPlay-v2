@@ -136,3 +136,13 @@ const fragmentShader = /* glsl */ `
   }
 `;
 
+function grove(geometry, spots, uniforms, dark, lit) {
+  const material = new ShaderMaterial({
+    uniforms: { ...uniforms, uDark: { value: dark }, uLit: { value: lit }, uBark: { value: col('#2e2219') } },
+    vertexShader,
+    fragmentShader,
+  });
+  const mesh = new InstancedMesh(geometry, material, spots.length);
+  const matrix = new Matrix4();
+  const turn = new Quaternion();
+  const up = new Vector3(0, 1, 0);
