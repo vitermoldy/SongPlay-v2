@@ -110,3 +110,13 @@ export function createParticles(count, live) {
     `,
   });
 
+  const points = new Points(geometry, material);
+  points.frustumCulled = false;
+  return {
+    points,
+    material,
+    // Light (motes, snow, rain catching the light) adds up; petals and leaves are solid things
+    // in front of the sky.
+    setShape(shape) {
+      live.u.particleShape.value = shape;
+      material.blending = shape === 2 ? NormalBlending : AdditiveBlending;
