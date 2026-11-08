@@ -679,3 +679,10 @@
   -webkit-box-orient: vertical;
 }
 
+.queue-sub {
+  margin-top: 2px;
+  color: var(--mist);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
