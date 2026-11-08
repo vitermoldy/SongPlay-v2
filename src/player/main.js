@@ -726,3 +726,5 @@ ui.form.addEventListener('submit', (event) => {
       if (!state.items.includes(item)) return;
       saveQueue();
       render();
+    });
+
