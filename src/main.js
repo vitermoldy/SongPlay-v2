@@ -17,3 +17,12 @@ function initHeader() {
   window.addEventListener(
     'scroll',
     () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(update);
+    },
+    { passive: true },
+  );
+  update();
+}
+
