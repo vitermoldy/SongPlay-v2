@@ -373,3 +373,13 @@ export function createScene(
       const setH = tv.shape.bodyH + 0.08;
       const tan = Math.tan(MathUtils.degToRad(camera.fov / 2));
       const shotPerUnit = height / (2 * PLAYER_DISTANCE * tan);
+      let perUnit = 1;
+      let cx = width / 2;
+      let cy = height / 2;
+      for (let pass = 0; pass < 3; pass++) {
+        const freeW = Math.max(120, area.right - area.left);
+        const freeH = Math.max(120, area.bottom - area.top);
+        perUnit = Math.min(freeW / setW, freeH / setH, shotPerUnit);
+        const half = { w: (setW * perUnit) / 2, h: (setH * perUnit) / 2 };
+        // The middle of the window, as the original framing had it (horizon behind the set,
+        // sky above); moved only as far as it takes to stay clear of the controls.
