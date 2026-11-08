@@ -39,3 +39,13 @@ export const TV_SHAPES = {
   },
 };
 
+function screenGeometry({ screenW, screenH, bulge }) {
+  const g = new PlaneGeometry(screenW, screenH, 28, 22);
+  const pos = g.attributes.position;
+  for (let i = 0; i < pos.count; i++) {
+    const u = (pos.getX(i) / screenW) * 2;
+    const v = (pos.getY(i) / screenH) * 2;
+    pos.setZ(i, bulge * (1 - u * u * 0.85) * (1 - v * v * 0.85));
+  }
+  g.computeVertexNormals();
+  return g;
