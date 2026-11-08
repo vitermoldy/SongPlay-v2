@@ -81,3 +81,12 @@ DESIGN.md             design direction and the reason behind each choice
 - YouTube is contacted only when someone adds a link: titles come from YouTube's oEmbed endpoint,
   the player loads in privacy-enhanced mode (`youtube-nocookie.com`).
 - Some videos and lists cannot play on other sites: many label music videos (their owners turn
+  embedding off) and YouTube's own mixes and charts. The page says so in the queue row and moves to
+  the next link.
+- Browsers may hold back sound until the visitor presses play; the page then says "Press play".
+- Ambient sound is off until the visitor turns it on (switch, or the volume slider). Every sound is
+  made in the browser: filtered noise for wind and rain, short tones for crickets and birds. Each
+  sky and season sets the mix and changes fade over a second or two; it dips while a song plays and
+  goes quiet in a hidden tab. On and volume are kept in the browser; sound left on starts again
+  with the visitor's first click on a later visit, since browsers allow sound only after a gesture.
+
