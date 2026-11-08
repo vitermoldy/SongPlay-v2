@@ -638,3 +638,8 @@
   box-shadow: 0 24px 48px -16px rgba(2, 8, 5, 0.7);
 }
 
+.queue-empty {
+  padding: 14px 12px;
+  color: var(--mist);
+}
+
