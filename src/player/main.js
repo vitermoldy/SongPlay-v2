@@ -309,3 +309,13 @@ function queueRow(item, index) {
   const src = safeThumb(item.thumb);
   if (src) thumb.src = src;
 
+  const meta = document.createElement('div');
+  const title = document.createElement('p');
+  title.className = 'queue-title';
+  title.textContent = titleOf(item);
+  const sub = document.createElement('p');
+  sub.className = 'queue-sub';
+  if (current && state.status === 'playing') sub.textContent = 'Now playing';
+  else if (current && state.status === 'paused') sub.textContent = 'Paused';
+  else if (current && state.status === 'loading') sub.textContent = 'Tuning in';
+  else if (item.problem) sub.textContent = `Can’t play: ${item.problem}`;
