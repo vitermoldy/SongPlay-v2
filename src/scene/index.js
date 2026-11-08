@@ -235,3 +235,12 @@ export function createScene(
   let readyFired = false;
   let pendingCapture = null;
   let sampled = 0;
+  let slowFrames = 0;
+  let slow = false;
+  let screenLevel = SCREEN_LEVEL.idle;
+  let screenTarget = SCREEN_LEVEL.idle;
+  let screenMode = 'idle';
+  let css = null;
+  let themeShift = null;
+  const started = performance.now();
+
