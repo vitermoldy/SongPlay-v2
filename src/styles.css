@@ -522,3 +522,8 @@ body.menu-open .site-header {
   text-shadow: 0 2px 30px rgba(8, 34, 22, 0.45);
 }
 
+.hero-title .script {
+  font-size: clamp(58px, 7.4vw, 108px);
+  line-height: 1;
+}
+
