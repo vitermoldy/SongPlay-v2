@@ -34,3 +34,13 @@ npm run preview   # serve dist/ locally
 
 ## Structure
 
+```
+index.html            landing page: hero, services, formats, contacts, footer
+player.html           the "Put a song on" page
+src/main.js           header, mobile menu, in-page links, scene start-up
+src/styles.css        tokens, layout, responsive rules (shared by both pages)
+src/cursor-light.js   the 2D lamp that follows the cursor outside the 3D scene
+src/compare.js        before/after frame (the VHS look is made in a 2D canvas)
+src/form.js           request form: validation, then a pre-filled email
+src/player/           the player page
+  main.js             queue (kept in localStorage), YouTube player, dropdown, controls
