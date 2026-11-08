@@ -37,3 +37,13 @@ function part(geometry, foliage, centre) {
   return g;
 }
 
+function firGeometry() {
+  const parts = [part(new CylinderGeometry(0.025, 0.04, 0.22, 6).translate(0, 0.11, 0), 0)];
+  for (let i = 0; i < 4; i++) {
+    const r = 0.3 - i * 0.06;
+    const h = 0.36 - i * 0.04;
+    parts.push(part(new ConeGeometry(r, h, 8, 1).translate(0, 0.12 + i * 0.2 + h / 2, 0), 1));
+  }
+  return mergeGeometries(parts);
+}
+
