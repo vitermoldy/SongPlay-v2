@@ -49,3 +49,5 @@ function screenGeometry({ screenW, screenH, bulge }) {
   }
   g.computeVertexNormals();
   return g;
+}
+
