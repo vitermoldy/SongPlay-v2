@@ -220,3 +220,13 @@ export function createTreeline(live) {
         uniform float uBase;
         uniform float uTopY;
         varying vec2 vXY;
+        ${NOISE_GLSL}
+        void main() {
+          vec3 top = mix(uNearTop, uFarTop, uMix);
+          vec3 low = mix(uNearLow, uFarLow, uMix);
+          float t = smoothstep(uBase - 3.0, uTopY, vXY.y);
+          vec3 c = mix(low, top, t);
+          // A faint grain of crowns, so the band is not one flat card.
+          c *= 0.9 + 0.2 * vnoise(vXY * vec2(0.9, 0.6));
+          float mist = 1.0 - smoothstep(uBase - 2.0, uBase + (uTopY - uBase) * 0.55, vXY.y);
+          c = mix(c, uFog, mist * 0.8);
