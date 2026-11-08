@@ -181,3 +181,6 @@ export const NUMBER_PATHS = [
   'particles.fall',
   'particles.size',
   'birds',
+  'exposure',
+];
+
