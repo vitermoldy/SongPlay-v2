@@ -319,3 +319,13 @@ function createWalker(name, heightAt, rand) {
         return;
       }
       a.neckAim = 0;
+      a.headAim = 0;
+      a.bodyAim = 0;
+      a.s += kind.speed * dt;
+      a.step += ((kind.speed * dt) / kind.stride) * Math.PI * 2;
+      a.hop += kind.speed * dt * 7;
+      if (a.stops.length && a.s >= a.stops[0]) {
+        a.stops.shift();
+        a.state = 'stop';
+        a.timer = kind.stop === 'graze' ? 5 + rand() * 6 : 2 + rand() * 3;
+      }
