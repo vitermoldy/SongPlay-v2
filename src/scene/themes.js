@@ -209,3 +209,9 @@ const OVERCAST_PATHS = [
   'clouds.shade',
   'treeline.farTop',
   'treeline.farLow',
+  'treeline.nearTop',
+  'treeline.nearLow',
+  'light.sun',
+  'light.sky',
+];
+
