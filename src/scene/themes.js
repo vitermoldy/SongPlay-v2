@@ -92,3 +92,13 @@ export const SEASONS = {
     grass: { base: '#0f1a0a', mid: '#2f5214', tip: '#7aa83a', tipGold: '#ec9cbc' },
     ground: { dark: '#101c0a', lit: '#28401a' },
     pines: { dark: '#0d1c12', lit: '#46682c' },
+    leaves: { dark: '#12240e', lit: '#7a9e3a' },
+    particles: { shape: 2, color: '#ffb6cf', color2: '#ffe3ee', opacity: 0.95, fall: 0.6, size: 1.35 },
+  },
+  summer: {
+    label: 'Summer',
+    grass: THEMES.dusk.grass,
+    ground: THEMES.dusk.ground,
+    pines: THEMES.dusk.pines,
+    leaves: THEMES.dusk.leaves,
+    particles: null,
