@@ -79,3 +79,13 @@ a {
   color: inherit;
 }
 
+a,
+button,
+summary,
+select,
+label[for],
+.chip,
+input[type='checkbox'],
+input[type='range'] {
+  cursor: pointer;
+}
