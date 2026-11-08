@@ -894,3 +894,7 @@ body.menu-open .site-header {
   color: var(--ink);
 }
 
+.formats-head {
+  row-gap: 20px;
+}
+
