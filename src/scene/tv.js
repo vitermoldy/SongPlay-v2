@@ -92,3 +92,13 @@ export function createTV(shapeName = 'classic') {
     },
     vertexShader: /* glsl */ `
       varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: /* glsl */ `
+      uniform float uTime;
+      uniform float uOn;
+      uniform float uLevel;
+      uniform float uAspect;
