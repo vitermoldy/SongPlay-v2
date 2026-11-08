@@ -260,3 +260,13 @@ export function compose(timeName, seasonName) {
 
   if (season.overcast) overcastSky(colors, numbers, season.overcast);
 
+  let shape = 0;
+  if (season.particles) {
+    const tint = new Color(time.light.particles);
+    colors.set('particles.color', new Color(season.particles.color).multiply(tint));
+    colors.set('particles.color2', new Color(season.particles.color2).multiply(tint));
+    numbers['particles.opacity'] = season.particles.opacity;
+    numbers['particles.fall'] = season.particles.fall;
+    numbers['particles.size'] = season.particles.size;
+    shape = season.particles.shape;
+  }
