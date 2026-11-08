@@ -94,3 +94,13 @@ export function createScene(
     lowPower = false,
     reducedMotion = false,
     onReady,
+    onLost,
+    onSlow,
+  } = {},
+) {
+  const setup = VARIANTS[variant];
+  const renderer = new WebGLRenderer({
+    canvas,
+    antialias: false,
+    stencil: false,
+    powerPreference: 'high-performance',
