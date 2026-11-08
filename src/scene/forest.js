@@ -62,3 +62,13 @@ function broadleafGeometry() {
   return mergeGeometries(parts);
 }
 
+const vertexShader = /* glsl */ `
+  attribute float aPart;
+  attribute float aSeed;
+  uniform float uTime;
+  uniform vec2 uWindDir;
+  uniform float uWind;
+  varying vec3 vWorld;
+  varying vec3 vNormal;
+  varying float vH;
+  varying float vPart;
