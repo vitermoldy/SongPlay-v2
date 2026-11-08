@@ -89,3 +89,13 @@ export function createAmbience() {
     return b;
   }
 
+  // Brown noise for wind and thunder, with its drift taken out so the loop meets itself.
+  function brownNoise(seconds) {
+    const b = buffer(seconds);
+    const d = b.getChannelData(0);
+    let last = 0;
+    for (let i = 0; i < d.length; i++) {
+      last = (last + 0.02 * (rand() * 2 - 1)) / 1.02;
+      d[i] = last * 3.5;
+    }
+    const drift = d[d.length - 1] - d[0];
