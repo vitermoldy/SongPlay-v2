@@ -500,3 +500,13 @@
   gap: 8px;
 }
 
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-s);
+  background: rgba(120, 168, 116, 0.3);
+  color: #fff;
