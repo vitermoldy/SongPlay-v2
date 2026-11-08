@@ -72,3 +72,13 @@ const vertexShader = /* glsl */ `
   varying vec3 vNormal;
   varying float vH;
   varying float vPart;
+  varying float vSeed;
+  void main() {
+    mat4 m = modelMatrix * instanceMatrix;
+    vec4 w = m * vec4(position, 1.0);
+    float h = position.y;
+    float tall = length(m[1].xyz);
+    // The crowns lean a little with the same wind that moves the grass.
+    float sway = sin(uTime * 0.6 + aSeed * 6.2831 + w.x * 0.04) * 0.7 + sin(uTime * 1.3 + aSeed * 11.0) * 0.3;
+    w.xz += uWindDir * sway * uWind * h * h * tall * 0.025;
+    vWorld = w.xyz;
