@@ -1002,3 +1002,10 @@ body.menu-open .site-header {
   line-height: 1.2;
 }
 
+.format-year {
+  color: var(--ink-soft);
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
