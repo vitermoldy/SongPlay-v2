@@ -66,3 +66,13 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
   geometry.setAttribute('aParams', new InstancedBufferAttribute(params, 4));
   geometry.instanceCount = i;
 
+  const material = new ShaderMaterial({
+    uniforms,
+    side: DoubleSide,
+    vertexShader: /* glsl */ `
+      attribute vec3 aOffset;
+      attribute vec4 aParams;
+      uniform float uTime;
+      uniform vec2 uWindDir;
+      uniform float uWind;
+      varying float vH;
