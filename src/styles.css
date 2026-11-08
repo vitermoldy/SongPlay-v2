@@ -168,3 +168,11 @@ button:disabled {
   border-radius: 16px;
   background: var(--cream);
   color: var(--ink);
+  font: 600 19px/1.2 var(--font-sans);
+  text-decoration: none;
+  box-shadow: 0 10px 30px -12px rgba(3, 10, 6, 0.55);
+  transition:
+    transform 180ms var(--ease),
+    background-color 180ms var(--ease);
+}
+
