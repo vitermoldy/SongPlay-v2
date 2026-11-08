@@ -32,3 +32,6 @@ function coat(hex) {
     roughness: 0.92,
     metalness: 0,
     envMapIntensity: 0.3,
+  });
+}
+
