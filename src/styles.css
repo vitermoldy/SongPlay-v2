@@ -996,3 +996,9 @@ body.menu-open .site-header {
   font-weight: 700;
 }
 
+.format h3 {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
