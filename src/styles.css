@@ -534,3 +534,10 @@ body.menu-open .site-header {
   color: rgba(238, 244, 234, 0.88);
 }
 
+.hero-foot {
+  display: grid;
+  justify-items: center;
+  gap: 26px;
+  max-width: 44rem;
+}
+
