@@ -29,3 +29,7 @@ tapes, in a cinematic dusk 3D style. Dial: ENERGY 3 / RHYTHM 2 / MOTION 2.
 | `--cream` | `#f4efe6` | Cassette label paper; the one contrasting ground (Formats) and the button fill. |
 | `--glow` | `#ffc56b` | The TV screen; one accent, used at the main action only. |
 
+The scene's own colours (a teal and sage sky, mist, pine and moss greens, bark, a warm low sun) live
+only inside the 3D scene. The page takes its night green from it, and moss for the buttons that sit
+over the scene.
+
