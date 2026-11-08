@@ -225,3 +225,13 @@ export function createScene(
 
   const post = createPost(renderer, scene, camera);
 
+  // ---------- State ----------
+  const still = reducedMotion || software;
+  let playing = !still;
+  let visible = true;
+  let raf = 0;
+  let time = 0;
+  let last = 0;
+  let readyFired = false;
+  let pendingCapture = null;
+  let sampled = 0;
