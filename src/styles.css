@@ -1156,3 +1156,9 @@ body.menu-open .site-header {
   font-weight: 600;
 }
 
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
