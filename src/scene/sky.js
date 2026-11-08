@@ -45,3 +45,13 @@ export function createSky(live, { forReflections = false } = {}) {
       uniform vec3 uHorizon;
       uniform vec3 uSunColor;
       uniform vec3 uSunDir;
+      uniform float uStars;
+      uniform float uTime;
+      varying vec3 vDir;
+      float hash13(vec3 p) {
+        p = fract(p * 0.1031);
+        p += dot(p, p.zyx + 31.32);
+        return fract((p.x + p.y) * p.z);
+      }
+      void main() {
+        vec3 d = normalize(vDir);
