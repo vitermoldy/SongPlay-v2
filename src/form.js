@@ -53,3 +53,13 @@ export function initRequestForm(form) {
       return;
     }
 
+    const data = new FormData(form);
+    const nameValue = String(data.get('name')).trim();
+    const body = [
+      `Name: ${nameValue}`,
+      `Email: ${String(data.get('email')).trim()}`,
+      `Formats: ${data.getAll('format').join(', ')}`,
+      `How many: ${data.get('count')}`,
+      '',
+      String(data.get('notes') || '').trim(),
+    ].join('\n');
