@@ -299,3 +299,7 @@ body.menu-open .site-header {
   transform: translateY(-1px);
 }
 
+.header-cta {
+  background: rgba(255, 255, 255, 0.12);
+}
+
