@@ -239,3 +239,12 @@ export function initCompare(root) {
   });
   root.addEventListener('pointermove', (event) => {
     if (dragging) fromPointer(event);
+  });
+  for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) {
+    root.addEventListener(type, () => {
+      dragging = false;
+    });
+  }
+  range.addEventListener('input', () => set(Number(range.value)));
+  set(50);
+
