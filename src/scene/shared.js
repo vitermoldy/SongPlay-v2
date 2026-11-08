@@ -14,3 +14,9 @@ export function mulberry32(seed) {
 // Hex colours are written in sRGB; Color converts them to the linear working space.
 export const col = (hex) => new Color(hex);
 
+// Colours that stay the same in every theme (the sky's live in themes.js).
+export const PALETTE = {
+  tv: '#ffbf6e',
+  cursor: '#ffc46a',
+};
+
