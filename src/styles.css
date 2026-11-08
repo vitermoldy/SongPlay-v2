@@ -502,3 +502,13 @@ body.menu-open .site-header {
   border-right-width: 2px;
 }
 
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: calc(var(--header-h) + clamp(36px, 7vh, 72px)) var(--gutter) clamp(76px, 10vh, 104px);
+  text-align: center;
