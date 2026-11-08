@@ -124,3 +124,13 @@ export function createScene(
   camera.position.copy(base);
   camera.lookAt(look);
 
+  // Glossy surfaces reflect a plain version of the current sky, rebuilt when the theme settles.
+  const pmrem = new PMREMGenerator(renderer);
+  const envScene = new Scene();
+  envScene.add(createSky(live, { forReflections: true }));
+  let envTarget = null;
+  function refreshEnvironment() {
+    const next = pmrem.fromScene(envScene, 0.03, 0.1, 1000);
+    scene.environment = next.texture;
+    envTarget?.dispose();
+    envTarget = next;
