@@ -102,3 +102,13 @@ export function createTV(shapeName = 'classic') {
       uniform float uOn;
       uniform float uLevel;
       uniform float uAspect;
+      uniform float uCorner;
+      varying vec2 vUv;
+      float sdRoundRect(vec2 p, vec2 b, float r) {
+        vec2 q = abs(p) - b + r;
+        return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;
+      }
+      void main() {
+        vec2 p = (vUv - 0.5) * vec2(uAspect, 1.0);
+        float edge = sdRoundRect(p, vec2(uAspect * 0.5, 0.5), uCorner);
+        if (edge > 0.0) discard;
