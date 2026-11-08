@@ -336,3 +336,13 @@ export function createAmbience() {
       thunderLevel = L.thunder;
       scheduleThunder();
     },
+    // 0 to 1, from the volume slider; follows the slider closely.
+    setVolume(next) {
+      volume = next;
+      applyMaster(0.05);
+    },
+    // Quieter while a video plays, so the song comes first.
+    setDucked(on) {
+      if (on === ducked) return;
+      ducked = on;
+      applyMaster();
