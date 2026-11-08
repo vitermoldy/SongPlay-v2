@@ -194,3 +194,6 @@ const SEASON_PATHS = [
   'pines.dark',
   'pines.lit',
   'leaves.dark',
+  'leaves.lit',
+];
+
