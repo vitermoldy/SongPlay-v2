@@ -104,3 +104,13 @@ export function createClouds(live) {
         uSeed: { value: seed },
         uOpacity: { value: opacity },
         uFade: live.u.cloudOpacity,
+        uLit: { value: live.color('clouds.lit') },
+        uShade: { value: live.color('clouds.shade') },
+      },
+      vertexShader: /* glsl */ `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
