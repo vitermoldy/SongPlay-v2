@@ -349,3 +349,13 @@ function render() {
   ui.queueEmpty.hidden = count > 0;
   ui.clear.hidden = count === 0;
 
+  // Rebuilding the list would drop focus from a row button; keep it on the same row if so.
+  const focusedRow = ui.queueList.contains(document.activeElement)
+    ? [...ui.queueList.children].indexOf(document.activeElement.closest('li'))
+    : -1;
+  const focusedSlot = focusedRow >= 0 ? [...document.activeElement.closest('li').querySelectorAll('button')].indexOf(document.activeElement) : -1;
+  ui.queueList.replaceChildren(...state.items.map(queueRow));
+  if (focusedRow >= 0) {
+    const row = ui.queueList.children[Math.min(focusedRow, count - 1)];
+    (row?.querySelectorAll('button')[focusedSlot] ?? ui.queueToggle).focus();
+  }
