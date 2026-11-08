@@ -13,3 +13,5 @@ function showError(field, message) {
     error.hidden = true;
   }
   if (field.matches('input, select, textarea')) field.setAttribute('aria-invalid', message ? 'true' : 'false');
+}
+
