@@ -117,3 +117,11 @@ async function initScene(compare) {
       // Too slow to animate smoothly here: settle on the still frame, Play stays one click away.
       onSlow: () => {
         playing = false;
+        sync();
+      },
+    });
+  } catch (error) {
+    console.warn('The 3D scene could not start; keeping the still sky.', error);
+    return;
+  }
+
