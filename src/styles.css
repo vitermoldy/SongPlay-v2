@@ -908,3 +908,13 @@ body.menu-open .site-header {
   color: var(--ink-soft);
 }
 
+/* The same 12 columns: each format gets the width its drawing needs, and Hi8 starts on the
+   line the lede and every split's right column start on. */
+.formats-list {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 48px;
+  margin-top: clamp(56px, 10vh, 104px);
+}
+
