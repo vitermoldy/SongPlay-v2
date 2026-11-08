@@ -207,3 +207,13 @@ function createWalker(name, heightAt, rand) {
     hop: 0,
   };
 
+  function plan(opening) {
+    a.dir = opening?.dir ?? (rand() < 0.5 ? 1 : -1);
+    a.lane = opening?.z ?? MathUtils.lerp(kind.lane[0], kind.lane[1], rand());
+    a.wave = rand() * 6;
+    a.length = kind.reach * 2;
+    const startX = -a.dir * kind.reach;
+    a.s = opening ? (opening.x - startX) * a.dir : 0;
+    // Stops at the sides of the meadow, where the crest of the hill does not hide the ground:
+    // usually one soon after coming out of the trees, sometimes one more before going back in.
+    a.stops = [];
