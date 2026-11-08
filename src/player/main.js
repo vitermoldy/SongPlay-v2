@@ -736,3 +736,7 @@ ui.form.addEventListener('submit', (event) => {
   }
 });
 
+ui.input.addEventListener('input', () => {
+  if (!ui.error.hidden) showError('');
+});
+
