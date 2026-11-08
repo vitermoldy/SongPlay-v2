@@ -100,3 +100,12 @@ over the scene.
   turns the broadleaf trees red and orange while the firs stay green; winter lays snow on the boughs.
 - **Ambient sound** (owner's request): off by default, made in the browser (no files to license
   or download). The speaker in the header opens a small panel with the switch and the volume, so
+  one control holds both and the header stays one row on a phone. The sound dips while a song plays:
+  the song comes first.
+- **Skies on the player page** (owner's request): Dusk is the brand sky; Night, Sunset and Dawn
+  change the scene's colours, light and particles only. The page's own controls keep one dark,
+  translucent ground in every sky so their white labels stay readable on the bright Dawn sky.
+- **"Put a song on"** names the header button to the player page (the owner asked for a button
+  like "Mendengar lagu"; the site is in English). YouTube only, the owner's choice.
+- **Glass on two surfaces per page**: the header once scrolled, and the player's control deck,
+  which floats over the moving scene and has to stay readable. Nowhere else.
