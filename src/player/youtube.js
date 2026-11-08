@@ -10,3 +10,12 @@ export function parseYouTube(raw) {
   const text = raw.trim();
   if (VIDEO_ID.test(text)) return { kind: 'video', id: text };
 
+  let url;
+  try {
+    url = new URL(/^https?:\/\//i.test(text) ? text : `https://${text}`);
+  } catch {
+    return null;
+  }
+  const host = url.hostname.toLowerCase().replace(/^(www|m|music)\./, '');
+  if (!HOSTS.has(host)) return null;
+
