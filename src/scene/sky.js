@@ -153,3 +153,13 @@ function treeline(seed, { width, base, hill, tall, spacing }) {
     base +
     hill *
       (0.5 +
+        0.5 * (0.55 * Math.sin(x * 0.03 + phases[0]) + 0.3 * Math.sin(x * 0.071 + phases[1]) + 0.15 * Math.sin(x * 0.17 + phases[2])));
+  const trees = [];
+  for (let x = -width / 2 - spacing; x < width / 2 + spacing; x += spacing * (0.45 + rand() * 0.8)) {
+    const h = tall * (0.55 + rand() * 0.65);
+    trees.push({ x, h, w: h * (0.2 + rand() * 0.08) });
+  }
+  const shape = new Shape();
+  shape.moveTo(-width / 2, -30);
+  const step = spacing / 7;
+  let first = 0;
