@@ -77,3 +77,13 @@ ui.themes.addEventListener('change', (event) => {
   remember(THEME_KEY, name);
 });
 
+ui.seasons.addEventListener('change', (event) => {
+  const name = event.target.value;
+  if (!SEASON_NAMES.includes(name) || name === season) return;
+  season = name;
+  ui.stage.dataset.season = name;
+  scene?.setSeason(name);
+  ambience?.setScene(theme, season);
+  remember(SEASON_KEY, name);
+});
+
