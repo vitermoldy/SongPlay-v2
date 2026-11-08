@@ -72,3 +72,13 @@ function makeDeer(buck) {
   body.add(blob(hide, [0.46, 0.22, 0.19], [0, 0.93, 0]));
   body.add(blob(hide, [0.24, 0.23, 0.18], [-0.27, 0.95, 0]));
   body.add(blob(hide, [0.22, 0.25, 0.18], [0.28, 0.94, 0]));
+  body.add(blob(pale, [0.06, 0.09, 0.05], [-0.5, 1.03, 0], 0.5));
+  const neck = new Group();
+  neck.position.set(0.36, 0.98, 0);
+  body.add(neck);
+  neck.add(blob(hide, [0.09, 0.28, 0.08], [0.1, 0.22, 0], -0.45));
+  const head = new Group();
+  head.position.set(0.21, 0.48, 0);
+  neck.add(head);
+  head.add(blob(hide, [0.15, 0.085, 0.075], [0.07, 0, 0], -0.35));
+  head.add(blob(dark, [0.03, 0.03, 0.03], [0.21, -0.05, 0]));
