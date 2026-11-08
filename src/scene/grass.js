@@ -50,3 +50,13 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
     offsets[i * 3 + 1] = y - 0.03;
     offsets[i * 3 + 2] = z;
 
+    const nearTv = Math.hypot(x - tv.x, z - tv.z) < 1.6;
+    // On the player page the camera looks at the screen from close by: keep the blades just in
+    // front of the set short so none of them should cross the video.
+    const inFront = clearFront && Math.abs(lx) < 1.3 && lz > 0.4 && lz < 3.4;
+    const tall = far ? 1.6 : inFront ? 0.32 : nearTv ? 0.8 : 1;
+    params[i * 4] = rand() * Math.PI * 2;
+    params[i * 4 + 1] = (0.2 + rand() * 0.26) * tall;
+    params[i * 4 + 2] = (0.035 + rand() * 0.03) * (far ? 2.2 : 1);
+    params[i * 4 + 3] = rand();
+    i++;
