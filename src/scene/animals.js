@@ -263,3 +263,13 @@ function createWalker(name, heightAt, rand) {
     if (model.ears) model.ears.rotation.z = Math.sin(time * 1.7 + a.wave) > 0.93 ? -0.35 : 0;
   }
 
+  function stopPose(time) {
+    if (kind.stop === 'graze') {
+      // Head down in the grass, up now and then to look round.
+      const look = Math.sin(time * 0.45 + a.wave) > 0.35;
+      a.neckAim = look ? 0 : -1.8;
+      a.headAim = look ? 0 : 0.9;
+      a.bodyAim = look ? 0 : -0.08;
+      a.lookAim = look ? 0.5 * Math.sin(time * 0.3) : 0;
+    } else if (kind.stop === 'look') {
+      a.neckAim = 0.15;
