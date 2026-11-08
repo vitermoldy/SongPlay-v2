@@ -399,3 +399,13 @@ function createFlocks(live, rand, count) {
     });
   }
 
+  return {
+    group,
+    update(dt, time) {
+      wait -= dt;
+      if (wait <= 0) {
+        if (!birds.some((b) => b.on) && live.numbers.birds > 0.5) launch();
+        wait = 10 + rand() * 16;
+      }
+      for (const b of birds) {
+        if (!b.on) continue;
