@@ -115,3 +115,9 @@ export function vhsify(source, outW = W, outH = H) {
   const c = makeCanvas(w, h);
   const g = c.getContext('2d', { willReadFrequently: true });
   g.drawImage(small, 0, 0, w, h);
+
+  const image = g.getImageData(0, 0, w, h);
+  const d = image.data;
+  const src = new Uint8ClampedArray(d);
+  const rand = rng(1994);
+
