@@ -245,3 +245,13 @@ body.menu-open .site-header {
   backdrop-filter: blur(14px) saturate(1.2);
 }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
