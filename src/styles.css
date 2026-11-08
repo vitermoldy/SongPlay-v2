@@ -1395,3 +1395,13 @@ body.menu-open .site-header {
     justify-content: space-between;
   }
 
+  .privacy {
+    left: var(--frame);
+    right: var(--frame);
+    bottom: var(--frame);
+    justify-content: center;
+    max-width: none;
+    padding: 14px 64px 14px 16px;
+    background: rgba(4, 12, 8, 0.55);
+    font-size: 13px;
+    letter-spacing: 0.02em;
