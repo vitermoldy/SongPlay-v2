@@ -598,3 +598,13 @@
   transform: rotate(180deg);
 }
 
+.queue-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 12px;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 13px;
