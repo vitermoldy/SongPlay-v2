@@ -20,3 +20,5 @@ import { mulberry32 } from './shared.js';
 // once or twice (graze, sit up, look round) and go back into the wood on the other.
 // Every model faces +x with its feet at y = 0.
 
+const ball = new SphereGeometry(1, 14, 10);
+
