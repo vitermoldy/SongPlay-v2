@@ -204,3 +204,7 @@ button:disabled {
   stroke-linecap: round;
 }
 
+.cta:hover .cta-icon svg {
+  animation: wave 900ms var(--ease);
+}
+
