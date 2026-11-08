@@ -54,3 +54,10 @@ src/scene/            the 3D scene, used by both pages ("hero" and "player" vari
   animals.js          the doe, buck, fox, hare and birds, their routes and stops
   grass.js            instanced grass blades with wind
   tv.js               television (classic 4:3 and wide 16:9 sets), screen shader with power-on
+  themes.js           times of day (sky, sun or moon, stars, light) and seasons (grass, what falls)
+  sky.js              sky, clouds, the bands of forest on the horizon
+  particles.js        what drifts: dust, fireflies, snow, petals, leaves
+  post.js             bloom, focus blur, grain and vignette
+DESIGN.md             design direction and the reason behind each choice
+```
+
