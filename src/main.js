@@ -125,3 +125,12 @@ async function initScene(compare) {
     return;
   }
 
+  playing = !scene.startsStill;
+  let heroInView = true;
+  toggle.hidden = false;
+  sync();
+  toggle.addEventListener('click', () => {
+    playing = !playing;
+    sync();
+  });
+
