@@ -419,3 +419,11 @@ function createFlocks(live, rand, count) {
         for (const { wing, side } of b.wings) wing.rotation.x += (side * angle - wing.rotation.x) * ease(dt, 18);
         b.root.position.set(b.x, b.y + Math.sin(time * 1.3 + b.bob) * 0.08, b.z);
         if (Math.abs(b.x) > 52) {
+          b.on = false;
+          b.root.visible = false;
+        }
+      }
+    },
+  };
+}
+
