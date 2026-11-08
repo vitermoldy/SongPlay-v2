@@ -67,3 +67,13 @@ ui.stage.dataset.season = season;
 ui.themes.querySelector(`input[value="${theme}"]`).checked = true;
 ui.seasons.querySelector(`input[value="${season}"]`).checked = true;
 
+ui.themes.addEventListener('change', (event) => {
+  const name = event.target.value;
+  if (!THEME_NAMES.includes(name) || name === theme) return;
+  theme = name;
+  ui.stage.dataset.theme = name;
+  scene?.setTheme(name);
+  ambience?.setScene(theme, season);
+  remember(THEME_KEY, name);
+});
+
