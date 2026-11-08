@@ -825,3 +825,7 @@ body.menu-open .site-header {
   transition: transform 180ms var(--ease);
 }
 
+.compare:hover .compare-knob {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
