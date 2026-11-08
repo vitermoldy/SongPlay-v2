@@ -115,3 +115,9 @@ button:disabled {
   border: 0;
 }
 
+.script {
+  font-family: var(--font-script);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
