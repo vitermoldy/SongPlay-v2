@@ -393,3 +393,13 @@ export function createScene(
       }
       const dist = MathUtils.clamp(height / (perUnit * 2 * tan), 2.2, 10);
       const shiftX = (cx - width / 2) / perUnit;
+      const shiftY = (cy - height / 2) / perUnit;
+      // The eye stays a little above the set, looking down onto the hill, so the meadow and the
+      // wood show behind the TV. Placing the set higher or lower in the frame tilts the view
+      // a touch instead of lowering the eye, which would hide the meadow behind the crest.
+      base.set(screenWorld.x - shiftX, screenWorld.y + CAMERA_RISE, screenWorld.z + dist);
+      look.set(screenWorld.x - shiftX, screenWorld.y + shiftY, screenWorld.z);
+    } else {
+      base.copy(setup.camera);
+      look.copy(setup.look);
+    }
