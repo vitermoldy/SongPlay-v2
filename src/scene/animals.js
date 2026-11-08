@@ -120,3 +120,13 @@ function makeFox() {
   head.add(blob(dark, [0.018, 0.018, 0.018], [0.21, -0.02, 0]));
   for (const side of [-1, 1]) {
     const ear = new Mesh(new ConeGeometry(0.035, 0.09, 6), fur);
+    ear.position.set(-0.01, 0.1, side * 0.04);
+    head.add(ear);
+  }
+  const tail = new Group();
+  tail.position.set(-0.28, 0.4, 0);
+  body.add(tail);
+  tail.add(blob(fur, [0.24, 0.075, 0.075], [-0.2, -0.05, 0], 0.3));
+  tail.add(blob(pale, [0.07, 0.05, 0.05], [-0.42, -0.13, 0], 0.3));
+  const legs = [
+    [0.18, 0.06],
