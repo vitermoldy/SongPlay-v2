@@ -521,3 +521,8 @@
   fill: currentColor;
 }
 
+.icon-btn:hover:not(:disabled) {
+  background: rgba(150, 196, 140, 0.48);
+  transform: translateY(-1px);
+}
+
