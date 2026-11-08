@@ -14,3 +14,13 @@ const SEASON_NAMES = ['spring', 'summer', 'autumn', 'winter', 'rain'];
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const $ = (selector) => document.querySelector(selector);
 
+const ui = {
+  stage: $('[data-stage]'),
+  canvas: $('[data-scene]'),
+  video: $('[data-tv-video]'),
+  now: $('[data-now]'),
+  announce: $('[data-announce]'),
+  form: $('[data-add]'),
+  input: $('#song-link'),
+  error: $('#song-link-error'),
+  prev: $('[data-prev]'),
