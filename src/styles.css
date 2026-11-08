@@ -354,3 +354,8 @@ body.menu-open .site-header {
   opacity: 1;
 }
 
+.cursor-light.is-paper {
+  background: radial-gradient(closest-side, rgba(255, 184, 88, 0.3), rgba(255, 184, 88, 0.1) 45%, rgba(255, 184, 88, 0));
+  mix-blend-mode: multiply;
+}
+
