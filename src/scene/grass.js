@@ -111,3 +111,13 @@ export function createGrass({ count, heightAt, tv, camera, clearFront = false, u
     fragmentShader: /* glsl */ `
       uniform vec3 uBase;
       uniform vec3 uMid;
+      uniform vec3 uTip;
+      uniform vec3 uTipGold;
+      uniform vec3 uBack;
+      uniform vec3 uSkyColor;
+      uniform vec3 uSunDir;
+      uniform vec3 uTvPos;
+      uniform vec3 uTvColor;
+      uniform float uTvPower;
+      uniform vec3 uCursorPos;
+      uniform vec3 uCursorColor;
