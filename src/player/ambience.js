@@ -326,3 +326,13 @@ export function createAmbience() {
         // Let the fade finish, then stop the audio thread altogether.
         setTimeout(() => {
           if (!enabled) ctx.suspend();
+        }, 1500);
+      }
+    },
+    setScene(time, season) {
+      const L = levelsFor(time, season);
+      const now = ctx.currentTime;
+      for (const name of LAYERS) layers[name].gain.setTargetAtTime(L[name], now, 1.1);
+      thunderLevel = L.thunder;
+      scheduleThunder();
+    },
