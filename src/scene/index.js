@@ -310,3 +310,13 @@ export function createScene(
     for (let t = 0.2; t < 90; t += t < 12 ? 0.12 : 0.5) {
       if (below(t)) {
         let a = prev;
+        let b = t;
+        for (let i = 0; i < 8; i++) {
+          const m = (a + b) / 2;
+          if (below(m)) b = m;
+          else a = m;
+        }
+        return new Vector3(o.x + d.x * b, o.y + d.y * b, o.z + d.z * b);
+      }
+      prev = t;
+    }
