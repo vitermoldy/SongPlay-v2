@@ -104,3 +104,5 @@ export function createScene(
     antialias: false,
     stencil: false,
     powerPreference: 'high-performance',
+  });
+
