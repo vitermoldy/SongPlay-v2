@@ -703,3 +703,8 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
+.queue-item .icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
