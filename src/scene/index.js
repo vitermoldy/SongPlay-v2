@@ -134,3 +134,6 @@ export function createScene(
     scene.environment = next.texture;
     envTarget?.dispose();
     envTarget = next;
+  }
+  refreshEnvironment();
+
