@@ -800,3 +800,7 @@
     right: calc(var(--frame) + 10px);
   }
 
+  .themes {
+    flex-wrap: nowrap;
+  }
+
