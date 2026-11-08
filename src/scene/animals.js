@@ -290,3 +290,12 @@ function createWalker(name, heightAt, rand) {
     a.state = 'stop';
     a.timer = opening.stop;
     a.stops.shift();
+    a.neckAim = kind.stop === 'sit' ? -0.55 : 0;
+    a.headAim = 0;
+    a.lookAim = 0.35;
+    a.bodyAim = kind.hops ? 0.55 : 0;
+    model.neck.rotation.z = a.neckAim;
+    model.head.rotation.y = a.lookAim;
+    model.body.rotation.z = a.bodyAim;
+  }
+
