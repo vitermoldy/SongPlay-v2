@@ -661,3 +661,11 @@
   background: rgba(255, 197, 107, 0.12);
 }
 
+.queue-thumb {
+  width: 96px;
+  height: 54px;
+  border-radius: var(--radius-s);
+  background: linear-gradient(135deg, #1d3a2b, #0f1d17);
+  object-fit: cover;
+}
+
