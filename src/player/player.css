@@ -530,3 +530,8 @@
   transform: scale(0.95);
 }
 
+.icon-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
