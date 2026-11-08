@@ -40,3 +40,5 @@ over the scene.
 - **Dancing Script 700:** handwriting on a tape label (see motif).
 - Fonts are self-hosted through Fontsource: a privacy-first service should not call a font CDN.
 
+## Motion (dial 2)
+
