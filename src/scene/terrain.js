@@ -57,3 +57,13 @@ export function createTerrain(uniforms) {
         vWorld = w.xyz;
         vNormal = normalize(mat3(modelMatrix) * normal);
         gl_Position = projectionMatrix * viewMatrix * w;
+      }
+    `,
+    fragmentShader: /* glsl */ `
+      uniform vec3 uSunDir;
+      uniform vec3 uSunColor;
+      uniform vec3 uSkyColor;
+      uniform vec3 uGround;
+      uniform vec3 uGroundLit;
+      uniform vec3 uFogColor;
+      uniform vec3 uTvPos;
