@@ -361,3 +361,13 @@ function makeBird(material) {
   return { root, wings };
 }
 
+// Flocks of three to six cross the sky above the trees, flapping and gliding, every so often.
+// None set out while the time of day has no birds (night, rain); a flock already in the air flies on.
+function createFlocks(live, rand, count) {
+  const material = new MeshBasicMaterial({ color: '#1b2420', side: DoubleSide });
+  const birds = Array.from({ length: count }, () => ({ ...makeBird(material), on: false }));
+  const group = new Group();
+  birds.forEach((b) => {
+    b.root.visible = false;
+    group.add(b.root);
+  });
