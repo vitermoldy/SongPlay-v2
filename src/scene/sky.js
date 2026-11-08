@@ -230,3 +230,12 @@ export function createTreeline(live) {
           c *= 0.9 + 0.2 * vnoise(vXY * vec2(0.9, 0.6));
           float mist = 1.0 - smoothstep(uBase - 2.0, uBase + (uTopY - uBase) * 0.55, vXY.y);
           c = mix(c, uFog, mist * 0.8);
+          gl_FragColor = vec4(c, 1.0);
+        }
+      `,
+    });
+    const mesh = new Mesh(treeline(seed, { width: 360, ...band }), material);
+    mesh.position.z = z;
+    return mesh;
+  });
+}
