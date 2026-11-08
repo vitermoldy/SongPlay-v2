@@ -69,3 +69,5 @@ DESIGN.md             design direction and the reason behind each choice
   what the studio really does.
 - `public/favicon.svg` is a text placeholder ("S" on night green) until there is a real logo.
 
+## How the player works
+
