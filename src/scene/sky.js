@@ -180,3 +180,13 @@ function treeline(seed, { width, base, hill, tall, spacing }) {
   return new ShapeGeometry(shape);
 }
 
+// Three bands of forest behind the clearing, each further one paler with the evening haze, and
+// mist pooling in the hollows between them. `mix` places a band between the near colours (0)
+// and the far ones (1).
+export function createTreeline(live) {
+  const layers = [
+    { z: -84, seed: 97, base: -2.4, hill: 2.2, tall: 6.5, spacing: 2.4, mix: 0 },
+    { z: -118, seed: 41, base: -1.5, hill: 5, tall: 8, spacing: 3.2, mix: 0.55 },
+    { z: -160, seed: 23, base: 0.5, hill: 8, tall: 9.5, spacing: 4, mix: 1 },
+  ];
+  return layers.map(({ z, seed, mix, ...band }) => {
