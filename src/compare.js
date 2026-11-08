@@ -177,3 +177,10 @@ export function vhsify(source, outW = W, outH = H) {
   g.fill();
   g.fillText('SP', w - 66, 50);
 
+  const out = makeCanvas(outW, outH);
+  const og = out.getContext('2d');
+  og.imageSmoothingQuality = 'high';
+  og.drawImage(c, 0, 0, outW, outH);
+  return out;
+}
+
