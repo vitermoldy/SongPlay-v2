@@ -11,3 +11,8 @@ import project from './project.js'
  * There are no accounts: a device is its 12-character recovery code. Anyone who
  * knows a code can read and replace that save, so the code is shown only to its owner.
  */
+
+const CODE = /^[A-HJ-NP-Z2-9]{12}$/
+const DAY = /^\d{4}-\d{2}-\d{2}$/
+const YEAR = 365 * 24 * 3600 * 1000
+
