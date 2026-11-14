@@ -80,3 +80,13 @@ export function createApi(getPool) {
     res.json({ data: rows[0].data, updatedAt: rows[0].updatedAt })
   })
 
+  api.post('/events', async (req, res) => {
+    const { device, events } = req.body ?? {}
+    if (!CODE.test(device ?? '')) return res.status(400).json({ error: 'Unknown device code.' })
+    if (!Array.isArray(events) || events.length === 0 || events.length > 200) return res.status(400).json({ error: 'Send 1 to 200 events.' })
+    const now = Date.now()
+    const rows = []
+    for (const e of events) {
+      const clean = project.events[e?.kind]?.(e?.data)
+      const at = Number(e?.at)
+      // A malformed event is dropped, not the whole batch: one bad entry must not block a queue forever.
