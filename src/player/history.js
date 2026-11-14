@@ -82,3 +82,13 @@ export function mountHistory({ enqueue, restore, say }) {
   onCloud((state) => render(state));
   $('[data-queue-toggle]')?.addEventListener('click', () => void refresh());
 
+  ui.copy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(recoveryCode());
+      say('Recovery code copied.');
+      ui.copy.textContent = 'Copied';
+      setTimeout(() => (ui.copy.textContent = 'Copy code'), 1600);
+    } catch {
+      say(`Your recovery code is ${recoveryCode()}.`);
+    }
+  });
