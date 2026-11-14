@@ -110,3 +110,6 @@ export async function flushEvents() {
   } finally {
     flushing = false;
   }
+  if (outbox().length > 0 && status === 'online') flushEvents();
+}
+
