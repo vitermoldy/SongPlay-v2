@@ -92,3 +92,9 @@ export function mountHistory({ enqueue, restore, say }) {
       say(`Your recovery code is ${recoveryCode()}.`);
     }
   });
+
+  ui.input.addEventListener('input', () => {
+    ui.error.hidden = true;
+    ui.input.removeAttribute('aria-invalid');
+  });
+
