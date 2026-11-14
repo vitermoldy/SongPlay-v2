@@ -53,3 +53,13 @@ export function mountHistory({ enqueue, restore, say }) {
     return li;
   }
 
+  function render(state = cloudState()) {
+    ui.code.textContent = recoveryCode();
+    const waiting = state.pending > 0 ? ` ${plural(state.pending, 'play waits', 'plays wait')} to be sent.` : '';
+    ui.status.textContent =
+      state.status === 'online'
+        ? `Kept on the server.${state.lastSaved ? ` Queue last saved at ${clock(state.lastSaved)}.` : ''}${waiting}`
+        : state.status === 'offline'
+          ? `The server is not reachable, so the history is out of sight for now. The queue stays in this browser.${waiting}`
+          : 'Checking the server…';
+    const top = stats?.top ?? [];
