@@ -17,3 +17,10 @@ export function mountHistory({ enqueue, restore, say }) {
     list: $('[data-history-list]'),
     empty: $('[data-history-empty]'),
     code: $('[data-history-code]'),
+    copy: $('[data-history-copy]'),
+    form: $('[data-history-restore]'),
+    input: $('#history-code'),
+    error: $('#history-error'),
+  };
+  let stats = null;
+
