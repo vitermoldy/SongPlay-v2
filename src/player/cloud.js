@@ -90,3 +90,13 @@ export function logEvent(kind, data) {
   flushEvents();
 }
 
+let flushing = false;
+export async function flushEvents() {
+  if (flushing) return;
+  const list = outbox();
+  if (list.length === 0) return;
+  flushing = true;
+  const batch = list.slice(0, 200);
+  try {
+    await api('/events', { method: 'POST', body: JSON.stringify({ device: code, events: batch }) });
+    // Only what was sent leaves the queue; anything logged meanwhile stays.
