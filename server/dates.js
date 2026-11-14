@@ -7,3 +7,13 @@ export function dayRange(today, days) {
   return Array.from({ length: days }, (_, i) => new Date(end - (days - 1 - i) * 86_400_000).toISOString().slice(0, 10))
 }
 
+/** Consecutive days with at least one event, counting back from today (or yesterday, if today has none yet). */
+export function streak(activeDays, today) {
+  const set = new Set(activeDays)
+  const [y, m, d] = today.split('-').map(Number)
+  let t = Date.UTC(y, m - 1, d)
+  if (!set.has(today)) t -= 86_400_000
+  let n = 0
+  while (set.has(new Date(t).toISOString().slice(0, 10))) {
+    n++
+    t -= 86_400_000
