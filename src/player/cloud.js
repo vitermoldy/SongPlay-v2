@@ -40,3 +40,13 @@ if (!code || !/^[A-HJ-NP-Z2-9]{12}$/.test(code)) {
 /** The recovery code, grouped for reading: ABCD-EFGH-JKLM. */
 export const recoveryCode = () => code.match(/.{4}/g).join('-');
 
+// online: the last request reached the server. offline: it did not. unknown: nothing tried yet.
+let status = 'unknown';
+let lastSaved = Number(read(SAVED_KEY)) || 0;
+const listeners = new Set();
+const notify = () => listeners.forEach((fn) => fn(cloudState()));
+const setStatus = (next) => {
+  if (next !== status) {
+    status = next;
+    notify();
+  }
