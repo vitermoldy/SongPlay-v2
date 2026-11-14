@@ -138,3 +138,13 @@ async function pushSave(leaving = false) {
   }
 }
 
+/** This visit's totals from the server, or null when it cannot be reached. */
+export async function fetchStats(days = 14) {
+  try {
+    const stats = await api(`/stats/${code}?days=${days}&today=${localDay()}`);
+    setStatus('online');
+    return stats;
+  } catch (err) {
+    setStatus(err.status ? 'online' : 'offline');
+    return null;
+  }
