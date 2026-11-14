@@ -40,3 +40,9 @@ export default {
     return {
       plays: Number(total.plays),
       today: perDay[perDay.length - 1]?.plays ?? 0,
+      perDay,
+      top: top.map((t) => ({ id: t.song_id, kind: t.song_kind, title: t.title && t.title !== 'null' ? t.title : '', plays: Number(t.plays) })),
+      recent: recent.map((r) => ({ id: r.id, title: r.title && r.title !== 'null' ? r.title : '', at: r.at })),
+    }
+  },
+}
