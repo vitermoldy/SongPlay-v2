@@ -62,3 +62,10 @@ export function onCloud(fn) {
   return () => listeners.delete(fn);
 }
 
+async function api(path, init) {
+  const res = await fetch(`/api${path}`, { ...init, headers: { 'Content-Type': 'application/json', ...init?.headers } });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw Object.assign(new Error(body.error || `HTTP ${res.status}`), { status: res.status });
+  return body;
+}
+
