@@ -44,3 +44,12 @@ export function mountHistory({ enqueue, restore, say }) {
     sub.textContent = `Played ${plural(song.plays, 'time', 'times')}`;
     meta.append(title, sub);
     const add = document.createElement('button');
+    add.type = 'button';
+    add.className = 'icon-btn';
+    add.setAttribute('aria-label', `Add ${title.textContent} to the queue`);
+    add.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg>';
+    add.addEventListener('click', () => enqueue(song.kind === 'playlist' ? { kind: 'playlist', list: song.id } : { kind: 'video', id: song.id }));
+    li.append(thumb, meta, add);
+    return li;
+  }
+
