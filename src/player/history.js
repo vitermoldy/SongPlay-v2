@@ -24,3 +24,13 @@ export function mountHistory({ enqueue, restore, say }) {
   };
   let stats = null;
 
+  function row(song) {
+    const li = document.createElement('li');
+    li.className = 'queue-item history-item';
+    const thumb = document.createElement('img');
+    thumb.className = 'queue-thumb';
+    thumb.width = 96;
+    thumb.height = 54;
+    thumb.alt = '';
+    thumb.loading = 'lazy';
+    thumb.decoding = 'async';
