@@ -69,3 +69,12 @@ async function api(path, init) {
   return body;
 }
 
+function outbox() {
+  try {
+    const list = JSON.parse(read(OUTBOX_KEY) || '[]');
+    return Array.isArray(list) ? list : [];
+  } catch {
+    return [];
+  }
+}
+
