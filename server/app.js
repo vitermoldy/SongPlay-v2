@@ -41,3 +41,11 @@ function rateLimit(limit) {
   }
 }
 
+/** The pool appears once MySQL answers; until then the API says so instead of hanging. */
+export function createApi(getPool) {
+  const api = express.Router()
+  api.use(express.json({ limit: project.maxSaveBytes + 64 * 1024 }))
+  api.use(sameOriginWrites)
+  api.use(rateLimit(120))
+  api.use((req, res, next) => (getPool() ? next() : res.status(503).json({ error: 'The database is not connected yet.' })))
+
