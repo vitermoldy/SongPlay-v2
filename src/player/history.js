@@ -34,3 +34,13 @@ export function mountHistory({ enqueue, restore, say }) {
     thumb.alt = '';
     thumb.loading = 'lazy';
     thumb.decoding = 'async';
+    if (song.kind === 'video') thumb.src = `https://i.ytimg.com/vi/${song.id}/mqdefault.jpg`;
+    const meta = document.createElement('div');
+    const title = document.createElement('p');
+    title.className = 'queue-title';
+    title.textContent = song.title || (song.kind === 'playlist' ? 'YouTube playlist' : 'YouTube video');
+    const sub = document.createElement('p');
+    sub.className = 'queue-sub';
+    sub.textContent = `Played ${plural(song.plays, 'time', 'times')}`;
+    meta.append(title, sub);
+    const add = document.createElement('button');
