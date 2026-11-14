@@ -108,3 +108,13 @@ export function mountHistory({ enqueue, restore, say }) {
       ui.input.setAttribute('aria-invalid', 'true');
       ui.error.textContent =
         e.code === 'format' || e.status === 400
+          ? 'A recovery code has 12 letters and digits.'
+          : e.code === 'offline'
+            ? 'The server is not reachable. Start it, then try again.'
+            : e.status === 404
+              ? 'Nothing is saved under that code.'
+              : 'That code could not be used. Try again in a moment.';
+      ui.error.hidden = false;
+    }
+  });
+
