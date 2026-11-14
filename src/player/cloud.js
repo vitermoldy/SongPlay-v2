@@ -180,3 +180,6 @@ document.addEventListener('visibilitychange', () => {
   else flushEvents();
 });
 setInterval(() => {
+  if (outbox().length > 0) flushEvents();
+}, 60_000);
+flushEvents();
