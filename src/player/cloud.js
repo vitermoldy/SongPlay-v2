@@ -50,3 +50,5 @@ const setStatus = (next) => {
     status = next;
     notify();
   }
+};
+
