@@ -150,3 +150,13 @@ export async function fetchStats(days = 14) {
   }
 }
 
+let frozen = false;
+/**
+ * Brings the save stored under another recovery code into this browser: the
+ * caller writes `data` over its own save key and reloads. From then on this
+ * browser shares that code. Nothing is mirrored after this point, so the old
+ * save cannot overwrite the restored one on the way out.
+ */
+export async function restoreFrom(input) {
+  const wanted = String(input).toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (!/^[A-HJ-NP-Z2-9]{12}$/.test(wanted)) throw Object.assign(new Error('Kode pemulihan terdiri dari 12 huruf dan angka.'), { code: 'format' });
