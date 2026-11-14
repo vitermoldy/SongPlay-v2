@@ -68,3 +68,13 @@ export function mountHistory({ enqueue, restore, say }) {
     if (stats && top.length === 0) ui.empty.textContent = 'Songs you play show up here, most played first.';
   }
 
+  let pending = 0;
+  async function refresh() {
+    stats = await fetchStats(14);
+    render();
+  }
+  /** After a play, the counts change; one refresh a moment later covers a burst of them. */
+  function refreshSoon() {
+    clearTimeout(pending);
+    pending = setTimeout(refresh, 1500);
+  }
