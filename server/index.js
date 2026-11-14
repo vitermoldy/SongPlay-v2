@@ -23,3 +23,13 @@ app.use('/api', createApi(() => pool))
 const dist = ROOT + 'dist'
 if (existsSync(dist)) app.use(express.static(dist))
 
+/** MySQL may start after this server; keep trying every few seconds. */
+async function connectLoop() {
+  try {
+    pool = await connect(config.db)
+    console.log(`${project.name}: database ${config.db.database} connected`)
+  } catch (err) {
+    console.error(`${project.name}: database not reachable yet (${err.code ?? err.message}), trying again in 5 seconds`)
+    setTimeout(connectLoop, 5000)
+  }
+}
