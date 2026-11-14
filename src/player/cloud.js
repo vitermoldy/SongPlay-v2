@@ -23,3 +23,9 @@ const read = (key) => {
 const write = (key, value) => {
   try {
     localStorage.setItem(key, value);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
