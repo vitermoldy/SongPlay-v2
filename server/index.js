@@ -33,3 +33,6 @@ async function connectLoop() {
     setTimeout(connectLoop, 5000)
   }
 }
+
+app.listen(config.port, () => console.log(`${project.name} server on http://localhost:${config.port}`))
+connectLoop()
