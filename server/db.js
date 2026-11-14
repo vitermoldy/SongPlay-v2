@@ -10,3 +10,13 @@ import mysql from 'mysql2/promise'
  */
 const TABLES = [
   `CREATE TABLE IF NOT EXISTS devices (
+    id CHAR(12) PRIMARY KEY,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    last_seen DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS saves (
+    device_id CHAR(12) PRIMARY KEY,
+    data MEDIUMTEXT NOT NULL,
+    bytes INT NOT NULL,
+    updated_at DATETIME NOT NULL,
+    CONSTRAINT saves_device FOREIGN KEY (device_id) REFERENCES devices(id) ON DELETE CASCADE
