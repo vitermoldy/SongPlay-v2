@@ -133,3 +133,8 @@ async function pushSave(leaving = false) {
     write(SAVED_KEY, String(lastSaved));
     setStatus('online');
     notify();
+  } catch (err) {
+    setStatus(err.status ? 'online' : 'offline');
+  }
+}
+
