@@ -30,3 +30,13 @@ export default {
         SUBSTRING_INDEX(GROUP_CONCAT(JSON_UNQUOTE(JSON_EXTRACT(data, '$.title')) ORDER BY at DESC SEPARATOR '\\n'), '\\n', 1) AS title
        FROM events WHERE device_id = ? AND kind = 'play' GROUP BY song_id, song_kind ORDER BY plays DESC, last DESC LIMIT 10`,
       [device],
+    )
+    const [recent] = await pool.query(
+      "SELECT JSON_UNQUOTE(JSON_EXTRACT(data, '$.id')) AS id, JSON_UNQUOTE(JSON_EXTRACT(data, '$.title')) AS title, at FROM events WHERE device_id = ? AND kind = 'play' ORDER BY at DESC LIMIT 10",
+      [device],
+    )
+    const byDay = new Map(rows.map((r) => [r.day, Number(r.plays)]))
+    const perDay = range.map((day) => ({ day, plays: byDay.get(day) ?? 0 }))
+    return {
+      plays: Number(total.plays),
+      today: perDay[perDay.length - 1]?.plays ?? 0,
