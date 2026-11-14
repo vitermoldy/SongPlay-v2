@@ -29,3 +29,11 @@ const write = (key, value) => {
   }
 };
 
+let code = read(ID_KEY);
+if (!code || !/^[A-HJ-NP-Z2-9]{12}$/.test(code)) {
+  const bytes = new Uint8Array(12);
+  crypto.getRandomValues(bytes);
+  code = Array.from(bytes, (b) => ALPHABET[b % ALPHABET.length]).join('');
+  write(ID_KEY, code);
+}
+
