@@ -20,3 +20,13 @@ const TABLES = [
     bytes INT NOT NULL,
     updated_at DATETIME NOT NULL,
     CONSTRAINT saves_device FOREIGN KEY (device_id) REFERENCES devices(id) ON DELETE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS events (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    device_id CHAR(12) NOT NULL,
+    kind VARCHAR(24) NOT NULL,
+    at DATETIME NOT NULL,
+    day CHAR(10) NOT NULL,
+    data JSON NULL,
+    INDEX events_by_device (device_id, kind, day),
+    CONSTRAINT events_device FOREIGN KEY (device_id) REFERENCES devices(id) ON DELETE CASCADE
