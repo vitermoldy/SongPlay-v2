@@ -123,3 +123,13 @@ export function mirrorSave(text) {
   saveTimer = setTimeout(pushSave, 2000);
 }
 
+/** `leaving`: the tab is being hidden or closed, so the request must outlive the page (keepalive). */
+async function pushSave(leaving = false) {
+  if (!saveText || frozen) return;
+  clearTimeout(saveTimer);
+  try {
+    await api('/save', { method: 'PUT', body: JSON.stringify({ device: code, data: saveText }), keepalive: leaving });
+    lastSaved = Date.now();
+    write(SAVED_KEY, String(lastSaved));
+    setStatus('online');
+    notify();
