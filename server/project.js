@@ -10,3 +10,13 @@ export default {
   port: 8793,
   maxSaveBytes: 256 * 1024,
   events: {
+    /** A video or playlist that started playing. */
+    play(data) {
+      const id = typeof data?.id === 'string' ? data.id : ''
+      if (!/^[A-Za-z0-9_-]{6,64}$/.test(id)) return null
+      const kind = data?.kind === 'playlist' ? 'playlist' : 'video'
+      const title = typeof data?.title === 'string' ? data.title.trim().slice(0, 200) : ''
+      return { id, kind, ...(title ? { title } : {}) }
+    },
+  },
+  async stats(pool, device, { days, today }) {
