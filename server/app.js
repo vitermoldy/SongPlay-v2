@@ -106,3 +106,11 @@ export function createApi(getPool) {
     res.json(await project.stats(getPool(), device, { days, today }))
   })
 
+  api.use((err, _req, res, _next) => {
+    if (err?.type === 'entity.too.large') return res.status(413).json({ error: 'The request is too large.' })
+    if (err?.type === 'entity.parse.failed') return res.status(400).json({ error: 'The JSON could not be read.' })
+    console.error(err)
+    res.status(500).json({ error: 'Server error.' })
+  })
+  return api
+}
