@@ -81,3 +81,12 @@ function outbox() {
 const localDay = (t = new Date()) =>
   `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}`;
 
+/** Records something that happened; it is sent now, or later if the server is away. */
+export function logEvent(kind, data) {
+  const list = outbox();
+  list.push({ kind, at: Date.now(), day: localDay(), data });
+  write(OUTBOX_KEY, JSON.stringify(list.slice(-OUTBOX_CAP)));
+  notify();
+  flushEvents();
+}
+
