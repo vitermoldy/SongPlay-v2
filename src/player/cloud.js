@@ -52,3 +52,8 @@ const setStatus = (next) => {
   }
 };
 
+/** Status, last time the save reached the server, and how many events wait to be sent. */
+export function cloudState() {
+  return { status, lastSaved, pending: outbox().length };
+}
+
