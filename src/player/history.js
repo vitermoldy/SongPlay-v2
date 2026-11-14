@@ -78,3 +78,7 @@ export function mountHistory({ enqueue, restore, say }) {
     clearTimeout(pending);
     pending = setTimeout(refresh, 1500);
   }
+
+  onCloud((state) => render(state));
+  $('[data-queue-toggle]')?.addEventListener('click', () => void refresh());
+
