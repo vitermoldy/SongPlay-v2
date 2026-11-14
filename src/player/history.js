@@ -118,3 +118,7 @@ export function mountHistory({ enqueue, restore, say }) {
     }
   });
 
+  render();
+  void refresh();
+  return { refreshSoon };
+}
