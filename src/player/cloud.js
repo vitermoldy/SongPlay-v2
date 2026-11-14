@@ -57,3 +57,8 @@ export function cloudState() {
   return { status, lastSaved, pending: outbox().length };
 }
 
+export function onCloud(fn) {
+  listeners.add(fn);
+  return () => listeners.delete(fn);
+}
+
