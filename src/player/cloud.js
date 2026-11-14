@@ -13,3 +13,13 @@ const SAVED_KEY = `${APP}:cloud-saved`;
 const ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const OUTBOX_CAP = 500;
 
+const read = (key) => {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+};
+const write = (key, value) => {
+  try {
+    localStorage.setItem(key, value);
