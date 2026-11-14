@@ -148,3 +148,5 @@ export async function fetchStats(days = 14) {
     setStatus(err.status ? 'online' : 'offline');
     return null;
   }
+}
+
