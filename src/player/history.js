@@ -63,3 +63,8 @@ export function mountHistory({ enqueue, restore, say }) {
           ? `The server is not reachable, so the history is out of sight for now. The queue stays in this browser.${waiting}`
           : 'Checking the server…';
     const top = stats?.top ?? [];
+    ui.list.replaceChildren(...top.slice(0, 5).map(row));
+    ui.empty.hidden = !stats || top.length > 0;
+    if (stats && top.length === 0) ui.empty.textContent = 'Songs you play show up here, most played first.';
+  }
+
