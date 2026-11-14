@@ -53,3 +53,13 @@ export function createApi(getPool) {
 
   api.get('/health', (_req, res) => res.json({ ok: true, app: project.name }))
 
+  api.put('/save', async (req, res) => {
+    const { device, data } = req.body ?? {}
+    if (!CODE.test(device ?? '')) return res.status(400).json({ error: 'Unknown device code.' })
+    if (typeof data !== 'string' || data.length === 0) return res.status(400).json({ error: 'The save is empty.' })
+    const bytes = Buffer.byteLength(data)
+    if (bytes > project.maxSaveBytes) return res.status(413).json({ error: 'The save is too large.' })
+    try {
+      JSON.parse(data)
+    } catch {
+      return res.status(400).json({ error: 'The save is not JSON.' })
