@@ -170,3 +170,13 @@ export async function restoreFrom(input) {
   write(ID_KEY, code);
   return body.data;
 }
+
+addEventListener('online', () => flushEvents());
+addEventListener('pagehide', () => {
+  if (saveText && !frozen) pushSave(true);
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden' && saveText && !frozen) pushSave(true);
+  else flushEvents();
+});
+setInterval(() => {
