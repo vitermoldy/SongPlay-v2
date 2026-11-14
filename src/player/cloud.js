@@ -113,3 +113,13 @@ export async function flushEvents() {
   if (outbox().length > 0 && status === 'online') flushEvents();
 }
 
+let saveTimer = 0;
+let saveText = '';
+/** Copies the browser save (its JSON text) to the server, a moment after the last change. */
+export function mirrorSave(text) {
+  if (!text || frozen) return;
+  saveText = text;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(pushSave, 2000);
+}
+
