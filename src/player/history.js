@@ -98,3 +98,13 @@ export function mountHistory({ enqueue, restore, say }) {
     ui.input.removeAttribute('aria-invalid');
   });
 
+  ui.form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    try {
+      const data = JSON.parse(await restoreFrom(ui.input.value));
+      restore(data);
+      location.reload();
+    } catch (e) {
+      ui.input.setAttribute('aria-invalid', 'true');
+      ui.error.textContent =
+        e.code === 'format' || e.status === 400
