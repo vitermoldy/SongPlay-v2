@@ -100,3 +100,13 @@ export async function flushEvents() {
   try {
     await api('/events', { method: 'POST', body: JSON.stringify({ device: code, events: batch }) });
     // Only what was sent leaves the queue; anything logged meanwhile stays.
+    write(OUTBOX_KEY, JSON.stringify(outbox().slice(batch.length)));
+    setStatus('online');
+    notify();
+  } catch (err) {
+    // A 4xx means the batch itself is unusable; drop it rather than retry it forever.
+    if (err.status >= 400 && err.status < 500 && err.status !== 429) write(OUTBOX_KEY, JSON.stringify(outbox().slice(batch.length)));
+    setStatus(err.status ? 'online' : 'offline');
+  } finally {
+    flushing = false;
+  }
