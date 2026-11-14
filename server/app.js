@@ -25,3 +25,13 @@ function sameOriginWrites(req, res, next) {
   next()
 }
 
+/** At most `limit` writes per minute per address, enough for a busy tab and not for a script. */
+function rateLimit(limit) {
+  const hits = new Map()
+  return (req, res, next) => {
+    if (req.method === 'GET') return next()
+    const now = Date.now()
+    const key = req.ip ?? 'unknown'
+    const recent = (hits.get(key) ?? []).filter((t) => now - t < 60_000)
+    recent.push(now)
+    hits.set(key, recent)
