@@ -6,3 +6,10 @@
 // to the server under that code, so typing the code into another browser brings
 // the same progress there.
 
+const APP = 'songplay-v2';
+const ID_KEY = `${APP}:cloud-id`;
+const OUTBOX_KEY = `${APP}:cloud-outbox`;
+const SAVED_KEY = `${APP}:cloud-saved`;
+const ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const OUTBOX_CAP = 500;
+
