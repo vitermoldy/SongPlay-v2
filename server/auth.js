@@ -66,3 +66,7 @@ const MESSAGES = {
     tooMany: 'Too many sign-in attempts. Wait a minute, then try again.',
   },
 }
+
+const scrypt = (password, salt, keylen, options) =>
+  new Promise((resolve, reject) => scryptCb(password, salt, keylen, options, (err, key) => (err ? reject(err) : resolve(key))))
+
