@@ -194,3 +194,13 @@ export function createAuth({ getPool, cookie, lang, deviceCode, newDevice }) {
     // A code that already belongs to someone else gets a fresh one instead.
     let device = typeof req.body?.device === 'string' && deviceCode.test(req.body.device) ? req.body.device : ''
     if (device) {
+      const [owner] = await pool.query('SELECT id FROM users WHERE device_id = ?', [device])
+      if (owner[0]) device = ''
+    }
+    if (!device) device = newDevice()
+    const hash = await hashPassword(input.password)
+    let result
+    try {
+      ;[result] = await pool.query('INSERT INTO users (username, password_hash, device_id, created_at) VALUES (?, ?, ?, UTC_TIMESTAMP())', [input.username, hash, device])
+    } catch (err) {
+      // Two sign-ups racing for the same name: the unique key decides.
