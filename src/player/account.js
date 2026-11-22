@@ -41,3 +41,8 @@ export function mountAccount({ restore, mirror, forget, say }) {
     try {
       sessionStorage.setItem(WELCOME_KEY, welcome);
     } catch {
+      /* no session storage: the reload still shows the queue */
+    }
+    location.reload();
+  }
+
