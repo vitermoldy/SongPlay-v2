@@ -110,3 +110,13 @@ function attemptLimit(limit, message) {
   }
 }
 
+/**
+ * @param {object} options
+ * @param {() => import('mysql2/promise').Pool | null} options.getPool
+ * @param {string} options.cookie  cookie name, unique per app: every app on localhost shares one cookie jar
+ * @param {'id' | 'en'} options.lang
+ * @param {RegExp} options.deviceCode  shape of this app's data key
+ * @param {() => string} options.newDevice  makes a fresh data key
+ */
+export function createAuth({ getPool, cookie, lang, deviceCode, newDevice }) {
+  const t = MESSAGES[lang]
