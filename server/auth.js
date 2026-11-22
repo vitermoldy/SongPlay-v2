@@ -146,3 +146,13 @@ export function createAuth({ getPool, cookie, lang, deviceCode, newDevice }) {
     setCookie(req, res, token, SESSION_DAYS * 86_400)
   }
 
+  /** The signed-in user, or null. Also notes when the account was last active. */
+  async function userFor(req) {
+    const token = readCookie(req, cookie)
+    if (!token) return null
+    const pool = getPool()
+    const [rows] = await pool.query(
+      'SELECT u.id, u.username, u.device_id, u.created_at FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token_hash = ? AND s.expires_at > UTC_TIMESTAMP()',
+      [sha256(token)],
+    )
+    const row = rows[0]
