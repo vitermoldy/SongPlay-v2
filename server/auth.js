@@ -15,3 +15,13 @@ import express from 'express'
  * copy of the sessions table cannot be used to sign in.
  */
 
+export const AUTH_TABLES = [
+  `CREATE TABLE IF NOT EXISTS users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(24) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    device_id VARCHAR(64) NOT NULL,
+    created_at DATETIME NOT NULL,
+    last_login_at DATETIME NULL,
+    last_seen_at DATETIME NULL,
+    login_count INT UNSIGNED NOT NULL DEFAULT 0,
