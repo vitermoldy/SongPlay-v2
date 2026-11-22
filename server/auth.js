@@ -46,3 +46,13 @@ const SESSION_DAYS = 30
 const SCRYPT = { N: 16384, r: 8, p: 1, maxmem: 64 * 1024 * 1024 }
 const KEYLEN = 64
 
+const MESSAGES = {
+  id: {
+    username: 'Username 3 sampai 24 karakter: huruf, angka, titik, garis bawah, atau tanda minus.',
+    password: `Kata sandi minimal ${PASSWORD_MIN} karakter.`,
+    passwordLong: `Kata sandi paling panjang ${PASSWORD_MAX} karakter.`,
+    taken: 'Username itu sudah dipakai. Pilih yang lain.',
+    wrong: 'Username atau kata sandi salah.',
+    signedOut: 'Kamu belum masuk.',
+    tooMany: 'Terlalu banyak percobaan masuk. Tunggu satu menit, lalu coba lagi.',
+  },
