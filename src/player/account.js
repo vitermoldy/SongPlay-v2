@@ -63,3 +63,13 @@ export function mountAccount({ restore, mirror, forget, say }) {
     pass.removeAttribute('aria-invalid');
   }
 
+  function render(state = cloudState()) {
+    const offline = state.auth === 'unavailable';
+    // The first check is not shown: a signed-in visitor should not see the screen flash by.
+    const wanted = state.auth === 'signed-out' || (offline && !skipped) || (state.auth === 'checking' && gate.open);
+    $('gate-checking').hidden = state.auth !== 'checking';
+    form.hidden = state.auth !== 'signed-out';
+    $('gate-switch-line').hidden = state.auth !== 'signed-out';
+    $('gate-offline').hidden = !offline;
+    $('gate-lead').hidden = state.auth !== 'signed-out';
+    if (wanted && !gate.open) gate.showModal();
