@@ -95,3 +95,13 @@ function readCookie(req, name) {
   return undefined
 }
 
+/** At most `limit` attempts per minute per address: slows down password guessing. */
+function attemptLimit(limit, message) {
+  const hits = new Map()
+  return (req, res, next) => {
+    const now = Date.now()
+    const key = req.ip ?? 'unknown'
+    const recent = (hits.get(key) ?? []).filter((t) => now - t < 60_000)
+    recent.push(now)
+    hits.set(key, recent)
+    if (hits.size > 5000) hits.clear()
