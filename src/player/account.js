@@ -156,3 +156,13 @@ export function mountAccount({ restore, mirror, forget, say }) {
     void check();
   });
 
+  $('account-leave').addEventListener('click', async () => {
+    const button = $('account-leave');
+    const err = $('account-error');
+    err.hidden = true;
+    button.disabled = true;
+    button.textContent = 'Signing out…';
+    try {
+      mirror();
+      await signOut();
+      forget();
