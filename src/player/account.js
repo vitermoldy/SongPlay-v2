@@ -166,3 +166,12 @@ export function mountAccount({ restore, mirror, forget, say }) {
       mirror();
       await signOut();
       forget();
+      location.reload();
+    } catch (e) {
+      err.textContent = e instanceof Error ? e.message : 'Could not sign out. Try again.';
+      err.hidden = false;
+      button.disabled = false;
+      button.textContent = 'Sign out';
+    }
+  });
+
