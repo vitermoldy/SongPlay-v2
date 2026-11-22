@@ -1,10 +1,10 @@
 // Link to the app's own server (npm run server). Everything here is optional: with
 // the server off, or the site opened as static files, the app works exactly as
-// before; events wait in the browser and go out once the server answers.
+// before; events wait in the browser and go out once someone is signed in.
 //
-// A browser is known by a 12-character recovery code. The browser save is copied
-// to the server under that code, so typing the code into another browser brings
-// the same progress there.
+// The server knows people by account (username and password). Each account files
+// its data under one code. A browser keeps a code of its own too, offered on
+// sign-up so what was made before signing up becomes the new account's.
 
 const APP = 'songplay-v2';
 const ID_KEY = `${APP}:cloud-id`;
@@ -28,6 +28,13 @@ const write = (key, value) => {
     return false;
   }
 };
+const remove = (key) => {
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    /* blocked storage: nothing was kept either */
+  }
+};
 
 let code = read(ID_KEY);
 if (!code || !/^[A-HJ-NP-Z2-9]{12}$/.test(code)) {
@@ -37,12 +44,13 @@ if (!code || !/^[A-HJ-NP-Z2-9]{12}$/.test(code)) {
   write(ID_KEY, code);
 }
 
-/** The recovery code, grouped for reading: ABCD-EFGH-JKLM. */
-export const recoveryCode = () => code.match(/.{4}/g).join('-');
-
 // online: the last request reached the server. offline: it did not. unknown: nothing tried yet.
 let status = 'unknown';
+// checking, signed-in, signed-out, or unavailable (the server or its database cannot be reached).
+let auth = 'checking';
+let account = null;
 let lastSaved = Number(read(SAVED_KEY)) || 0;
+let frozen = false;
 const listeners = new Set();
 const notify = () => listeners.forEach((fn) => fn(cloudState()));
 const setStatus = (next) => {
@@ -51,10 +59,11 @@ const setStatus = (next) => {
     notify();
   }
 };
+const signedIn = () => auth === 'signed-in';
 
-/** Status, last time the save reached the server, and how many events wait to be sent. */
+/** Status, last time the save reached the server, events waiting, and who is signed in. */
 export function cloudState() {
-  return { status, lastSaved, pending: outbox().length };
+  return { status, lastSaved, pending: outbox().length, auth, account };
 }
 
 export function onCloud(fn) {
@@ -62,12 +71,30 @@ export function onCloud(fn) {
   return () => listeners.delete(fn);
 }
 
+export class ApiError extends Error {
+  constructor(message, status) {
+    super(message);
+    this.status = status;
+  }
+}
+
 async function api(path, init) {
   const res = await fetch(`/api${path}`, { ...init, headers: { 'Content-Type': 'application/json', ...init?.headers } });
   const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw Object.assign(new Error(body.error || `HTTP ${res.status}`), { status: res.status });
+  if (!res.ok) {
+    // The session ran out or was signed out elsewhere: ask for the password again.
+    if (res.status === 401 && !path.startsWith('/auth/') && auth === 'signed-in') {
+      auth = 'signed-out';
+      account = null;
+      notify();
+    }
+    throw new ApiError(body.error || `HTTP ${res.status}`, res.status);
+  }
   return body;
 }
+
+/** A thrown ApiError means the server answered; anything else means it could not be reached. */
+const reached = (err) => err instanceof ApiError;
 
 function outbox() {
   try {
@@ -81,36 +108,38 @@ function outbox() {
 const localDay = (t = new Date()) =>
   `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}`;
 
-/** Records something that happened; it is sent now, or later if the server is away. */
+/** Records something that happened; it is sent now, or once someone is signed in and the server answers. */
 export function logEvent(kind, data) {
   const list = outbox();
   list.push({ kind, at: Date.now(), day: localDay(), data });
   write(OUTBOX_KEY, JSON.stringify(list.slice(-OUTBOX_CAP)));
   notify();
-  flushEvents();
+  void flushEvents();
 }
 
 let flushing = false;
 export async function flushEvents() {
-  if (flushing) return;
+  if (flushing || !signedIn()) return;
   const list = outbox();
   if (list.length === 0) return;
   flushing = true;
   const batch = list.slice(0, 200);
   try {
-    await api('/events', { method: 'POST', body: JSON.stringify({ device: code, events: batch }) });
+    await api('/events', { method: 'POST', body: JSON.stringify({ events: batch }) });
     // Only what was sent leaves the queue; anything logged meanwhile stays.
     write(OUTBOX_KEY, JSON.stringify(outbox().slice(batch.length)));
     setStatus('online');
     notify();
   } catch (err) {
-    // A 4xx means the batch itself is unusable; drop it rather than retry it forever.
-    if (err.status >= 400 && err.status < 500 && err.status !== 429) write(OUTBOX_KEY, JSON.stringify(outbox().slice(batch.length)));
-    setStatus(err.status ? 'online' : 'offline');
+    // A 4xx other than 401 and 429 means the batch itself is unusable; drop it rather than retry it forever.
+    if (err instanceof ApiError && err.status >= 400 && err.status < 500 && err.status !== 401 && err.status !== 429) {
+      write(OUTBOX_KEY, JSON.stringify(outbox().slice(batch.length)));
+    }
+    setStatus(reached(err) ? 'online' : 'offline');
   } finally {
     flushing = false;
   }
-  if (outbox().length > 0 && status === 'online') flushEvents();
+  if (outbox().length > 0 && status === 'online' && signedIn()) void flushEvents();
 }
 
 let saveTimer = 0;
@@ -120,66 +149,125 @@ export function mirrorSave(text) {
   if (!text || frozen) return;
   saveText = text;
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(pushSave, 2000);
+  if (signedIn()) saveTimer = setTimeout(() => void pushSave(), 2000);
 }
 
 /** `leaving`: the tab is being hidden or closed, so the request must outlive the page (keepalive). */
 async function pushSave(leaving = false) {
-  if (!saveText || frozen) return;
+  if (!saveText || frozen || !signedIn()) return false;
   clearTimeout(saveTimer);
   try {
-    await api('/save', { method: 'PUT', body: JSON.stringify({ device: code, data: saveText }), keepalive: leaving });
+    await api('/save', { method: 'PUT', body: JSON.stringify({ data: saveText }), keepalive: leaving });
     lastSaved = Date.now();
     write(SAVED_KEY, String(lastSaved));
     setStatus('online');
     notify();
+    return true;
   } catch (err) {
-    setStatus(err.status ? 'online' : 'offline');
+    setStatus(reached(err) ? 'online' : 'offline');
+    return false;
   }
 }
 
-/** This visit's totals from the server, or null when it cannot be reached. */
+/** This account's totals from the server, or null when nobody is signed in or it cannot be reached. */
 export async function fetchStats(days = 14) {
+  if (!signedIn()) return null;
   try {
-    const stats = await api(`/stats/${code}?days=${days}&today=${localDay()}`);
+    const stats = await api(`/stats?days=${days}&today=${localDay()}`);
     setStatus('online');
     return stats;
   } catch (err) {
-    setStatus(err.status ? 'online' : 'offline');
+    setStatus(reached(err) ? 'online' : 'offline');
     return null;
   }
 }
 
-let frozen = false;
 /**
- * Brings the save stored under another recovery code into this browser: the
- * caller writes `data` over its own save key and reloads. From then on this
- * browser shares that code. Nothing is mirrored after this point, so the old
- * save cannot overwrite the restored one on the way out.
+ * Takes the account the server answered with. Returns the account's save when it
+ * should replace this browser's (the browser was holding someone else's data, or
+ * none), or null when this browser's own save stays and is sent up as the account's.
+ * After a non-null answer nothing is mirrored, so the old save cannot overwrite the
+ * account's on the way out of the page.
  */
-export async function restoreFrom(input) {
-  const wanted = String(input).toUpperCase().replace(/[^A-Z0-9]/g, '');
-  if (!/^[A-HJ-NP-Z2-9]{12}$/.test(wanted)) throw Object.assign(new Error('Kode pemulihan terdiri dari 12 huruf dan angka.'), { code: 'format' });
-  const body = await api(`/save/${wanted}`).catch((err) => {
-    if (err.status) throw err;
-    throw Object.assign(new Error('Server tidak terhubung. Jalankan server dulu, lalu coba lagi.'), { code: 'offline' });
-  });
-  frozen = true;
-  clearTimeout(saveTimer);
-  code = wanted;
+async function enter(entry) {
+  const same = entry.device === code;
+  account = entry.user;
+  auth = 'signed-in';
+  code = entry.device;
   write(ID_KEY, code);
-  return body.data;
+  setStatus('online');
+  notify();
+  if (!same) {
+    const remote = await api('/save').catch(() => ({ data: null }));
+    if (remote.data) {
+      frozen = true;
+      clearTimeout(saveTimer);
+      return remote.data;
+    }
+  }
+  void flushEvents();
+  if (saveText) void pushSave();
+  return null;
 }
 
-addEventListener('online', () => flushEvents());
+/** Asks the server who is signed in on this browser. Same answer as `signIn` when someone is. */
+export async function checkAccount() {
+  auth = 'checking';
+  notify();
+  try {
+    return await enter(await api('/auth/me'));
+  } catch (err) {
+    account = null;
+    // 401: the server works and nobody is signed in. A 5xx is the server or its database being down.
+    auth = err instanceof ApiError && err.status === 401 ? 'signed-out' : 'unavailable';
+    setStatus(auth === 'signed-out' ? 'online' : 'offline');
+    notify();
+    return null;
+  }
+}
+
+/** Failures carry a message meant for the person signing in. */
+async function authCall(path, body) {
+  try {
+    return await enter(await api(path, { method: 'POST', body: JSON.stringify(body) }));
+  } catch (err) {
+    if (err instanceof ApiError && err.status < 500) throw err;
+    auth = 'unavailable';
+    setStatus('offline');
+    notify();
+    throw new ApiError('The server is not reachable. Start it, then try again.', 0);
+  }
+}
+
+export const signIn = (username, password) => authCall('/auth/login', { username, password });
+
+/** A new account. What this browser already holds becomes the account's. */
+export const signUp = (username, password) => authCall('/auth/register', { username, password, device: code });
+
+/**
+ * Sends the latest save, then signs out and forgets this account's code. The caller
+ * removes the app's own save and reloads, so the next person starts clean. Throws,
+ * and keeps everything, when the latest save cannot reach the server.
+ */
+export async function signOut() {
+  if (signedIn() && saveText && !frozen && !(await pushSave())) {
+    throw new ApiError('The latest changes have not reached the server yet. Try again in a moment.', 0);
+  }
+  await flushEvents();
+  frozen = true;
+  clearTimeout(saveTimer);
+  await api('/auth/logout', { method: 'POST', body: '{}' }).catch(() => undefined);
+  for (const key of [ID_KEY, OUTBOX_KEY, SAVED_KEY]) remove(key);
+}
+
+addEventListener('online', () => void flushEvents());
 addEventListener('pagehide', () => {
-  if (saveText && !frozen) pushSave(true);
+  if (saveText && !frozen) void pushSave(true);
 });
 document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'hidden' && saveText && !frozen) pushSave(true);
-  else flushEvents();
+  if (document.visibilityState === 'hidden' && saveText && !frozen) void pushSave(true);
+  else void flushEvents();
 });
 setInterval(() => {
-  if (outbox().length > 0) flushEvents();
+  if (outbox().length > 0) void flushEvents();
 }, 60_000);
-flushEvents();
