@@ -184,3 +184,13 @@ export function createAuth({ getPool, cookie, lang, deviceCode, newDevice }) {
 
   const limited = attemptLimit(10, t.tooMany)
 
+  router.post('/register', limited, async (req, res) => {
+    const input = credentials(req.body)
+    if (input.error) return res.status(400).json({ error: input.error })
+    const pool = getPool()
+    const [taken] = await pool.query('SELECT id FROM users WHERE username = ?', [input.username])
+    if (taken[0]) return res.status(409).json({ error: t.taken })
+    // The browser's own code joins the account, so the progress already in it is kept.
+    // A code that already belongs to someone else gets a fresh one instead.
+    let device = typeof req.body?.device === 'string' && deviceCode.test(req.body.device) ? req.body.device : ''
+    if (device) {
