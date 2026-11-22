@@ -131,3 +131,13 @@ export function createAuth({ getPool, cookie, lang, deviceCode, newDevice }) {
     res.setHeader('Set-Cookie', `${cookie}=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${maxAge}${secure}`)
   }
 
+  async function startSession(req, res, userId) {
+    const token = randomBytes(32).toString('base64url')
+    const expires = new Date(Date.now() + SESSION_DAYS * 86_400_000)
+    const pool = getPool()
+    await pool.query('INSERT INTO sessions (token_hash, user_id, created_at, expires_at, user_agent) VALUES (?, ?, UTC_TIMESTAMP(), ?, ?)', [
+      sha256(token),
+      userId,
+      expires,
+      String(req.headers['user-agent'] ?? '').slice(0, 255) || null,
+    ])
