@@ -17,3 +17,11 @@ export function mountAccount({ restore, mirror, forget, say }) {
   const form = $('gate-form');
   const user = $('gate-user');
   const pass = $('gate-pass');
+  const submit = $('gate-submit');
+  const error = $('gate-error');
+  let mode = 'in';
+  let busy = false;
+  // "Use without an account" holds until the page reloads or the visitor asks to sign in.
+  let skipped = false;
+  let shown = null;
+
