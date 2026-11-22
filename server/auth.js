@@ -87,3 +87,11 @@ export async function verifyPassword(password, stored) {
 
 const sha256 = (value) => createHash('sha256').update(value).digest('hex')
 
+function readCookie(req, name) {
+  for (const part of String(req.headers.cookie ?? '').split(';')) {
+    const at = part.indexOf('=')
+    if (at > 0 && part.slice(0, at).trim() === name) return decodeURIComponent(part.slice(at + 1).trim())
+  }
+  return undefined
+}
+
