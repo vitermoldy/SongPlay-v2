@@ -25,3 +25,9 @@ if (rows.length === 0) {
       joined: when(r.created_at),
       'last sign-in': when(r.last_login_at),
       'last active': when(r.last_seen_at),
+      'sign-ins': r.login_count,
+      events: Number(r.events),
+      save: r.save_bytes ? `${Math.ceil(r.save_bytes / 1024)} KB, ${when(r.saved_at)}` : '-',
+    })),
+  )
+}
