@@ -1,20 +1,26 @@
+import { randomInt } from 'node:crypto'
 import express from 'express'
+import { createAuth } from './auth.js'
 import project from './project.js'
 
 /**
  * The API, the same in every app:
- *   PUT  /api/save            { device, data }  mirror the browser save
- *   GET  /api/save/:device                      the save, to restore it in another browser
- *   POST /api/events          { device, events } record what happened
- *   GET  /api/stats/:device                     the app's own summary of those events
+ *   /api/auth/...                               register, login, logout, me (see auth.js)
+ *   PUT  /api/save            { data }          mirror the browser save
+ *   GET  /api/save                              the save, to bring it to another browser
+ *   POST /api/events          { events }        record what happened
+ *   GET  /api/stats                             the app's own summary of those events
  *   GET  /api/health
- * There are no accounts: a device is its 12-character recovery code. Anyone who
- * knows a code can read and replace that save, so the code is shown only to its owner.
+ * Everything but health and auth needs a signed-in account. Each account files its
+ * data under one 12-character code (`devices.id`); the browser never chooses it.
  */
 
 const CODE = /^[A-HJ-NP-Z2-9]{12}$/
+const ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
 const DAY = /^\d{4}-\d{2}-\d{2}$/
 const YEAR = 365 * 24 * 3600 * 1000
+
+const newCode = () => Array.from({ length: 12 }, () => ALPHABET[randomInt(ALPHABET.length)]).join('')
 
 /** Writes come as JSON from this site only: no form posts, no other origin. */
 function sameOriginWrites(req, res, next) {
@@ -47,15 +53,19 @@ export function createApi(getPool) {
   api.use(express.json({ limit: project.maxSaveBytes + 64 * 1024 }))
   api.use(sameOriginWrites)
   api.use(rateLimit(120))
+
   api.use((req, res, next) => (getPool() ? next() : res.status(503).json({ error: 'The database is not connected yet.' })))
+  api.get('/health', (_req, res) => res.json({ ok: true, app: project.name }))
+
+  const auth = createAuth({ getPool, cookie: `${project.database}_session`, lang: 'en', deviceCode: CODE, newDevice: newCode })
+  api.use('/auth', auth.router)
+  api.use(auth.requireUser)
 
   const touch = (device) => getPool().query('INSERT INTO devices (id) VALUES (?) ON DUPLICATE KEY UPDATE last_seen = CURRENT_TIMESTAMP', [device])
 
-  api.get('/health', (_req, res) => res.json({ ok: true, app: project.name }))
-
   api.put('/save', async (req, res) => {
-    const { device, data } = req.body ?? {}
-    if (!CODE.test(device ?? '')) return res.status(400).json({ error: 'Unknown device code.' })
+    const device = req.user.device
+    const { data } = req.body ?? {}
     if (typeof data !== 'string' || data.length === 0) return res.status(400).json({ error: 'The save is empty.' })
     const bytes = Buffer.byteLength(data)
     if (bytes > project.maxSaveBytes) return res.status(413).json({ error: 'The save is too large.' })
@@ -72,17 +82,14 @@ export function createApi(getPool) {
     res.json({ ok: true, savedAt: new Date().toISOString() })
   })
 
-  api.get('/save/:device', async (req, res) => {
-    const device = String(req.params.device).toUpperCase().replace(/[^A-Z0-9]/g, '')
-    if (!CODE.test(device)) return res.status(400).json({ error: 'A recovery code has 12 letters and digits.' })
-    const [rows] = await getPool().query('SELECT data, updated_at AS updatedAt FROM saves WHERE device_id = ?', [device])
-    if (!rows[0]) return res.status(404).json({ error: 'Nothing is saved under this code.' })
-    res.json({ data: rows[0].data, updatedAt: rows[0].updatedAt })
+  api.get('/save', async (req, res) => {
+    const [rows] = await getPool().query('SELECT data, updated_at AS updatedAt FROM saves WHERE device_id = ?', [req.user.device])
+    res.json(rows[0] ? { data: rows[0].data, updatedAt: rows[0].updatedAt } : { data: null })
   })
 
   api.post('/events', async (req, res) => {
-    const { device, events } = req.body ?? {}
-    if (!CODE.test(device ?? '')) return res.status(400).json({ error: 'Unknown device code.' })
+    const device = req.user.device
+    const { events } = req.body ?? {}
     if (!Array.isArray(events) || events.length === 0 || events.length > 200) return res.status(400).json({ error: 'Send 1 to 200 events.' })
     const now = Date.now()
     const rows = []
@@ -98,12 +105,10 @@ export function createApi(getPool) {
     res.json({ ok: true, stored: rows.length, dropped: events.length - rows.length })
   })
 
-  api.get('/stats/:device', async (req, res) => {
-    const device = String(req.params.device)
-    if (!CODE.test(device)) return res.status(400).json({ error: 'Unknown device code.' })
+  api.get('/stats', async (req, res) => {
     const days = Math.min(60, Math.max(1, Number(req.query.days) || 14))
     const today = DAY.test(String(req.query.today ?? '')) ? String(req.query.today) : new Date().toISOString().slice(0, 10)
-    res.json(await project.stats(getPool(), device, { days, today }))
+    res.json(await project.stats(getPool(), req.user.device, { days, today }))
   })
 
   api.use((err, _req, res, _next) => {
