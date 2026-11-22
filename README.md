@@ -48,8 +48,12 @@ The server needs Node 22 or newer and MySQL 8. After `npm run build`, `npm start
 API on one port. On a static host without the server, the player works as before and "Played most" says the
 server is not reachable.
 
-There are no accounts. Each browser gets a 12-character recovery code, under "Played most" in the queue panel;
-typed into another browser, it brings the queue and settings there. Tables: `devices` (one row per code),
+While the server runs, the app asks for an account first (username and password, at least 6 characters). Signing
+up from a browser that already holds a queue brings it into the new account; signing in elsewhere loads the account's;
+signing out removes it from that browser (it stays with the account). With the server off the app works as before
+and keeps everything in the browser. `npm run users` lists who has an account; `npm run set-user -- <username>
+<password>` makes an account or sets a new password (there is no reset by email).
+Tables: `users` and `sessions` (accounts), `devices` (one row per account),
 `saves` (the latest queue copy) and `events` (one row per song that started playing).
 
 v1 and v2 each have their own port and database (8792 with `songplay_v1`, 8793 with `songplay_v2`), so both
@@ -70,8 +74,9 @@ src/player/           the player page
   youtube.js          link parsing, titles from oEmbed, the IFrame API loader
   ambience.js         the ambient sound, made with the Web Audio API (no audio files)
   player.css          stage, deck and dropdown
-  history.js          "Played most" and the recovery code
-  cloud.js            link to the server: recovery code, outbox, queue copy
+  history.js          "Played most"
+  account.js          the sign-in screen and the account rows
+  cloud.js            link to the server: account, outbox, queue copy
 src/scene/            the 3D scene, used by both pages ("hero" and "player" variants)
   index.js            renderer, camera, loop, pause, cursor light, video on the screen (CSS3D)
   terrain.js          hill shape and the clearing's edge, shared by ground, grass and trees
