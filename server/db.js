@@ -1,9 +1,10 @@
 import mysql from 'mysql2/promise'
+import { AUTH_TABLES } from './auth.js'
 
 /**
- * Three tables, the same in every app:
- * - devices: one row per browser, keyed by its recovery code;
- * - saves: the app's browser save, mirrored as one JSON text per device;
+ * Three tables for the data, the same in every app, plus users and sessions from auth.js:
+ * - devices: one row per data key; each account owns one (users.device_id);
+ * - saves: the app's browser save, mirrored as one JSON text per account;
  * - events: what happened (a focus session finished, a song played), for the stats.
  * Times are stored in UTC; `day` is the local date the browser reported, so a day
  * in the stats is the visitor's own day.
@@ -39,6 +40,6 @@ export async function connect(db) {
   await boot.query(`CREATE DATABASE IF NOT EXISTS \`${db.database.replace(/`/g, '')}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`)
   await boot.end()
   const pool = mysql.createPool({ ...db, connectionLimit: 8, timezone: 'Z' })
-  for (const sql of TABLES) await pool.query(sql)
+  for (const sql of [...TABLES, ...AUTH_TABLES]) await pool.query(sql)
   return pool
 }
