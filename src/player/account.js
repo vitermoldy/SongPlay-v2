@@ -25,3 +25,9 @@ export function mountAccount({ restore, mirror, forget, say }) {
   let skipped = false;
   let shown = null;
 
+  const label = () => (mode === 'in' ? 'Sign in' : 'Create account');
+  function showError(text) {
+    error.textContent = text;
+    error.hidden = !text;
+  }
+
