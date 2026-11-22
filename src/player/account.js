@@ -120,3 +120,10 @@ export function mountAccount({ restore, mirror, forget, say }) {
       showError(e instanceof Error ? e.message : 'Could not sign in. Try again.');
       if (e instanceof ApiError && e.status === 401) pass.select();
       pass.setAttribute('aria-invalid', 'true');
+    } finally {
+      busy = false;
+      submit.disabled = false;
+      submit.textContent = label();
+    }
+  });
+
