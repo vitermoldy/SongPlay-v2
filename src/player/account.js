@@ -185,3 +185,8 @@ export function mountAccount({ restore, mirror, forget, say }) {
     /* private window */
   }
 
+  onCloud((state) => render(state));
+  setMode('in');
+  render();
+  void check();
+}
