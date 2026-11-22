@@ -5,6 +5,7 @@ import { describeError, fetchInfo, loadYouTubeApi, parseYouTube } from './youtub
 import { createAmbience } from './ambience.js';
 import { logEvent, mirrorSave } from './cloud.js';
 import { mountHistory } from './history.js';
+import { mountAccount } from './account.js';
 
 const STORE_KEY = 'songlearn.queue.v1';
 const THEME_KEY = 'songlearn.theme';
@@ -14,6 +15,8 @@ const SOUND_KEY = 'songlearn.sound';
 const VOLUME_KEY = 'songlearn.volume';
 const SEASON_NAMES = ['spring', 'summer', 'autumn', 'winter', 'rain'];
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+// Set while the page is about to reload into another account's queue (or none).
+let queueFrozen = false;
 const $ = (selector) => document.querySelector(selector);
 
 const ui = {
@@ -237,6 +240,7 @@ function loadQueue() {
 }
 
 function saveQueue() {
+  if (queueFrozen) return;
   try {
     const keep = state.items.map(({ uid, kind, id, list, index, title, author, thumb, problem }) => ({
       uid,
@@ -271,8 +275,19 @@ function mirror() {
   }
 }
 
-/** Another browser's queue and preferences, restored by recovery code; the page reloads after. */
+/** Signing out: the queue leaves this browser and is not written again before the reload. */
+function forgetQueue() {
+  queueFrozen = true;
+  try {
+    localStorage.removeItem(STORE_KEY);
+  } catch {
+    // Blocked storage: nothing was kept either.
+  }
+}
+
+/** The account's queue and preferences, signing in on another browser; the page reloads after. */
 function restoreSaved(data) {
+  queueFrozen = true;
   const queue = Array.isArray(data?.queue) ? data.queue.filter(isValid) : [];
   localStorage.setItem(STORE_KEY, JSON.stringify(queue));
   for (const k of prefKeys()) {
@@ -780,7 +795,8 @@ function enqueue(parsed) {
   }
 }
 
-const played = mountHistory({ enqueue, restore: restoreSaved, say });
+const played = mountHistory({ enqueue });
+mountAccount({ restore: restoreSaved, mirror, forget: forgetQueue, say });
 
 ui.input.addEventListener('input', () => {
   if (!ui.error.hidden) showError('');
