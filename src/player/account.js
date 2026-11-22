@@ -31,3 +31,13 @@ export function mountAccount({ restore, mirror, forget, say }) {
     error.hidden = !text;
   }
 
+  function applySave(text, welcome) {
+    try {
+      restore(JSON.parse(text));
+    } catch {
+      say('The queue saved with this account could not be read.');
+      return;
+    }
+    try {
+      sessionStorage.setItem(WELCOME_KEY, welcome);
+    } catch {
