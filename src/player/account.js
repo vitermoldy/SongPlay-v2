@@ -100,3 +100,13 @@ export function mountAccount({ restore, mirror, forget, say }) {
     pass.toggleAttribute('aria-invalid', !password);
     if (!name || !password) {
       showError(!name ? 'Enter your username.' : 'Enter your password.');
+      (!name ? user : pass).focus();
+      return;
+    }
+    busy = true;
+    submit.disabled = true;
+    submit.textContent = mode === 'in' ? 'Checking…' : 'Creating account…';
+    try {
+      const save = mode === 'in' ? await signIn(name, password) : await signUp(name, password);
+      const welcome = mode === 'in' ? `Signed in as ${cloudState().account?.username}.` : `Account ${name} created. Welcome.`;
+      if (save) {
