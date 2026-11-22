@@ -77,3 +77,11 @@ export async function hashPassword(password) {
   return ['scrypt', SCRYPT.N, SCRYPT.r, SCRYPT.p, salt.toString('base64'), hash.toString('base64')].join('$')
 }
 
+export async function verifyPassword(password, stored) {
+  const [kind, n, r, p, salt, hash] = String(stored).split('$')
+  if (kind !== 'scrypt' || !salt || !hash) return false
+  const expected = Buffer.from(hash, 'base64')
+  const actual = await scrypt(password, Buffer.from(salt, 'base64'), expected.length, { N: Number(n), r: Number(r), p: Number(p), maxmem: SCRYPT.maxmem })
+  return actual.length === expected.length && timingSafeEqual(actual, expected)
+}
+
