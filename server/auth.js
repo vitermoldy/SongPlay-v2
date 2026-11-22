@@ -56,3 +56,13 @@ const MESSAGES = {
     signedOut: 'Kamu belum masuk.',
     tooMany: 'Terlalu banyak percobaan masuk. Tunggu satu menit, lalu coba lagi.',
   },
+  en: {
+    username: 'A username has 3 to 24 characters: letters, digits, dots, underscores or hyphens.',
+    password: `A password has at least ${PASSWORD_MIN} characters.`,
+    passwordLong: `A password has at most ${PASSWORD_MAX} characters.`,
+    taken: 'That username is taken. Pick another one.',
+    wrong: 'Wrong username or password.',
+    signedOut: 'You are not signed in.',
+    tooMany: 'Too many sign-in attempts. Wait a minute, then try again.',
+  },
+}
