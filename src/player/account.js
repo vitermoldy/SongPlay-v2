@@ -127,3 +127,8 @@ export function mountAccount({ restore, mirror, forget, say }) {
     }
   });
 
+  $('gate-switch').addEventListener('click', () => {
+    setMode(mode === 'in' ? 'up' : 'in');
+    user.focus();
+  });
+
