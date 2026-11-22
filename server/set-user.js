@@ -37,3 +37,5 @@ if (found) {
       ? `${project.name}: account ${username} created, holding the data already there (${free.saves ? 'a save and ' : ''}${free.events} events).`
       : `${project.name}: account ${username} created. There was no earlier data.`,
   )
+}
+await pool.end()
