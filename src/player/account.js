@@ -90,3 +90,13 @@ export function mountAccount({ restore, mirror, forget, say }) {
     }
   }
 
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (busy) return;
+    showError('');
+    const name = user.value.trim();
+    const password = pass.value;
+    user.toggleAttribute('aria-invalid', !name);
+    pass.toggleAttribute('aria-invalid', !password);
+    if (!name || !password) {
+      showError(!name ? 'Enter your username.' : 'Enter your password.');
