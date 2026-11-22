@@ -15,3 +15,13 @@ const [rows] = await pool.query(
 )
 await pool.end()
 
+if (rows.length === 0) {
+  console.log(`${project.name}: no accounts yet in database ${config.db.database}.`)
+} else {
+  console.log(`${project.name}: ${rows.length} account${rows.length === 1 ? '' : 's'} in database ${config.db.database}`)
+  console.table(
+    rows.map((r) => ({
+      username: r.username,
+      joined: when(r.created_at),
+      'last sign-in': when(r.last_login_at),
+      'last active': when(r.last_seen_at),
