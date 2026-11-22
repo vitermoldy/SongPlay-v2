@@ -139,3 +139,10 @@ export function mountAccount({ restore, mirror, forget, say }) {
     if (cloudState().auth === 'unavailable') skip();
   });
 
+  function skip() {
+    skipped = true;
+    render();
+    say('The queue stays in this browser until you sign in.');
+  }
+  $('gate-skip').addEventListener('click', skip);
+
