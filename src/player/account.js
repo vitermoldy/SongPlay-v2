@@ -175,3 +175,13 @@ export function mountAccount({ restore, mirror, forget, say }) {
     }
   });
 
+  try {
+    const welcome = sessionStorage.getItem(WELCOME_KEY);
+    if (welcome) {
+      sessionStorage.removeItem(WELCOME_KEY);
+      setTimeout(() => say(`${welcome} Your queue is loaded.`), 600);
+    }
+  } catch {
+    /* private window */
+  }
+
