@@ -56,3 +56,10 @@ export function mountAccount({ restore, mirror, forget, say }) {
     $('gate-switch').textContent = next === 'in' ? 'Create one' : 'Sign in';
     $('gate-lead').textContent =
       next === 'in'
+        ? 'Your queue, the songs you play most and your settings are kept with your account, on any browser.'
+        : 'The queue already in this browser moves into your new account.';
+    showError('');
+    user.removeAttribute('aria-invalid');
+    pass.removeAttribute('aria-invalid');
+  }
+
