@@ -146,3 +146,13 @@ export function mountAccount({ restore, mirror, forget, say }) {
   }
   $('gate-skip').addEventListener('click', skip);
 
+  async function check() {
+    const save = await checkAccount();
+    if (save) applySave(save, `Signed in as ${cloudState().account?.username}.`);
+  }
+  $('gate-retry').addEventListener('click', () => void check());
+  $('account-enter').addEventListener('click', () => {
+    skipped = false;
+    void check();
+  });
+
