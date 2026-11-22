@@ -110,3 +110,13 @@ export function mountAccount({ restore, mirror, forget, say }) {
       const save = mode === 'in' ? await signIn(name, password) : await signUp(name, password);
       const welcome = mode === 'in' ? `Signed in as ${cloudState().account?.username}.` : `Account ${name} created. Welcome.`;
       if (save) {
+        applySave(save, welcome);
+        return;
+      }
+      mirror();
+      pass.value = '';
+      say(welcome);
+    } catch (e) {
+      showError(e instanceof Error ? e.message : 'Could not sign in. Try again.');
+      if (e instanceof ApiError && e.status === 401) pass.select();
+      pass.setAttribute('aria-invalid', 'true');
