@@ -222,3 +222,11 @@ export function createAuth({ getPool, cookie, lang, deviceCode, newDevice }) {
     await startSession(req, res, row.id)
     res.json({ user: publicUser(row), device: row.device_id })
   })
+
+  router.post('/logout', async (req, res) => {
+    const token = readCookie(req, cookie)
+    if (token) await getPool().query('DELETE FROM sessions WHERE token_hash = ?', [sha256(token)])
+    setCookie(req, res, '', 0)
+    res.json({ ok: true })
+  })
+
