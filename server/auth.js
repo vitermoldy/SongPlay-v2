@@ -25,3 +25,13 @@ export const AUTH_TABLES = [
     last_login_at DATETIME NULL,
     last_seen_at DATETIME NULL,
     login_count INT UNSIGNED NOT NULL DEFAULT 0,
+    UNIQUE KEY users_username (username),
+    UNIQUE KEY users_device (device_id)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS sessions (
+    token_hash CHAR(64) PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
+    created_at DATETIME NOT NULL,
+    expires_at DATETIME NOT NULL,
+    user_agent VARCHAR(255) NULL,
+    INDEX sessions_by_user (user_id),
