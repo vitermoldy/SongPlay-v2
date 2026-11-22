@@ -39,3 +39,10 @@ export const AUTH_TABLES = [
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
 ]
 
+export const USERNAME = /^[A-Za-z0-9_.-]{3,24}$/
+export const PASSWORD_MIN = 6
+export const PASSWORD_MAX = 128
+const SESSION_DAYS = 30
+const SCRYPT = { N: 16384, r: 8, p: 1, maxmem: 64 * 1024 * 1024 }
+const KEYLEN = 64
+
