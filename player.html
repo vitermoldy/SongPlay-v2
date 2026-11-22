@@ -178,25 +178,22 @@
                 <p class="history-note" data-history-status>Checking the server…</p>
                 <p class="history-note" data-history-empty hidden></p>
                 <ol class="queue-list" data-history-list></ol>
-                <div class="history-field">
-                  <span class="history-label">Recovery code for this browser</span>
-                  <div class="history-row">
-                    <output class="history-code" data-history-code>····-····-····</output>
-                    <button class="text-btn" type="button" data-history-copy>Copy code</button>
-                  </div>
+              </section>
+              <section class="history" aria-labelledby="account-title">
+                <h3 class="history-title" id="account-title">Account</h3>
+                <div id="account-in" hidden>
+                  <p class="history-note">Signed in as <strong class="account-name" id="account-name"></strong>, joined <span id="account-since"></span>.</p>
+                  <button class="text-btn" type="button" id="account-leave">Sign out</button>
+                  <p class="history-note">Signing out removes the queue from this browser. It stays with your account.</p>
                 </div>
-                <form class="history-field" data-history-restore novalidate>
-                  <label class="history-label" for="history-code">Bring the queue from another browser</label>
-                  <div class="history-row">
-                    <input id="history-code" name="code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="16" placeholder="ABCD-EFGH-JKLM" aria-describedby="history-error history-hint" />
-                    <button class="text-btn" type="submit">Restore</button>
-                  </div>
-                  <p class="field-error" id="history-error" hidden></p>
-                  <p class="history-note" id="history-hint">The queue and settings here are replaced by the ones saved under that code.</p>
-                </form>
+                <div id="account-out-of">
+                  <p class="history-note">Not signed in. The queue stays in this browser only.</p>
+                  <button class="text-btn" type="button" id="account-enter">Sign in or create an account</button>
+                </div>
+                <p class="field-error account-error" id="account-error" role="alert" hidden></p>
               </section>
               <div class="queue-foot">
-                <p>Plays from YouTube in privacy-enhanced mode. The queue stays in this browser, with a copy on the server when it runs.</p>
+                <p>Plays from YouTube in privacy-enhanced mode. The queue stays in this browser, with a copy in your account when the server runs.</p>
                 <button class="text-btn" type="button" data-queue-clear>Clear the queue</button>
               </div>
             </div>
@@ -210,5 +207,33 @@
         <span data-scene-label>Pause scene</span>
       </button>
     </main>
+
+    <dialog class="gate" id="auth-gate" aria-labelledby="gate-h">
+      <h2 class="gate-title" id="gate-h">Sign in to SongLearn</h2>
+      <p class="gate-note" id="gate-lead">Your queue, the songs you play most and your settings are kept with your account, on any browser.</p>
+      <p class="gate-state" id="gate-checking" hidden>Checking the server…</p>
+      <form class="gate-form" id="gate-form" novalidate hidden>
+        <div class="gate-field">
+          <label class="deck-label" for="gate-user">Username</label>
+          <input id="gate-user" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="24" required />
+        </div>
+        <div class="gate-field">
+          <label class="deck-label" for="gate-pass">Password</label>
+          <input id="gate-pass" name="password" type="password" autocomplete="current-password" maxlength="128" required aria-describedby="gate-pass-hint gate-error" />
+          <p class="gate-note" id="gate-pass-hint" hidden>At least 6 characters. A username can use letters, digits, dots, underscores and hyphens.</p>
+        </div>
+        <p class="field-error" id="gate-error" role="alert" hidden></p>
+        <button class="cta gate-submit" id="gate-submit" type="submit">Sign in</button>
+      </form>
+      <p class="gate-switch" id="gate-switch-line" hidden><span id="gate-switch-text">No account yet?</span> <button class="text-btn" id="gate-switch" type="button">Create one</button></p>
+      <div id="gate-offline" hidden>
+        <p class="gate-state">The server is not reachable, so accounts cannot be used right now. Run <code>npm run server</code>, then try again.</p>
+        <p class="gate-note">Without an account the player works as before and keeps the queue in this browser. Once you create an account, the queue moves in with you.</p>
+        <div class="gate-actions">
+          <button class="cta gate-submit" id="gate-retry" type="button">Try again</button>
+          <button class="text-btn" id="gate-skip" type="button">Use without an account</button>
+        </div>
+      </div>
+    </dialog>
   </body>
 </html>
