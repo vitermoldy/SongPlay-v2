@@ -161,3 +161,13 @@ export function createAuth({ getPool, cookie, lang, deviceCode, newDevice }) {
     return { id: row.id, username: row.username, device: row.device_id, createdAt: row.created_at }
   }
 
+  /** Lets the request through only when someone is signed in; `req.user.device` is their data key. */
+  async function requireUser(req, res, next) {
+    try {
+      const user = await userFor(req)
+      if (!user) return res.status(401).json({ error: t.signedOut })
+      req.user = user
+      next()
+    } catch (err) {
+      next(err)
+    }
