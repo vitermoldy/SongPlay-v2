@@ -46,3 +46,13 @@ export function mountAccount({ restore, mirror, forget, say }) {
     location.reload();
   }
 
+  function setMode(next) {
+    mode = next;
+    $('gate-h').textContent = next === 'in' ? 'Sign in to SongLearn' : 'Create a SongLearn account';
+    submit.textContent = label();
+    pass.autocomplete = next === 'in' ? 'current-password' : 'new-password';
+    $('gate-pass-hint').hidden = next === 'in';
+    $('gate-switch-text').textContent = next === 'in' ? 'No account yet?' : 'Already have an account?';
+    $('gate-switch').textContent = next === 'in' ? 'Create one' : 'Sign in';
+    $('gate-lead').textContent =
+      next === 'in'
